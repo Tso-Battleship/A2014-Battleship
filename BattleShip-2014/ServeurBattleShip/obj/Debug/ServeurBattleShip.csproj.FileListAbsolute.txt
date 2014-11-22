@@ -1,0 +1,8 @@
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\bin\Debug\ServeurBattleShip.exe.config
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\bin\Debug\ServeurBattleShip.exe
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\bin\Debug\ServeurBattleShip.pdb
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.csprojResolveAssemblyReference.cache
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.Properties.Resources.resources
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.csproj.GenerateResource.Cache
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.exe
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.pdb

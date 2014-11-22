@@ -1,0 +1,5 @@
+D:\BattleShip-2014\BattleShip-2014\BattleShip-2014\bin\Debug\BattleShip-2014.dll
+D:\BattleShip-2014\BattleShip-2014\BattleShip-2014\bin\Debug\BattleShip-2014.pdb
+D:\BattleShip-2014\BattleShip-2014\BattleShip-2014\obj\Debug\ClassesBattleShip.csprojResolveAssemblyReference.cache
+D:\BattleShip-2014\BattleShip-2014\BattleShip-2014\obj\Debug\BattleShip-2014.dll
+D:\BattleShip-2014\BattleShip-2014\BattleShip-2014\obj\Debug\BattleShip-2014.pdb
