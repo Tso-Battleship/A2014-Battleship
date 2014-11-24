@@ -1,4 +1,4 @@
-﻿namespace ServeurBattleShip
+﻿namespace BattleShip_2014
 {
     partial class Serveur
     {

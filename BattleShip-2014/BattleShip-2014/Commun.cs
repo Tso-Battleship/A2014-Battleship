@@ -83,5 +83,7 @@ namespace BattleShip_2014
         public const String DELEMITEUR_FIN_DONNEE = ";";
         public const String DELEMITEUR_DEBUT_DATA = ":";
 
+
     }
+    
 }

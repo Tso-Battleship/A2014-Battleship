@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClientBattleShip
+namespace BattleShip_2014
 {
     public partial class Client : Form
     {
         public Client()
         {
             InitializeComponent();
+            
         }
     }
 }

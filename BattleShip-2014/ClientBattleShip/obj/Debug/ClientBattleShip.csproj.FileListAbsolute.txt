@@ -1,7 +1,6 @@
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\ClientBattleShip.exe.config
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\ClientBattleShip.exe
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\ClientBattleShip.pdb
-D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csprojResolveAssemblyReference.cache
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.Properties.Resources.resources
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csproj.GenerateResource.Cache
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.exe

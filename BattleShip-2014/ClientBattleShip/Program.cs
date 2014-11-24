@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClientBattleShip
+namespace BattleShip_2014
 {
     static class Program
     {
@@ -17,6 +17,7 @@ namespace ClientBattleShip
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Client());
+            
         }
     }
 }

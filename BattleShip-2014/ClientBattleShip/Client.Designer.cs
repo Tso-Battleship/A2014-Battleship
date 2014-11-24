@@ -1,4 +1,4 @@
-﻿namespace ClientBattleShip
+﻿namespace BattleShip_2014
 {
     partial class Client
     {
