@@ -83,6 +83,8 @@ namespace BattleShip_2014
         public const String DELEMITEUR_FIN_DONNEE = ";";
         public const String DELEMITEUR_DEBUT_DATA = ":";
 
+        public const String DATA_NOM_PIECE = "NOMPIECE";
+        public const String DATA_NOM_MODE = "!";
 
     }
     
