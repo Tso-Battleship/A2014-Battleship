@@ -8,9 +8,64 @@ namespace BattleShip_2014
 {
     class Piece
     {
+
+
+        /*public Piece(fffff,string name, string path,fffee)
+        { 
+            
+        }
+
+
         public Piece()
         {
 
+        }
+
+        */
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+        private int positionX_, positionY_;
+
+        Rotation rotation_;
+
+
+
+        public int PositionX
+        {
+            get
+            {
+                return this.positionX_;
+            }
+            set
+            {
+                this.positionX_ = value;
+            }
+        }
+        public int PositionY
+        {
+            get
+            {
+                return this.positionY_;
+            }
+            set
+            {
+                this.positionY_ = value;
+            }
+        }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        
+
+        public bool caseEstTouch(int posx, int posy)
+        {
+            return false;
+        }
+        public void tirerCase(int posx, int posy)
+        { 
+            
         }
     }
 }
