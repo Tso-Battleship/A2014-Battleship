@@ -18,6 +18,7 @@ namespace BattleShip_2014
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + "NOMDELAPIECE" + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + "XEX/C.jpg" + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + 2 + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + 3 + Commun.DELEMITEUR_FIN_DONNEE;
 
@@ -29,7 +30,10 @@ namespace BattleShip_2014
             String retour = "";
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_MODE_DE_JEU + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_NOM_PI
+            retour += Commun.DATA_NOM_MODE + Commun.DELEMITEUR_DEBUT_DATA + "NOMMODE" + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + 3 + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + 3 + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + 5 + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
         }
