@@ -17,5 +17,10 @@ namespace BattleShip_2014
             InitializeComponent();
             
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
