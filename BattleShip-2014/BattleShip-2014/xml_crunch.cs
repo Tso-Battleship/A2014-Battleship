@@ -10,11 +10,11 @@ namespace BattleShip_2014
     /// <summary>
     /// La classe qui lit le xml
     /// </summary>
-    class xml_crunch
+    public class xml_crunch
     {
         XmlReader reader;
         private string NomFichier_ = "battleship_xml.xml";
-        xml_crunch()
+        public xml_crunch()
         {
             //initialisation de lobjet configure xml et initialisation du Xml Reader
             XmlReaderSettings configurationReader = new XmlReaderSettings();
@@ -27,6 +27,8 @@ namespace BattleShip_2014
                 
         }
 
+        private String[] modeDeJeu_;
+
         void main()
         {
             string genre;
@@ -35,18 +37,30 @@ namespace BattleShip_2014
             {
                 reader.MoveToElement();
                 switch(reader.Name){
-                    /*
-                        //Lire le mode de jeux
-            reader.ReadToFollowing("modeDeJeu");
-            reader.MoveToFirstAttribute();
-            genre = reader.Value;
-            //output.AppendLine("The genre value: " + genre);
+                
 
-            reader.ReadToFollowing("title");
-            //output.AppendLine("Content of the title element: " + reader.ReadElementContentAsString());*/
-                        
-                case "modeDeJeu":
-                        ;
+                    case "modeDeJeu":
+                        if (reader.HasAttributes)
+                            modeDeJeu_[0] = reader["nomDeJeu"];
+                        break;
+                    case "taille":
+                        modeDeJeu_[1] = reader.ReadContentAsString();
+                        break;
+                    case "path":
+                        if (reader.HasAttributes)
+                            modeDeJeu_[2] = reader["emplacement"];
+                        break;
+                    case "piece":
+                        if (reader.HasAttributes)
+                            modeDeJeu_[3] = reader["ship1"];
+                        break;
+                    case "cases":
+                        modeDeJeu_[4] = reader.ReadContentAsString();
+                        break;
+                    case "description":
+                        modeDeJeu_[5] = reader.ReadContentAsString();
+                        break;
+                    default:
                         break;
                 }
             }
