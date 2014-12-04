@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip_2014
 {
-    enum Rotation
+    public enum Rotation
     {
         Haut = 0,
         Droite = 90,

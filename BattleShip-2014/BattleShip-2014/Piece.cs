@@ -9,24 +9,33 @@ namespace BattleShip_2014
     public class Piece : DescriptionPiece
     {
 
-
-        /*public Piece(fffff,string name, string path,fffee)
-        { 
-            
-        }
-
+        private int positionX_, positionY_;
+        Rotation rotation_;
 
         public Piece()
         {
 
         }
 
-        */
+        public Piece(List<CaseDeJeux> cases,string name, string path,Rotation Rotation)
+        { 
+            
+        }
+        
+
+        public Piece(DescriptionPiece Piece, int x, int y)
+        {
+            positionX_ = x;
+            positionY_ = y;
+
+        }
+
+        
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private int positionX_, positionY_;
+        
 
-        Rotation rotation_;
+        
 
 
 

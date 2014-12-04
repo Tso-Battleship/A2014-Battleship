@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip_2014
 {
-    class CaseDeJeux
+    public class CaseDeJeux
     {
         /// <summary>
         /// Variable globale
