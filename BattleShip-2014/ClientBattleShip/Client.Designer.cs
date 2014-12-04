@@ -36,26 +36,21 @@
             this.nomJoueur_Label = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-<<<<<<< Updated upstream
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-=======
             this.main_panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.info_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
->>>>>>> Stashed changes
             this.minimize_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.connect_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -172,6 +167,86 @@
             this.panel1.Size = new System.Drawing.Size(609, 215);
             this.panel1.TabIndex = 7;
             // 
+            // button4
+            // 
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button4.Location = new System.Drawing.Point(18, 167);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(178, 32);
+            this.button4.TabIndex = 15;
+            this.button4.Tag = "patrol_boat";
+            this.button4.Text = "Patrol boat [2]";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.place_ship_buttons);
+            // 
+            // button3
+            // 
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button3.Location = new System.Drawing.Point(18, 129);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(178, 32);
+            this.button3.TabIndex = 14;
+            this.button3.Tag = "destroyer";
+            this.button3.Text = "Destroyer [3]";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.place_ship_buttons);
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.Location = new System.Drawing.Point(18, 91);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(178, 32);
+            this.button2.TabIndex = 13;
+            this.button2.Tag = "submarine";
+            this.button2.Text = "Submarine [3]";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.place_ship_buttons);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Location = new System.Drawing.Point(18, 53);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(178, 32);
+            this.button1.TabIndex = 12;
+            this.button1.Tag = "battleship";
+            this.button1.Text = "Battleship [4]";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.place_ship_buttons);
+            // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button5.Location = new System.Drawing.Point(18, 15);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(178, 32);
+            this.button5.TabIndex = 11;
+            this.button5.Tag = "aircraft_carrier";
+            this.button5.Text = "Aircraft carrier [5]";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.place_ship_buttons);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.ErrorImage = null;
@@ -207,15 +282,6 @@
             // 
             // label2
             // 
-<<<<<<< Updated upstream
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(8, 32);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1022, 732);
-            this.panel2.TabIndex = 3;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-=======
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -246,19 +312,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(504, 504);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
->>>>>>> Stashed changes
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(366, 437);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(210, 23);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "127.0.0.1";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // minimize_button
             // 
@@ -287,93 +340,8 @@
             this.exit_button.Size = new System.Drawing.Size(38, 29);
             this.exit_button.TabIndex = 4;
             this.exit_button.Text = "X";
-<<<<<<< Updated upstream
-            this.exit_button.UseVisualStyleBackColor = true;
-    
-=======
             this.exit_button.UseVisualStyleBackColor = false;
             this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
-            // 
-            // button5
-            // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button5.Location = new System.Drawing.Point(18, 15);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(178, 32);
-            this.button5.TabIndex = 11;
-            this.button5.Tag = "aircraft_carrier";
-            this.button5.Text = "Aircraft carrier [5]";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.place_ship_buttons);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(18, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 32);
-            this.button1.TabIndex = 12;
-            this.button1.Tag = "battleship";
-            this.button1.Text = "Battleship [4]";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.place_ship_buttons);
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(18, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(178, 32);
-            this.button2.TabIndex = 13;
-            this.button2.Tag = "submarine";
-            this.button2.Text = "Submarine [3]";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.place_ship_buttons);
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Location = new System.Drawing.Point(18, 129);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 32);
-            this.button3.TabIndex = 14;
-            this.button3.Tag = "destroyer";
-            this.button3.Text = "Destroyer [3]";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.place_ship_buttons);
-            // 
-            // button4
-            // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button4.Location = new System.Drawing.Point(18, 167);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(178, 32);
-            this.button4.TabIndex = 15;
-            this.button4.Tag = "patrol_boat";
-            this.button4.Text = "Patrol boat [2]";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.place_ship_buttons);
->>>>>>> Stashed changes
             // 
             // Client
             // 
@@ -396,16 +364,10 @@
             this.connect_panel.PerformLayout();
             this.main_panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-<<<<<<< Updated upstream
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-=======
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.info_panel.ResumeLayout(false);
             this.info_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
->>>>>>> Stashed changes
             this.ResumeLayout(false);
 
         }
@@ -422,9 +384,6 @@
         private System.Windows.Forms.Panel main_panel;
         private System.Windows.Forms.Button minimize_button;
         private System.Windows.Forms.Button exit_button;
-<<<<<<< Updated upstream
-        private System.Windows.Forms.TextBox textBox3;
-=======
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel info_panel;
         private System.Windows.Forms.Label label2;
@@ -437,7 +396,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button5;
->>>>>>> Stashed changes
     }
 }
 

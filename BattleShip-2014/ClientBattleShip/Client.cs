@@ -8,13 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
-<<<<<<< Updated upstream
 using ClientBattleShip;
 using System.Net.Sockets;
 using System.Net;
-=======
 using System.Runtime.InteropServices; // Cue Text
->>>>>>> Stashed changes
 
 namespace BattleShip_2014
 {
@@ -29,11 +26,8 @@ namespace BattleShip_2014
 
     public partial class Client : Form
     {
-<<<<<<< Updated upstream
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
- 
-=======
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(
                                                     IntPtr hWnd,
@@ -65,21 +59,11 @@ namespace BattleShip_2014
         }
 
 
->>>>>>> Stashed changes
         public Client()
         {
             InitializeComponent();
             SendMessage(textBox1.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
-
-
-            Bitmap bitmap = new Bitmap(140, 25);
-            //Graphics g = Graphics.FromImage(bitmap);"C:\1color\aircraftCarrier.png"
-            Graphics g = Graphics.FromImage(bitmap);
-            using (Font f = new Font(FontFamily.GenericSansSerif, 16))
-            g.DrawString("DESTROYER", f, Brushes.WhiteSmoke, 0, 0);
-            this.Cursor = CreateCursor(bitmap, 3, 3);
-            bitmap.Dispose();
         }
 
         private void exit_button_Click(object sender, EventArgs e)
@@ -108,38 +92,7 @@ namespace BattleShip_2014
         {
             connect_panel.Visible = false;
             info_panel.Visible = true;
-        }
 
-        private void place_ship_buttons(object sender, EventArgs e)
-        {
-            Button bouton;
-            string bPlaceShip;
-            bouton = (Button)sender;
-            bPlaceShip = bouton.Tag.ToString();
-            switch(bPlaceShip)
-            {
-                case "aircraft_carrier":
-                    //Cursor.Current = new Cursor("C:\1color\aircraftCarrier.png");
-                    
-                    break;
-                case "battleship":
-
-                    break;
-                case "submarine":
-
-                    break;
-                case "destroyer":
-
-                    break;
-                case "patrol_boat":
-
-                    break;
-            }
-
-        }
-
-        private void connecterServeur_button_Click(object sender, EventArgs e)
-        {
             try
             {
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3000);
@@ -152,10 +105,55 @@ namespace BattleShip_2014
             {
                 MessageBox.Show("La connection au serveur a été refusé");
             }
-            
-           // textBox3.Text = TCPClient.retourneAdresseIpClient();
+
+            //label1.Text = TCPClient.retourneAdresseIpClient();
         }
 
-    
+        private void place_ship_buttons(object sender, EventArgs e)
+        {
+            bool changeCur = false;
+            Bitmap bitmap;
+            Button bouton;
+            string bPlaceShip;
+            bouton = (Button)sender;
+            bPlaceShip = bouton.Tag.ToString();
+            switch(bPlaceShip)
+            {
+                case "aircraft_carrier":
+                    //Cursor.Current = new Cursor("C:\1color\aircraftCarrier.png");
+                    bitmap = new Bitmap("aircraftCarrier.png");
+                    changeCur = true;
+                    break;
+                case "battleship":
+                    bitmap = new Bitmap("battleShip.png");
+                    changeCur = true;
+                    break;
+                case "submarine":
+                    bitmap = new Bitmap("destroyer.png");
+                    changeCur = true;
+                    break;
+                case "destroyer":
+                    bitmap = new Bitmap("destroyer.png");
+                    changeCur = true;
+                    break;
+                case "patrol_boat":
+                    bitmap = new Bitmap("patrolBoat.png");
+                    changeCur = true;
+                    break;
+                default:
+                    Cursor.Current = Cursors.Default;
+                    bitmap = new Bitmap("aircraftCarrier.png");
+                    changeCur = false;
+                    break;
+            }
+
+            if(changeCur)
+            {
+                Graphics g = Graphics.FromImage(bitmap);
+                g.DrawImage(bitmap, 0, 0);
+                this.Cursor = CreateCursor(bitmap, 3, 3);
+                bitmap.Dispose();
+            }
+        }
     }
 }
