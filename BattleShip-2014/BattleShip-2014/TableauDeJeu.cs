@@ -8,18 +8,15 @@ namespace BattleShip_2014
 {
     public class TableauDeJeu
     {
-        //public int[][] cases_;
-        //int tailleX_, tailleY_;
+        protected CaseDeJeux[,] cases_;
+        protected int tailleX_, tailleY_;
 
-        /**
-         * methode pour créer le tableau de jeu
-         * */
-        /*public void TableauDeJeu(int tailleX, int tailleY)
+        public TableauDeJeu(int tailleX, int tailleY)
 	    {
-		    cases_ = new int[tailleX][];
+            cases_ = new CaseDeJeux[tailleX, tailleY];
 		    tailleX_ = tailleX;
 		    tailleY_ = tailleY;
-	    }*/
+	    }
 
         /**
         *methode 
@@ -27,12 +24,22 @@ namespace BattleShip_2014
          *parametre tirY: position Y du tir 
          *retourne true si le tir est dans le tableau
         */
-       /* public bool TirerSurCase(int tirX, int tirY)
+        public bool tirerSurCase(int tirX, int tirY)
         {
-            if ((tirX <= tailleX_) | (tirY <= tailleY_))
+            CaseDeJeux c = cases_[tirX, tirY];
+            if(c.EstTouchee)
+            {
+
+            }
+            else
+            {
+                c.tirer();
+            }
+
+            if ((tirX <= tailleX_) && (tirY <= tailleY_) )
                 return true;
             else
                 return false;
-        }*/
+        }
     }
 }

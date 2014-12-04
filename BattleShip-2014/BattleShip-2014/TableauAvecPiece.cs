@@ -8,17 +8,28 @@ namespace BattleShip_2014
 {
     public class TableauAvecPiece : TableauDeJeu
     {
-        /*public void TableauAvecPieces(int tailleX, int tailleY,list<>)
+        public List<Piece> pieces_;
+
+        // selon le forum de stackoverflow.com ca fonctionne :p
+        public TableauAvecPiece(int tailleX, int tailleY, List<Piece> pieces) :
+            base(tailleX, tailleY)
 	    {
-		    
+            pieces_ = pieces;
 	    }
-	    public void TableauAvecPieces(TableauDeJeu Base,list<>)
-	    {
-		    Base.cases_[][] = 1;
-	    }
+
 	    public bool piecesToutesTouchees()
 	    {
-		    return true;
-	    }*/
+            int i = 0;
+            foreach(Piece p in pieces_)
+            {
+                /*if(p.toutesCasesTouch(p.PositionX,p.PositionY))
+                    i++;*/
+            }
+
+            if (i == pieces_.Count)
+                return true;
+            else
+                return false;
+	    }
     }
 }
