@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip_2014
 {
-    class ModeDeJeu
+    public class DescriptionPiece
     {
-        /// <summary>
-        /// Constructeur
-        /// </summary>
-        public ModeDeJeu()
-        { }
     }
 }

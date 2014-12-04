@@ -11,8 +11,8 @@ namespace BattleShip_2014
         /// <summary>
         /// Variable globale
         /// </summary>
-        bool estTouchee_;
-        int offsetX_, offsetY_;
+        private bool estTouchee_;
+        private int offsetX_, offsetY_;
 
 
         public bool EstTouchee
@@ -38,7 +38,7 @@ namespace BattleShip_2014
         /// <summary>
         /// Constructeur
         /// </summary>
-        public void CaseDeJeux()
+        public CaseDeJeux()
         {
             estTouchee_ = false;
             offsetX_ = 0;
@@ -51,7 +51,7 @@ namespace BattleShip_2014
         /// </summary>
         /// <param name="offX"></param>
         /// <param name="offY"></param>
-        void CaseDeJeux(int offX, int offY)
+        public CaseDeJeux(int offX, int offY)
         {
             estTouchee_ = false;
             offsetX_ = offX;

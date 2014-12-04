@@ -6,3 +6,5 @@ D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip
 D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.csproj.GenerateResource.Cache
 D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.exe
 D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\obj\Debug\ServeurBattleShip.pdb
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\bin\Debug\BattleShip-2014.dll
+D:\BattleShip-2014\BattleShip-2014\ServeurBattleShip\bin\Debug\BattleShip-2014.pdb

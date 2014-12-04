@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip_2014
 {
-    class Piece
+    public class Piece : DescriptionPiece
     {
 
 

@@ -16,3 +16,7 @@ C:\Users\tge\Documents\Visual Studio 2013\Projects\A2014-Battleship-master\Battl
 C:\Users\tge\Documents\Visual Studio 2013\Projects\A2014-Battleship-master\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csproj.GenerateResource.Cache
 C:\Users\tge\Documents\Visual Studio 2013\Projects\A2014-Battleship-master\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.exe
 C:\Users\tge\Documents\Visual Studio 2013\Projects\A2014-Battleship-master\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.pdb
+D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\BattleShip-2014.dll
+D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\BattleShip-2014.pdb
+D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csprojResolveAssemblyReference.cache
+D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\BattleShip_2014.Client.resources

@@ -12,7 +12,7 @@ namespace BattleShip_2014
             MODEJE
             MAJ
             DESPiece*/
-        String formatterActionEnvoiPositionPiece(Piece p)
+        public static String formatterActionEnvoiPositionPiece(Piece p)
         {
             String retour = "";
 
@@ -25,7 +25,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        String formatterActionEnvoiModeDeJeu()
+        public static String formatterActionEnvoiModeDeJeu()
         {
             String retour = "";
 
@@ -37,7 +37,5 @@ namespace BattleShip_2014
 
             return retour;
         }
-
-
     }
 }

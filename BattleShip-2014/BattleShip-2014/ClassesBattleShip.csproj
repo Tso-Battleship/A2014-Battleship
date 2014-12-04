@@ -41,10 +41,16 @@
   <ItemGroup>
     <Compile Include="CaseDeJeux.cs" />
     <Compile Include="Commun.cs" />
+    <Compile Include="DescriptionPiece.cs" />
     <Compile Include="FormatteurActions.cs" />
+    <Compile Include="LogiqueDeJeu.cs" />
     <Compile Include="ModeDeJeu.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableauAvecPiece.cs" />
+    <Compile Include="TableauDeJeu.cs" />
+    <Compile Include="TCPClient.cs" />
+    <Compile Include="TCPServeur.cs" />
     <Compile Include="xml_crunch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
