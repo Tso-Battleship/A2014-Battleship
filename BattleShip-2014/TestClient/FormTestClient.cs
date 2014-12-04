@@ -30,7 +30,7 @@ namespace BattleShip_2014
         {
             try
             {
-                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("10.240.7.109"), 3000);
+                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(tbAddresseIp.Text), 3000);
                 client.Connect(serverEndPoint);
                 NetworkStream clientStream = client.GetStream();
                 ASCIIEncoding encoder = new ASCIIEncoding();
@@ -52,12 +52,18 @@ namespace BattleShip_2014
         private void button1_Click(object sender, EventArgs e)
         {
             
-            tcpClient.envoyerCommande(client, textBox5.Text);
+            tcpClient.envoyerCommande(client, textBoxEnvoie.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox4.Text = tcpClient.strMessage;
+            textBoxRecoi.Text = tcpClient.strMessage;
+        }
+
+        public void HandleEvent(object sender, EventArgs args)
+        {
+            MessageBox.Show("Event");
+            textBoxRecoi.Text = tcpClient.strMessage;
         }
 
 

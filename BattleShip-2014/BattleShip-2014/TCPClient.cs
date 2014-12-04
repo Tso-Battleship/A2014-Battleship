@@ -15,7 +15,7 @@ namespace BattleShip_2014
         private Thread listenThread;
        
         public string strMessage;
-
+        public event EventHandler SomethingHappened2;
         public TCPClient()
         {
             this.tcpListener = new TcpListener(IPAddress.Any, 3000);            //Crée un socket avec 127.0.0.1 et le port 3000.
@@ -71,10 +71,21 @@ namespace BattleShip_2014
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 System.Diagnostics.Debug.WriteLine(encoder.GetString(message, 0, bytesRead));
                 strMessage = encoder.GetString(message, 0, bytesRead);
+                DoSomething();
             }
 
             tcpClient.Close();
         }
+
+        public void DoSomething()
+        {
+            EventHandler handler = SomethingHappened2;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+
         public void envoyerCommande(object client, string message)
         {
             byte[] buffer = new byte[4096];

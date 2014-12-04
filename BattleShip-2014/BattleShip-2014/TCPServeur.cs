@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.Net;
+using System.Collections;
 
 
 namespace BattleShip_2014
@@ -16,7 +17,9 @@ namespace BattleShip_2014
         private Thread listenThread;
         private string[] adrIp = { "" };
         public string[] strMessage = new string[4];
-
+        public int clientCourant = 0;
+        public event EventHandler SomethingHappened;
+        ArrayList list = new ArrayList();
 
         public TCPServeur()
         {
@@ -93,11 +96,25 @@ namespace BattleShip_2014
                     premierCoup = false;
                 }
                 else
+                {
                     strMessage[numClient] = encoder.GetString(message, 0, bytesRead);
+                    clientCourant = numClient;
+                    DoSomething();
+                }
             }
 
             tcpClient.Close();
         }
+
+        public void DoSomething()
+        {
+            EventHandler handler = SomethingHappened;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+
         public void envoyerCommande(int numClient, string message)
         {
             try
