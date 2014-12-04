@@ -33,10 +33,6 @@ namespace BattleShip_2014
         
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-        
-
-        
-
 
 
         public int gspositionX
@@ -44,6 +40,10 @@ namespace BattleShip_2014
             get
             {
                 return this.positionX_;
+            }
+            set
+            {
+                this.positionX_ = value;
             }
 
         }
@@ -53,17 +53,21 @@ namespace BattleShip_2014
             {
                 return this.positionY_;
             }
-
-        }
-        public int gsrotation
-        {
-            get
-            {
-                return this.positionY_;
-            }
             set
             {
                 this.positionY_ = value;
+            }
+
+        }
+        public Rotation gsrotation
+        {
+            get
+            {
+                return this.rotation_;
+            }
+            set
+            {
+                this.rotation_ = value;
             }
         }
 
