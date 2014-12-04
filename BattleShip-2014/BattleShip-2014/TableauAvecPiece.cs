@@ -22,8 +22,8 @@ namespace BattleShip_2014
             int i = 0;
             foreach(Piece p in pieces_)
             {
-                /*if(p.toutesCasesTouch(p.PositionX,p.PositionY))
-                    i++;*/
+                if(p.toutesCasesToucher(p.gspositionX,p.gspositionY))
+                    i++;
             }
 
             if (i == pieces_.Count)

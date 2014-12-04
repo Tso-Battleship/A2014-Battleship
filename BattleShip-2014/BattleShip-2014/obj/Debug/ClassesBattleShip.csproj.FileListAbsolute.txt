@@ -16,3 +16,5 @@ C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\BattleShip-2014\bin\Debug\
 C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\BattleShip-2014\obj\Debug\ClassesBattleShip.csprojResolveAssemblyReference.cache
 C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\BattleShip-2014\obj\Debug\BattleShip-2014.dll
 C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\BattleShip-2014\obj\Debug\BattleShip-2014.pdb
+C:\A2014-Battleship\BattleShip-2014\BattleShip-2014\bin\Debug\BattleShip-2014.dll
+C:\A2014-Battleship\BattleShip-2014\BattleShip-2014\bin\Debug\BattleShip-2014.pdb
