@@ -13,7 +13,7 @@ namespace BattleShip_2014
     {
         private TcpListener tcpListener;
         private Thread listenThread;
-
+       
         public string strMessage;
 
         public TCPClient()
@@ -84,6 +84,27 @@ namespace BattleShip_2014
             buffer = encoder.GetBytes(message);
             clientStream.Write(buffer, 0, buffer.Length);
             clientStream.Flush();
+        }
+        /// <summary>
+        /// Retourne l'adresse Ip du windows qui utilise le programme 
+        /// </summary>
+        /// <returns>adresse Ip</returns>
+        public string retourneAdresseIpClient ()
+        {
+        string adresseIp;
+
+        String strHostName = string.Empty;
+        // Getting Ip address of local machine...
+        // First get the host name of local machine.
+        strHostName = Dns.GetHostName();
+        // Then using host name, get the IP address list..
+        IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
+        IPAddress[] addr = ipEntry.AddressList;
+        
+         adresseIp=  addr[3].ToString();
+       
+
+        return adresseIp;
         }
     }
 }

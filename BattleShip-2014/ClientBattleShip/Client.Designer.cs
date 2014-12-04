@@ -38,6 +38,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.minimize_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +77,7 @@
             this.connecterServeur_button.TabIndex = 4;
             this.connecterServeur_button.Text = "Connecter";
             this.connecterServeur_button.UseVisualStyleBackColor = false;
+            this.connecterServeur_button.Click += new System.EventHandler(this.connecterServeur_button_Click);
             // 
             // adresseServeur_label
             // 
@@ -123,8 +125,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.textBox3);
             this.panel2.Controls.Add(this.panel1);
-            this.panel2.Location = new System.Drawing.Point(8, 47);
+            this.panel2.Location = new System.Drawing.Point(8, 32);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1022, 732);
             this.panel2.TabIndex = 3;
@@ -152,6 +155,18 @@
             this.exit_button.Text = "X";
             this.exit_button.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(366, 437);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(210, 23);
+            this.textBox3.TabIndex = 2;
+            this.textBox3.Text = "127.0.0.1";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,6 +182,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -183,6 +199,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button minimize_button;
         private System.Windows.Forms.Button exit_button;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
