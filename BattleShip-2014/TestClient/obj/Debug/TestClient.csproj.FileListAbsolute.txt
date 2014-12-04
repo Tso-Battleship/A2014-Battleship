@@ -1,0 +1,11 @@
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\BattleShip_2014.FormTestClient.resources
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.Properties.Resources.resources
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.csproj.GenerateResource.Cache
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\TestClient.exe.config
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\TestClient.exe
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\TestClient.pdb
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.dll
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.pdb
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.exe
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.pdb
