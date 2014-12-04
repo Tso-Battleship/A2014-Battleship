@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ClientBattleShip;
 using System.Net.Sockets;
 using System.Net;
 
@@ -15,11 +15,9 @@ namespace BattleShip_2014
 {
     public partial class Client : Form
     {
-        Server tcpServer = new Server();
+        TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
-
-
-        private TCPClient TCPClient;
+ 
         public Client()
         {
             InitializeComponent();
@@ -39,6 +37,7 @@ namespace BattleShip_2014
                 client.Connect(serverEndPoint);
                 NetworkStream clientStream = client.GetStream();
                 ASCIIEncoding encoder = new ASCIIEncoding();
+                tcpClient.envoyerCommande(client, tcpClient.retourneAdresseIpClient());
             }
             catch (System.Net.Sockets.SocketException)
             {
@@ -47,5 +46,7 @@ namespace BattleShip_2014
             
            // textBox3.Text = TCPClient.retourneAdresseIpClient();
         }
+
+    
     }
 }

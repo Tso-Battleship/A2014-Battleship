@@ -20,3 +20,14 @@ D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\BattleShip-2014.dl
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\bin\Debug\BattleShip-2014.pdb
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csprojResolveAssemblyReference.cache
 D:\BattleShip-2014\BattleShip-2014\ClientBattleShip\obj\Debug\BattleShip_2014.Client.resources
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csprojResolveAssemblyReference.cache
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\obj\Debug\BattleShip_2014.Client.resources
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.Properties.Resources.resources
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.csproj.GenerateResource.Cache
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.exe
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\obj\Debug\ClientBattleShip.pdb
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\bin\Debug\ClientBattleShip.exe.config
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\bin\Debug\ClientBattleShip.exe
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\bin\Debug\ClientBattleShip.pdb
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\bin\Debug\BattleShip-2014.dll
+C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\ClientBattleShip\bin\Debug\BattleShip-2014.pdb

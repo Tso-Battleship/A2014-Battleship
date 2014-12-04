@@ -9,7 +9,7 @@ using System.Net;
 
 namespace BattleShip_2014
 {
-    class TCPClient
+    public class TCPClient
     {
         private TcpListener tcpListener;
         private Thread listenThread;
