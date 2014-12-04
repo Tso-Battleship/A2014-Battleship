@@ -9,3 +9,14 @@ C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\Battl
 C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.pdb
 C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.exe
 C:\Users\tge\Desktop\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.pdb
+C:\BattleShip\BattleShip-2014\TestClient\bin\Debug\TestClient.exe.config
+C:\BattleShip\BattleShip-2014\TestClient\bin\Debug\TestClient.exe
+C:\BattleShip\BattleShip-2014\TestClient\bin\Debug\TestClient.pdb
+C:\BattleShip\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.dll
+C:\BattleShip\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.pdb
+C:\BattleShip\BattleShip-2014\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
+C:\BattleShip\BattleShip-2014\TestClient\obj\Debug\BattleShip_2014.FormTestClient.resources
+C:\BattleShip\BattleShip-2014\TestClient\obj\Debug\TestClient.Properties.Resources.resources
+C:\BattleShip\BattleShip-2014\TestClient\obj\Debug\TestClient.csproj.GenerateResource.Cache
+C:\BattleShip\BattleShip-2014\TestClient\obj\Debug\TestClient.exe
+C:\BattleShip\BattleShip-2014\TestClient\obj\Debug\TestClient.pdb

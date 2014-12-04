@@ -37,26 +37,26 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.main_panel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.place_panel = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.p2_board = new System.Windows.Forms.PictureBox();
             this.info_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.p1_board = new System.Windows.Forms.PictureBox();
             this.minimize_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
             this.connect_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.place_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.p2_board)).BeginInit();
             this.info_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p1_board)).BeginInit();
             this.SuspendLayout();
             // 
             // connect_panel
@@ -145,27 +145,29 @@
             // main_panel
             // 
             this.main_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.main_panel.Controls.Add(this.panel1);
-            this.main_panel.Controls.Add(this.pictureBox2);
+            this.main_panel.Controls.Add(this.place_panel);
+            this.main_panel.Controls.Add(this.p2_board);
             this.main_panel.Controls.Add(this.info_panel);
-            this.main_panel.Controls.Add(this.pictureBox1);
+            this.main_panel.Controls.Add(this.p1_board);
             this.main_panel.Controls.Add(this.connect_panel);
             this.main_panel.Location = new System.Drawing.Point(11, 47);
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(1022, 732);
             this.main_panel.TabIndex = 3;
+            this.main_panel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
-            // panel1
+            // place_panel
             // 
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Location = new System.Drawing.Point(4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(609, 215);
-            this.panel1.TabIndex = 7;
+            this.place_panel.Controls.Add(this.button4);
+            this.place_panel.Controls.Add(this.button3);
+            this.place_panel.Controls.Add(this.button2);
+            this.place_panel.Controls.Add(this.button1);
+            this.place_panel.Controls.Add(this.button5);
+            this.place_panel.Location = new System.Drawing.Point(4, 3);
+            this.place_panel.Name = "place_panel";
+            this.place_panel.Size = new System.Drawing.Size(609, 215);
+            this.place_panel.TabIndex = 7;
+            this.place_panel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
             // button4
             // 
@@ -177,7 +179,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(178, 32);
             this.button4.TabIndex = 15;
-            this.button4.Tag = "patrol_boat";
+            this.button4.Tag = "4";
             this.button4.Text = "Patrol boat [2]";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = true;
@@ -193,7 +195,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(178, 32);
             this.button3.TabIndex = 14;
-            this.button3.Tag = "destroyer";
+            this.button3.Tag = "3";
             this.button3.Text = "Destroyer [3]";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = true;
@@ -209,7 +211,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(178, 32);
             this.button2.TabIndex = 13;
-            this.button2.Tag = "submarine";
+            this.button2.Tag = "2";
             this.button2.Text = "Submarine [3]";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
@@ -225,7 +227,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 32);
             this.button1.TabIndex = 12;
-            this.button1.Tag = "battleship";
+            this.button1.Tag = "1";
             this.button1.Text = "Battleship [4]";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
@@ -241,22 +243,23 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(178, 32);
             this.button5.TabIndex = 11;
-            this.button5.Tag = "aircraft_carrier";
+            this.button5.Tag = "0";
             this.button5.Text = "Aircraft carrier [5]";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.place_ship_buttons);
             // 
-            // pictureBox2
+            // p2_board
             // 
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(512, 229);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(504, 504);
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            this.p2_board.ErrorImage = null;
+            this.p2_board.Image = ((System.Drawing.Image)(resources.GetObject("p2_board.Image")));
+            this.p2_board.InitialImage = null;
+            this.p2_board.Location = new System.Drawing.Point(512, 229);
+            this.p2_board.Name = "p2_board";
+            this.p2_board.Size = new System.Drawing.Size(504, 504);
+            this.p2_board.TabIndex = 7;
+            this.p2_board.TabStop = false;
+            this.p2_board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
             // info_panel
             // 
@@ -268,6 +271,7 @@
             this.info_panel.Size = new System.Drawing.Size(398, 215);
             this.info_panel.TabIndex = 6;
             this.info_panel.Visible = false;
+            this.info_panel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
             // label1
             // 
@@ -302,16 +306,17 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Connecté: 127.0.0.1";
             // 
-            // pictureBox1
+            // p1_board
             // 
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 229);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(504, 504);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.p1_board.ErrorImage = null;
+            this.p1_board.Image = ((System.Drawing.Image)(resources.GetObject("p1_board.Image")));
+            this.p1_board.InitialImage = null;
+            this.p1_board.Location = new System.Drawing.Point(4, 229);
+            this.p1_board.Name = "p1_board";
+            this.p1_board.Size = new System.Drawing.Size(504, 504);
+            this.p1_board.TabIndex = 1;
+            this.p1_board.TabStop = false;
+            this.p1_board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
             // minimize_button
             // 
@@ -360,14 +365,16 @@
             this.Text = "Battleship TSO 2014 - Client";
             this.TransparencyKey = System.Drawing.Color.Transparent;
             this.Load += new System.EventHandler(this.Client_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Client_Paint);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             this.connect_panel.ResumeLayout(false);
             this.connect_panel.PerformLayout();
             this.main_panel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.place_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.p2_board)).EndInit();
             this.info_panel.ResumeLayout(false);
             this.info_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p1_board)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -384,13 +391,13 @@
         private System.Windows.Forms.Panel main_panel;
         private System.Windows.Forms.Button minimize_button;
         private System.Windows.Forms.Button exit_button;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox p1_board;
         private System.Windows.Forms.Panel info_panel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox p2_board;
+        private System.Windows.Forms.Panel place_panel;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;

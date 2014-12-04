@@ -26,6 +26,18 @@ namespace BattleShip_2014
 
     public partial class Client : Form
     {
+        enum enumImageCurseur {
+            aircraft_carrier = 0,
+            battleship,
+            submarine,
+            destroyer,
+            patrol_boat            
+        };
+        enumImageCurseur imageCurseur;
+        bool toggle = true; //Permet de changer l'orientation du curseur
+        bool redraw = false;
+        
+
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
@@ -53,7 +65,7 @@ namespace BattleShip_2014
             GetIconInfo(ptr, ref tmp);
             tmp.xHotspot = xHotSpot;
             tmp.yHotspot = yHotSpot;
-            tmp.fIcon = true;
+            tmp.fIcon = false;
             ptr = CreateIconIndirect(ref tmp);
             return new Cursor(ptr);
         }
@@ -68,7 +80,7 @@ namespace BattleShip_2014
 
         private void exit_button_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void minimize_button_Click(object sender, EventArgs e)
@@ -111,48 +123,98 @@ namespace BattleShip_2014
 
         private void place_ship_buttons(object sender, EventArgs e)
         {
-            bool changeCur = false;
-            Bitmap bitmap;
             Button bouton;
-            string bPlaceShip;
             bouton = (Button)sender;
-            bPlaceShip = bouton.Tag.ToString();
-            switch(bPlaceShip)
+
+            imageCurseur = (enumImageCurseur)Convert.ToInt16(bouton.Tag);
+            changerCurseur(imageCurseur, false);
+
+        }
+
+        private void FormClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                case "aircraft_carrier":
-                    //Cursor.Current = new Cursor("C:\1color\aircraftCarrier.png");
-                    bitmap = new Bitmap("aircraftCarrier.png");
-                    changeCur = true;
+                try
+                {
+                    PictureBox pb;
+                    pb = (PictureBox)sender;
+                    if (pb.Name == "p1_board")
+                    {
+                        placerBateau(imageCurseur, toggle, e.X, e.Y);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                toggle = !toggle;
+                changerCurseur(imageCurseur, toggle);
+            }
+        }
+
+        private void placerBateau(enumImageCurseur image, bool rotated,int x, int y)
+        {
+            int numeroCase;
+            int imageX, imageY;
+            numeroCase = ((x / 50)+1) + (10*(y/50)); // (X la position de la souris / par 50 la largeur d'une case)
+                                                     // + 1 pour commencer a un a la place de zero
+
+            Bitmap bitmap = new Bitmap("battleShip.png");
+            Graphics g = Graphics.FromImage(bitmap);
+            g.DrawImage(bitmap, x, y);
+            
+        }
+
+        private void changerCurseur(enumImageCurseur image, bool rotated)
+        {
+            Bitmap bitmapCurseur;
+
+            switch (image)
+            {
+                case enumImageCurseur.aircraft_carrier:
+                    bitmapCurseur = new Bitmap("aircraftCarrier.png");
                     break;
-                case "battleship":
-                    bitmap = new Bitmap("battleShip.png");
-                    changeCur = true;
+                case enumImageCurseur.battleship:
+                    bitmapCurseur = new Bitmap("battleShip.png");
                     break;
-                case "submarine":
-                    bitmap = new Bitmap("destroyer.png");
-                    changeCur = true;
+                case enumImageCurseur.submarine:
+                    bitmapCurseur = new Bitmap("destroyer.png");
                     break;
-                case "destroyer":
-                    bitmap = new Bitmap("destroyer.png");
-                    changeCur = true;
-                    break;
-                case "patrol_boat":
-                    bitmap = new Bitmap("patrolBoat.png");
-                    changeCur = true;
+                case enumImageCurseur.destroyer:
+                    bitmapCurseur = new Bitmap("destroyer.png");
                     break;
                 default:
-                    Cursor.Current = Cursors.Default;
-                    bitmap = new Bitmap("aircraftCarrier.png");
-                    changeCur = false;
+                case enumImageCurseur.patrol_boat:
+                    bitmapCurseur = new Bitmap("patrolBoat.png");
                     break;
             }
 
-            if(changeCur)
+            if (rotated)
             {
-                Graphics g = Graphics.FromImage(bitmap);
-                g.DrawImage(bitmap, 0, 0);
-                this.Cursor = CreateCursor(bitmap, 3, 3);
-                bitmap.Dispose();
+                bitmapCurseur.RotateFlip(RotateFlipType.Rotate90FlipX);
+            }
+            else
+            {
+                toggle = false;
+            }
+
+            Graphics g = Graphics.FromImage(bitmapCurseur);
+            g.DrawImage(bitmapCurseur, 0, 0);
+            this.Cursor = CreateCursor(bitmapCurseur, 3, 3);
+            bitmapCurseur.Dispose();
+        }
+
+        private void Client_Paint(object sender, PaintEventArgs e)
+        {
+            int x = 0;
+
+            Bitmap bitmap = new Bitmap("pieces.png");
+            for (x = 0; x < 50; x++ )
+            { 
+                e.Graphics.DrawImage(bitmap, x, 0);
             }
         }
     }
