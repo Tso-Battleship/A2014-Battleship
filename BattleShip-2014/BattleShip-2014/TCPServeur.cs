@@ -10,7 +10,7 @@ using System.Net;
 
 namespace BattleShip_2014
 {
-    class TCPServeur
+    public class TCPServeur
     {
         private TcpListener tcpListener;
         private Thread listenThread;
@@ -40,6 +40,8 @@ namespace BattleShip_2014
                 //Crée un thread qui va gérer la communication avec le client
                 Thread clientThread = new Thread(() => HandleClientComm(client, nbClients));
                 clientThread.Start();
+
+                while(adrIp[nbClients] == null);
                 /*chagnement dans le code ici*/
                 //**************************************
                 //while (adrIp[nbClients] == "") ;
@@ -59,6 +61,7 @@ namespace BattleShip_2014
 
             byte[] message = new byte[4096];
             int bytesRead;
+            bool premierCoup = true;
 
             while (true)
             {
@@ -84,20 +87,34 @@ namespace BattleShip_2014
                 //message has successfully been received
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 System.Diagnostics.Debug.WriteLine(encoder.GetString(message, 0, bytesRead));
-                strMessage[numClient] = encoder.GetString(message, 0, bytesRead);
+                if (premierCoup == true)
+                {
+                    adrIp[numClient] = encoder.GetString(message, 0, bytesRead);
+                    premierCoup = false;
+                }
+                else
+                    strMessage[numClient] = encoder.GetString(message, 0, bytesRead);
             }
 
             tcpClient.Close();
         }
-        public void envoyerCommande(object client, string message)
+        public void envoyerCommande(int numClient, string message)
         {
-            byte[] buffer = new byte[4096];
-            TcpClient tcpClient = (TcpClient)client;
-            NetworkStream clientStream = tcpClient.GetStream();
-            ASCIIEncoding encoder = new ASCIIEncoding();
-            buffer = encoder.GetBytes(message);
-            clientStream.Write(buffer, 0, buffer.Length);
-            clientStream.Flush();
+            try
+            {
+                byte[] buffer = new byte[4096];
+                TcpClient client = new TcpClient();
+                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(adrIp[numClient]), 3000);
+                client.Connect(serverEndPoint);
+                NetworkStream clientStream = client.GetStream();
+                ASCIIEncoding encoder = new ASCIIEncoding();
+                buffer = encoder.GetBytes(message);
+                clientStream.Write(buffer, 0, buffer.Length);
+                clientStream.Flush();
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+            }
         }
     }
 }
