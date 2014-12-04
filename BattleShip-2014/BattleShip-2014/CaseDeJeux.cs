@@ -61,7 +61,7 @@ namespace BattleShip_2014
         /// <summary>
         /// 
         /// </summary>
-        void tirer()
+        public void tirer()
         {
             estTouchee_ = true;
         }

@@ -39,18 +39,23 @@ namespace BattleShip_2014
 
 
 
-        public int PositionX
+        public int gspositionX
         {
             get
             {
                 return this.positionX_;
             }
-            set
-            {
-                this.positionX_ = value;
-            }
+
         }
-        public int PositionY
+        public int gspositionY
+        {
+            get
+            {
+                return this.positionY_;
+            }
+
+        }
+        public int gsrotation
         {
             get
             {
@@ -70,11 +75,43 @@ namespace BattleShip_2014
 
         public bool caseEstTouch(int posx, int posy)
         {
+            foreach(CaseDeJeux c in cases_)
+            {
+                 if(positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
+                 {
+                     if (c.EstTouchee)
+                         return true;
+                 }
+                 
+            }
             return false;
         }
+
         public void tirerCase(int posx, int posy)
-        { 
-            
+        {
+            foreach (CaseDeJeux c in cases_)
+            {
+                
+                if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
+                {
+                    c.tirer();
+                }
+
+            }
+        }
+
+        public bool toutesCasesToucher(int posx, int posy)
+        {
+            foreach (CaseDeJeux c in cases_)
+            {
+                if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
+                {
+                    if (!c.EstTouchee)
+                        return false;
+                }
+
+            }
+            return true;
         }
     }
 }

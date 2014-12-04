@@ -11,7 +11,7 @@ namespace BattleShip_2014
 
         string nom_;
         string path_visuel_;
-        List<CaseDeJeux> cases_;
+        protected List<CaseDeJeux> cases_;
 
         public DescriptionPiece()
         {
@@ -32,10 +32,7 @@ namespace BattleShip_2014
             {
                 return this.nom_;
             }
-            set
-            {
-                this.nom_ = value;
-            }
+
         }
         public string gspath_visuel_
         {
@@ -43,10 +40,7 @@ namespace BattleShip_2014
             {
                 return this.path_visuel_;
             }
-            set
-            {
-                this.path_visuel_ = value;
-            }
+
         }
         public List<CaseDeJeux> gscases_
         {
@@ -54,10 +48,7 @@ namespace BattleShip_2014
             {
                 return this.cases_;
             }
-            set
-            {
-                this.cases_ = value;
-            }
+
         }
 
     }
