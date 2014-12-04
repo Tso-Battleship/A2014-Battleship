@@ -12,10 +12,35 @@ namespace BattleShip_2014
 {
     public partial class Serveur : Form
     {
+        int x;
+        int y;
         public Serveur()
         {
             InitializeComponent();
             
         }
+
+        public void LogiqueServeur(string Trame)
+        {
+            string[] TrameSpliter;
+            
+            TrameSpliter = Trame.Split(';').ToArray();
+
+            switch (TrameSpliter[0])
+            {
+                case "ACTION:TIR":
+                    {
+                        
+                    }
+                    break;
+
+                default :
+                    {
+                        //envoie d'erreur au joueur
+                    }
+                    break;
+        
+            }
+         }
     }
 }

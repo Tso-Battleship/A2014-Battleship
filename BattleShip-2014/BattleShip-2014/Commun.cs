@@ -79,9 +79,11 @@ namespace BattleShip_2014
 
         public const String ACTION_POINT_X = "X";
         public const String ACTION_POINT_Y = "Y";
+        public const String ACTION_BATEAU_TOUCHE = "TOUCHE";
+        public const String ACTION_BATEAU_COULE = "COULE";
 
-        public const String DELEMITEUR_FIN_DONNEE = ";";
         public const String DELEMITEUR_DEBUT_DATA = ":";
+        public const String DELEMITEUR_FIN_DONNEE = ";";
 
         public const String DATA_NOM_PIECE = "NOMPIECE";
         public const String DATA_NOM_MODE = "NOMMODE";
