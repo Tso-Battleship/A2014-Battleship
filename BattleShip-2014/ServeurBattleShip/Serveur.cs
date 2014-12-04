@@ -12,25 +12,36 @@ namespace BattleShip_2014
 {
     public partial class Serveur : Form
     {
-        int x;
-        int y;
+        string nomJoueur;
+        string nomJoueur2;
+        int Case;
+
         public Serveur()
         {
             InitializeComponent();
-            
         }
 
         public void LogiqueServeur(string Trame)
         {
-            string[] TrameSpliter;
-            
-            TrameSpliter = Trame.Split(';').ToArray();
-
-            switch (TrameSpliter[0])
+            string[] TrameSplitterAction;
+            string[] TrameSplitterJoueur;
+            string[] TrameSplitterCase;
+            TrameSplitterAction = Trame.Split(';').ToArray();
+            TrameSplitterJoueur = TrameSplitterAction[1].Split(':');
+            TrameSplitterCase = TrameSplitterAction[2].Split(':');
+            nomJoueur = TrameSplitterJoueur[1];
+            lectureModeJeu();
+            readTCP();
+            lbEnvoie.Items.Add(FormatteurActions.formatterActionEnvoiModeDeJeu(nomJoueur));
+            readTCP();
+            lbEnvoie2.Text = FormatteurActions.formatterActionEnvoiModeDeJeu(nomJoueur2);
+            lbEnvoie.Text = FormatteurActions.formatterCommencerPlacement(nomJoueur, nomJoueur2);
+            switch (TrameSplitterAction[0])
             {
                 case "ACTION:TIR":
                     {
                         
+                        Case = Convert.ToInt16(TrameSplitterCase[1]);
                     }
                     break;
 
@@ -42,5 +53,20 @@ namespace BattleShip_2014
         
             }
          }
+
+        public void lectureModeJeu()
+        {
+
+        }
+
+        public void readTCP()
+        {
+            
+        }
+
+        private void btConnection1_Click(object sender, EventArgs e)
+        {
+            LogiqueServeur(FormatteurActions.genererActionConnection("SALUT"));
+        }
     }
 }

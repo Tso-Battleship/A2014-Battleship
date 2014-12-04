@@ -102,6 +102,7 @@
             this.btConnection1.TabIndex = 6;
             this.btConnection1.Text = "Connection";
             this.btConnection1.UseVisualStyleBackColor = true;
+            this.btConnection1.Click += new System.EventHandler(this.btConnection1_Click);
             // 
             // btDeconnection1
             // 
