@@ -11,6 +11,30 @@ namespace BattleShip_2014
         protected CaseDeJeux[,] cases_;
         protected int tailleX_, tailleY_;
 
+        public CaseDeJeux[,] Cases
+        {
+            get
+            {
+                return cases_;
+            }
+        }
+
+        public int TailleX
+        {
+            get
+            {
+                return tailleX_;
+            }
+        }
+
+        public int TailleY
+        {
+            get
+            {
+                return tailleY_;
+            }
+        }
+
         public TableauDeJeu(int tailleX, int tailleY)
 	    {
             for (int i = 0; i <= tailleX; i++)
@@ -32,11 +56,10 @@ namespace BattleShip_2014
          *retourne true si le tir est dans le tableau
         */
         public bool tirerSurCase(int tirX, int tirY)
-        {
-            CaseDeJeux c = cases_[tirX, tirY];
-            
+        {           
             if (((tirX < tailleX_) && (tirX >= 0)) && ((tirY < tailleY_)&&(tirY >=0)))    // verifie si le le tir est dans le tableau
             {
+                CaseDeJeux c = cases_[tirX, tirY];
                 if (c.EstTouchee)
                 {
                     return false;
