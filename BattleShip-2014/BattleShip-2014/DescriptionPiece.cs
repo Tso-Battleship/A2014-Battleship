@@ -15,7 +15,10 @@ namespace BattleShip_2014
 
         public DescriptionPiece()
         {
-
+            cases_ = new List<CaseDeJeux>();
+            cases_.Add(new CaseDeJeux(0, 0));
+            nom_ = "UneCaseGenerique";
+            path_visuel_ = "/";
         }
 
         public DescriptionPiece(List<CaseDeJeux> cases, string path_visuel, string nom)
@@ -26,7 +29,7 @@ namespace BattleShip_2014
         }
 
 
-        public string gsnom_
+        public string Nom
         {
             get
             {
@@ -34,7 +37,7 @@ namespace BattleShip_2014
             }
 
         }
-        public string gspath_visuel_
+        public string PathVisuels
         {
             get
             {
@@ -42,7 +45,7 @@ namespace BattleShip_2014
             }
 
         }
-        public List<CaseDeJeux> gscases_
+        public List<CaseDeJeux> CasesDeJeu
         {
             get
             {
