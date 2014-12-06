@@ -17,7 +17,7 @@ namespace BattleShip_2014
 
         }
 
-        public Piece(List<CaseDeJeux> cases,string name, string path,Rotation Rotation)
+        public Piece(List<CaseDeJeux> cases,string name, string path, Rotation Rotation)
         { 
             
         }
@@ -35,7 +35,7 @@ namespace BattleShip_2014
 
 
 
-        public int gspositionX
+        public int PositionX
         {
             get
             {
@@ -47,7 +47,7 @@ namespace BattleShip_2014
             }
 
         }
-        public int gspositionY
+        public int PositionY
         {
             get
             {
@@ -59,7 +59,7 @@ namespace BattleShip_2014
             }
 
         }
-        public Rotation gsrotation
+        public Rotation RotationPiece
         {
             get
             {
@@ -71,11 +71,19 @@ namespace BattleShip_2014
             }
         }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        
+///////////////////////////////////////////////////////////////////////////////////////////// 
+      
+        /// <summary>
+        /// A ajouter le code
+        /// </summary>
+        /// <param name="posx"></param>
+        /// <param name="posy"></param>
+        /// <returns></returns>
+        public bool caseExiste(int posx, int posy)
+        {
+            //TODO Ajouter le code de logique de verification de l'existence de la case -JP
+            return false;
+        }
 
         public bool caseEstTouch(int posx, int posy)
         {
@@ -85,8 +93,7 @@ namespace BattleShip_2014
                  {
                      if (c.EstTouchee)
                          return true;
-                 }
-                 
+                 }                 
             }
             return false;
         }
@@ -94,26 +101,20 @@ namespace BattleShip_2014
         public void tirerCase(int posx, int posy)
         {
             foreach (CaseDeJeux c in cases_)
-            {
-                
+            {                
                 if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
                 {
                     c.tirer();
                 }
-
             }
         }
 
-        public bool toutesCasesToucher(int posx, int posy)
+        public bool toutesCasesToucher()
         {
             foreach (CaseDeJeux c in cases_)
             {
-                if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
-                {
-                    if (!c.EstTouchee)
-                        return false;
-                }
-
+                if (!c.EstTouchee)
+                    return false;
             }
             return true;
         }
