@@ -102,20 +102,20 @@ namespace BattleShip_2014
         /// <returns>adresse Ip</returns>
         public string retourneAdresseIpClient ()
         {
-        string adresseIp;
+            string adresseIp;
 
-        String strHostName = string.Empty;
-        // Getting Ip address of local machine...
-        // First get the host name of local machine.
-        strHostName = Dns.GetHostName();
-        // Then using host name, get the IP address list..
-        IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
-        IPAddress[] addr = ipEntry.AddressList;
+            String strHostName = string.Empty;
+            // Getting Ip address of local machine...
+            // First get the host name of local machine.
+            strHostName = Dns.GetHostName();
+            // Then using host name, get the IP address list..
+            IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
+            IPAddress[] addr = ipEntry.AddressList;
         
-         adresseIp=  addr[3].ToString();
+             adresseIp=  addr[3].ToString();
        
 
-        return adresseIp;
+            return adresseIp;
         }
     }
 }
