@@ -22,7 +22,7 @@ namespace BattleShip_2014
             int i = 0;
             foreach(Piece p in pieces_)
             {
-                if(p.toutesCasesToucher(p.gspositionX,p.gspositionY))
+                if(p.toutesCasesToucher())
                     i++;
             }
 
