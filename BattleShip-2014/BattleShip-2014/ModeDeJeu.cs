@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip_2014
 {
-    class ModeDeJeu
+    public class ModeDeJeu
     {
         /// <summary>
         /// Constructeur
