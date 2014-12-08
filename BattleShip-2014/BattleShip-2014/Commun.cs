@@ -78,6 +78,7 @@ namespace BattleShip_2014
         public const String ACTION_MISE_A_JOUR = "MAJ";
         public const String ACTION_COMMENCER_PLACEMENT = "PLACEMENT";
         public const String ACTION_COMMENCER_PARTIE = "DEBUT";
+        public const String ACTION_DESCRIPTION_PIECE = "DESCRIPTION";
 
         public const String ACTION_POINT_X = "X";
         public const String ACTION_POINT_Y = "Y";

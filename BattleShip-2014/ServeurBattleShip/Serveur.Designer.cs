@@ -56,7 +56,7 @@
             // lJoueur2
             // 
             this.lJoueur2.AutoSize = true;
-            this.lJoueur2.Location = new System.Drawing.Point(296, 9);
+            this.lJoueur2.Location = new System.Drawing.Point(403, 9);
             this.lJoueur2.Name = "lJoueur2";
             this.lJoueur2.Size = new System.Drawing.Size(126, 13);
             this.lJoueur2.TabIndex = 1;
@@ -67,7 +67,7 @@
             this.lbReception.FormattingEnabled = true;
             this.lbReception.Location = new System.Drawing.Point(31, 79);
             this.lbReception.Name = "lbReception";
-            this.lbReception.Size = new System.Drawing.Size(238, 160);
+            this.lbReception.Size = new System.Drawing.Size(348, 160);
             this.lbReception.TabIndex = 2;
             // 
             // lbEnvoie
@@ -75,23 +75,23 @@
             this.lbEnvoie.FormattingEnabled = true;
             this.lbEnvoie.Location = new System.Drawing.Point(31, 245);
             this.lbEnvoie.Name = "lbEnvoie";
-            this.lbEnvoie.Size = new System.Drawing.Size(238, 173);
+            this.lbEnvoie.Size = new System.Drawing.Size(348, 173);
             this.lbEnvoie.TabIndex = 3;
             // 
             // lbReception2
             // 
             this.lbReception2.FormattingEnabled = true;
-            this.lbReception2.Location = new System.Drawing.Point(299, 79);
+            this.lbReception2.Location = new System.Drawing.Point(406, 79);
             this.lbReception2.Name = "lbReception2";
-            this.lbReception2.Size = new System.Drawing.Size(247, 160);
+            this.lbReception2.Size = new System.Drawing.Size(353, 160);
             this.lbReception2.TabIndex = 4;
             // 
             // lbEnvoie2
             // 
             this.lbEnvoie2.FormattingEnabled = true;
-            this.lbEnvoie2.Location = new System.Drawing.Point(299, 245);
+            this.lbEnvoie2.Location = new System.Drawing.Point(406, 245);
             this.lbEnvoie2.Name = "lbEnvoie2";
-            this.lbEnvoie2.Size = new System.Drawing.Size(247, 173);
+            this.lbEnvoie2.Size = new System.Drawing.Size(353, 173);
             this.lbEnvoie2.TabIndex = 5;
             // 
             // btConnection1
@@ -130,10 +130,11 @@
             this.btEnvoiePiece1.TabIndex = 9;
             this.btEnvoiePiece1.Text = "Envoie Piece";
             this.btEnvoiePiece1.UseVisualStyleBackColor = true;
+            this.btEnvoiePiece1.Click += new System.EventHandler(this.btEnvoiePiece1_Click);
             // 
             // btEnvoiePiece2
             // 
-            this.btEnvoiePiece2.Location = new System.Drawing.Point(395, 54);
+            this.btEnvoiePiece2.Location = new System.Drawing.Point(502, 54);
             this.btEnvoiePiece2.Name = "btEnvoiePiece2";
             this.btEnvoiePiece2.Size = new System.Drawing.Size(100, 23);
             this.btEnvoiePiece2.TabIndex = 13;
@@ -142,7 +143,7 @@
             // 
             // btTir2
             // 
-            this.btTir2.Location = new System.Drawing.Point(299, 54);
+            this.btTir2.Location = new System.Drawing.Point(406, 54);
             this.btTir2.Name = "btTir2";
             this.btTir2.Size = new System.Drawing.Size(90, 23);
             this.btTir2.TabIndex = 12;
@@ -151,7 +152,7 @@
             // 
             // btDeconnection2
             // 
-            this.btDeconnection2.Location = new System.Drawing.Point(395, 25);
+            this.btDeconnection2.Location = new System.Drawing.Point(502, 25);
             this.btDeconnection2.Name = "btDeconnection2";
             this.btDeconnection2.Size = new System.Drawing.Size(100, 23);
             this.btDeconnection2.TabIndex = 11;
@@ -160,18 +161,19 @@
             // 
             // btConnection2
             // 
-            this.btConnection2.Location = new System.Drawing.Point(299, 25);
+            this.btConnection2.Location = new System.Drawing.Point(406, 25);
             this.btConnection2.Name = "btConnection2";
             this.btConnection2.Size = new System.Drawing.Size(90, 23);
             this.btConnection2.TabIndex = 10;
             this.btConnection2.Text = "Connection";
             this.btConnection2.UseVisualStyleBackColor = true;
+            this.btConnection2.Click += new System.EventHandler(this.btConnection2_Click);
             // 
             // Serveur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 430);
+            this.ClientSize = new System.Drawing.Size(813, 567);
             this.Controls.Add(this.btEnvoiePiece2);
             this.Controls.Add(this.btTir2);
             this.Controls.Add(this.btDeconnection2);
