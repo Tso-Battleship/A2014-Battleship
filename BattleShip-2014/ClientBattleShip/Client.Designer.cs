@@ -38,11 +38,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.main_panel = new System.Windows.Forms.Panel();
             this.place_panel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.patrolBoat_button = new System.Windows.Forms.Button();
+            this.destroyer_button = new System.Windows.Forms.Button();
+            this.submarine_button = new System.Windows.Forms.Button();
+            this.battleship_button = new System.Windows.Forms.Button();
+            this.aircraftCarrier_button = new System.Windows.Forms.Button();
             this.p2_board = new System.Windows.Forms.PictureBox();
             this.info_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -158,96 +158,96 @@
             // 
             // place_panel
             // 
-            this.place_panel.Controls.Add(this.button4);
-            this.place_panel.Controls.Add(this.button3);
-            this.place_panel.Controls.Add(this.button2);
-            this.place_panel.Controls.Add(this.button1);
-            this.place_panel.Controls.Add(this.button5);
+            this.place_panel.Controls.Add(this.patrolBoat_button);
+            this.place_panel.Controls.Add(this.destroyer_button);
+            this.place_panel.Controls.Add(this.submarine_button);
+            this.place_panel.Controls.Add(this.battleship_button);
+            this.place_panel.Controls.Add(this.aircraftCarrier_button);
             this.place_panel.Location = new System.Drawing.Point(4, 3);
             this.place_panel.Name = "place_panel";
             this.place_panel.Size = new System.Drawing.Size(609, 215);
             this.place_panel.TabIndex = 7;
             this.place_panel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
-            // button4
+            // patrolBoat_button
             // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button4.Location = new System.Drawing.Point(18, 167);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(178, 32);
-            this.button4.TabIndex = 15;
-            this.button4.Tag = "4";
-            this.button4.Text = "Patrol boat [2]";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.place_ship_buttons);
+            this.patrolBoat_button.FlatAppearance.BorderSize = 0;
+            this.patrolBoat_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.patrolBoat_button.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patrolBoat_button.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.patrolBoat_button.Location = new System.Drawing.Point(18, 167);
+            this.patrolBoat_button.Name = "patrolBoat_button";
+            this.patrolBoat_button.Size = new System.Drawing.Size(178, 32);
+            this.patrolBoat_button.TabIndex = 15;
+            this.patrolBoat_button.Tag = "4";
+            this.patrolBoat_button.Text = "Patrol boat [2]";
+            this.patrolBoat_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.patrolBoat_button.UseVisualStyleBackColor = true;
+            this.patrolBoat_button.Click += new System.EventHandler(this.place_ship_buttons);
             // 
-            // button3
+            // destroyer_button
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Location = new System.Drawing.Point(18, 129);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 32);
-            this.button3.TabIndex = 14;
-            this.button3.Tag = "3";
-            this.button3.Text = "Destroyer [3]";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.place_ship_buttons);
+            this.destroyer_button.FlatAppearance.BorderSize = 0;
+            this.destroyer_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.destroyer_button.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.destroyer_button.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.destroyer_button.Location = new System.Drawing.Point(18, 129);
+            this.destroyer_button.Name = "destroyer_button";
+            this.destroyer_button.Size = new System.Drawing.Size(178, 32);
+            this.destroyer_button.TabIndex = 14;
+            this.destroyer_button.Tag = "3";
+            this.destroyer_button.Text = "Destroyer [3]";
+            this.destroyer_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.destroyer_button.UseVisualStyleBackColor = true;
+            this.destroyer_button.Click += new System.EventHandler(this.place_ship_buttons);
             // 
-            // button2
+            // submarine_button
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(18, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(178, 32);
-            this.button2.TabIndex = 13;
-            this.button2.Tag = "2";
-            this.button2.Text = "Submarine [3]";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.place_ship_buttons);
+            this.submarine_button.FlatAppearance.BorderSize = 0;
+            this.submarine_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submarine_button.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submarine_button.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.submarine_button.Location = new System.Drawing.Point(18, 91);
+            this.submarine_button.Name = "submarine_button";
+            this.submarine_button.Size = new System.Drawing.Size(178, 32);
+            this.submarine_button.TabIndex = 13;
+            this.submarine_button.Tag = "2";
+            this.submarine_button.Text = "Submarine [3]";
+            this.submarine_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submarine_button.UseVisualStyleBackColor = true;
+            this.submarine_button.Click += new System.EventHandler(this.place_ship_buttons);
             // 
-            // button1
+            // battleship_button
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(18, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 32);
-            this.button1.TabIndex = 12;
-            this.button1.Tag = "1";
-            this.button1.Text = "Battleship [4]";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.place_ship_buttons);
+            this.battleship_button.FlatAppearance.BorderSize = 0;
+            this.battleship_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.battleship_button.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.battleship_button.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.battleship_button.Location = new System.Drawing.Point(18, 53);
+            this.battleship_button.Name = "battleship_button";
+            this.battleship_button.Size = new System.Drawing.Size(178, 32);
+            this.battleship_button.TabIndex = 12;
+            this.battleship_button.Tag = "1";
+            this.battleship_button.Text = "Battleship [4]";
+            this.battleship_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.battleship_button.UseVisualStyleBackColor = true;
+            this.battleship_button.Click += new System.EventHandler(this.place_ship_buttons);
             // 
-            // button5
+            // aircraftCarrier_button
             // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button5.Location = new System.Drawing.Point(18, 15);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(178, 32);
-            this.button5.TabIndex = 11;
-            this.button5.Tag = "0";
-            this.button5.Text = "Aircraft carrier [5]";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.place_ship_buttons);
+            this.aircraftCarrier_button.FlatAppearance.BorderSize = 0;
+            this.aircraftCarrier_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aircraftCarrier_button.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aircraftCarrier_button.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.aircraftCarrier_button.Location = new System.Drawing.Point(18, 15);
+            this.aircraftCarrier_button.Name = "aircraftCarrier_button";
+            this.aircraftCarrier_button.Size = new System.Drawing.Size(178, 32);
+            this.aircraftCarrier_button.TabIndex = 11;
+            this.aircraftCarrier_button.Tag = "0";
+            this.aircraftCarrier_button.Text = "Aircraft carrier [5]";
+            this.aircraftCarrier_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aircraftCarrier_button.UseVisualStyleBackColor = true;
+            this.aircraftCarrier_button.Click += new System.EventHandler(this.place_ship_buttons);
             // 
             // p2_board
             // 
@@ -316,6 +316,7 @@
             this.p1_board.Size = new System.Drawing.Size(504, 504);
             this.p1_board.TabIndex = 1;
             this.p1_board.TabStop = false;
+            this.p1_board.Paint += new System.Windows.Forms.PaintEventHandler(this.p1_board_Paint);
             this.p1_board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
             // minimize_button
@@ -365,7 +366,6 @@
             this.Text = "Battleship TSO 2014 - Client";
             this.TransparencyKey = System.Drawing.Color.Transparent;
             this.Load += new System.EventHandler(this.Client_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Client_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             this.connect_panel.ResumeLayout(false);
             this.connect_panel.PerformLayout();
@@ -398,11 +398,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox p2_board;
         private System.Windows.Forms.Panel place_panel;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button patrolBoat_button;
+        private System.Windows.Forms.Button destroyer_button;
+        private System.Windows.Forms.Button submarine_button;
+        private System.Windows.Forms.Button battleship_button;
+        private System.Windows.Forms.Button aircraftCarrier_button;
     }
 }
 

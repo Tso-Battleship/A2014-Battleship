@@ -26,14 +26,16 @@ namespace BattleShip_2014
 
     public partial class Client : Form
     {
+
         enum enumImageCurseur {
             aircraft_carrier = 0,
             battleship,
             submarine,
             destroyer,
-            patrol_boat            
+            patrol_boat,
+            invalide
         };
-        enumImageCurseur imageCurseur;
+        enumImageCurseur imageCurseur = enumImageCurseur.invalide;
         bool toggle = true; //Permet de changer l'orientation du curseur
        
         //Variable global pour le reDraw
@@ -41,9 +43,9 @@ namespace BattleShip_2014
         bool piecesHorizontal = false;
         int nbPieces = 0;
         int posDepartX, posDepartY;
-        
-        
-       
+
+        List<Piece> listePiecesJoueur;
+        TableauAvecPiece tableauJoueur;
 
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
@@ -80,7 +82,11 @@ namespace BattleShip_2014
 
         public Client()
         {
-            InitializeComponent();
+           InitializeComponent();
+
+           listePiecesJoueur = new List<Piece>();
+           tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
+
             SendMessage(textBox1.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
         }
@@ -141,8 +147,8 @@ namespace BattleShip_2014
         private void FormClick(object sender, MouseEventArgs e)
         {
             int grilleX, grilleY;
-            grilleX = (e.X / 50); //La grilla est 10x10 et elle fait 500px X 500px
-            grilleY = (e.Y / 50); //En divisant la position de la souris par 50 et en gardant seulement la partie Entire
+            grilleX = (e.X / 50); //La grille est 10x10 et elle fait 500px X 500px
+            grilleY = (e.Y / 50); //En divisant la position de la souris par 50 et en gardant seulement la partie entiere
             //On obtient la coordonnées de la case dans la grille qui a été cliqué
 
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -151,9 +157,10 @@ namespace BattleShip_2014
                 {
                     PictureBox pb;
                     pb = (PictureBox)sender;
-                    if (pb.Name == "p1_board")
+                    if (pb.Name == "p1_board" && imageCurseur != enumImageCurseur.invalide)
                     {
                         placerBateau(imageCurseur, toggle, grilleX, grilleY);
+                        p1_board.Invalidate();
                     }
                 }
                 catch (Exception)
@@ -167,34 +174,45 @@ namespace BattleShip_2014
             }
         }
 
-        private void placerBateau(enumImageCurseur image, bool rotated,int x, int y)
+        private void placerBateau(enumImageCurseur image, bool rotated, int x, int y)
         {
             switch (image)
             {
                 case enumImageCurseur.aircraft_carrier:
+                    aircraftCarrier_button.Enabled = false;
                     nbPieces = 5;
                     break;
                 case enumImageCurseur.battleship:
+                    battleship_button.Enabled = false;
                     nbPieces = 4;
                     break;
                 case enumImageCurseur.submarine:
+                    submarine_button.Enabled = false;
                     nbPieces = 3;
                     break;
                 case enumImageCurseur.destroyer:
+                    destroyer_button.Enabled = false;
                     nbPieces = 3;
                     break;
                 case enumImageCurseur.patrol_boat:
+                    patrolBoat_button.Enabled = false;
                     nbPieces = 2;
                     break;
                 default:
                     break;
             }
 
-            piecesHorizontal = rotated;
-            posDepartX = (x * 50) + 25;
-            posDepartY = (y * 50) + 25;                
-            redraw = true;
-            
+            if (imageCurseur != enumImageCurseur.invalide)
+            { 
+                piecesHorizontal = rotated;
+                posDepartX = (x * 50) + 25;
+                posDepartY = (y * 50) + 25;                
+                redraw = true;
+            }
+            else
+            {
+                redraw = false;
+            }
         }
 
         private void changerCurseur(enumImageCurseur image, bool rotated)
@@ -219,6 +237,7 @@ namespace BattleShip_2014
                 case enumImageCurseur.patrol_boat:
                     bitmapCurseur = new Bitmap("patrolBoat.png");
                     break;
+
             }
 
             if (rotated)
@@ -229,25 +248,34 @@ namespace BattleShip_2014
             {
                 toggle = false;
             }
-
-            Graphics g = Graphics.FromImage(bitmapCurseur);
-            g.DrawImage(bitmapCurseur, 0, 0);
-            this.Cursor = CreateCursor(bitmapCurseur, 3, 3);
-            bitmapCurseur.Dispose();
+            if (imageCurseur != enumImageCurseur.invalide)
+            {
+                Graphics g = Graphics.FromImage(bitmapCurseur);
+                g.DrawImage(bitmapCurseur, 0, 0);
+                this.Cursor = CreateCursor(bitmapCurseur, 3, 3);
+                bitmapCurseur.Dispose();
+            }
+            else
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
 
-        private void Client_Paint(object sender, PaintEventArgs e)
+        private void p1_board_Paint(object sender, PaintEventArgs e)
         {
             Bitmap bitmap = new Bitmap("pieces.png");
 
-            if (redraw) 
+            if (redraw)
             {
-                for (int i = 0; i < nbPieces; i++ )
+                redraw = false;
+                imageCurseur = enumImageCurseur.invalide;
+                changerCurseur(imageCurseur, false);
+                for (int i = 0; i < nbPieces; i++)
                 {
                     if (piecesHorizontal)
-                        e.Graphics.DrawImage(bitmap, posDepartX + (50*i), posDepartY);
+                        e.Graphics.DrawImage(bitmap, posDepartX + (50 * i) - 25 , posDepartY - 25);
                     else
-                        e.Graphics.DrawImage(bitmap, posDepartX, posDepartY + (50 * i));
+                        e.Graphics.DrawImage(bitmap, posDepartX - 25, posDepartY + (50 * i)-25);
                 }
             }
         }
