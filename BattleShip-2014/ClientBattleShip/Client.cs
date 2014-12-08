@@ -35,8 +35,15 @@ namespace BattleShip_2014
         };
         enumImageCurseur imageCurseur;
         bool toggle = true; //Permet de changer l'orientation du curseur
+       
+        //Variable global pour le reDraw
         bool redraw = false;
+        bool piecesHorizontal = false;
+        int nbPieces = 0;
+        int posDepartX, posDepartY;
         
+        
+       
 
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
@@ -133,6 +140,11 @@ namespace BattleShip_2014
 
         private void FormClick(object sender, MouseEventArgs e)
         {
+            int grilleX, grilleY;
+            grilleX = (e.X / 50); //La grilla est 10x10 et elle fait 500px X 500px
+            grilleY = (e.Y / 50); //En divisant la position de la souris par 50 et en gardant seulement la partie Entire
+            //On obtient la coordonnées de la case dans la grille qui a été cliqué
+
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 try
@@ -141,7 +153,7 @@ namespace BattleShip_2014
                     pb = (PictureBox)sender;
                     if (pb.Name == "p1_board")
                     {
-                        placerBateau(imageCurseur, toggle, e.X, e.Y);
+                        placerBateau(imageCurseur, toggle, grilleX, grilleY);
                     }
                 }
                 catch (Exception)
@@ -157,14 +169,31 @@ namespace BattleShip_2014
 
         private void placerBateau(enumImageCurseur image, bool rotated,int x, int y)
         {
-            int numeroCase;
-            int imageX, imageY;
-            numeroCase = ((x / 50)+1) + (10*(y/50)); // (X la position de la souris / par 50 la largeur d'une case)
-                                                     // + 1 pour commencer a un a la place de zero
+            switch (image)
+            {
+                case enumImageCurseur.aircraft_carrier:
+                    nbPieces = 5;
+                    break;
+                case enumImageCurseur.battleship:
+                    nbPieces = 4;
+                    break;
+                case enumImageCurseur.submarine:
+                    nbPieces = 3;
+                    break;
+                case enumImageCurseur.destroyer:
+                    nbPieces = 3;
+                    break;
+                case enumImageCurseur.patrol_boat:
+                    nbPieces = 2;
+                    break;
+                default:
+                    break;
+            }
 
-            Bitmap bitmap = new Bitmap("battleShip.png");
-            Graphics g = Graphics.FromImage(bitmap);
-            g.DrawImage(bitmap, x, y);
+            piecesHorizontal = rotated;
+            posDepartX = (x * 50) + 25;
+            posDepartY = (y * 50) + 25;                
+            redraw = true;
             
         }
 
@@ -209,12 +238,17 @@ namespace BattleShip_2014
 
         private void Client_Paint(object sender, PaintEventArgs e)
         {
-            int x = 0;
-
             Bitmap bitmap = new Bitmap("pieces.png");
-            for (x = 0; x < 50; x++ )
-            { 
-                e.Graphics.DrawImage(bitmap, x, 0);
+
+            if (redraw) 
+            {
+                for (int i = 0; i < nbPieces; i++ )
+                {
+                    if (piecesHorizontal)
+                        e.Graphics.DrawImage(bitmap, posDepartX + (50*i), posDepartY);
+                    else
+                        e.Graphics.DrawImage(bitmap, posDepartX, posDepartY + (50 * i));
+                }
             }
         }
     }
