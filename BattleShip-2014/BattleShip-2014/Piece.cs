@@ -12,6 +12,7 @@ namespace BattleShip_2014
         private int positionX_, positionY_;
         Rotation rotation_;
 
+        /*Les 3 constructeurs avec différents paramètres*/
         public Piece()
         {
 
@@ -34,7 +35,7 @@ namespace BattleShip_2014
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+        /*Déclaration des getters et setters pour accéder aux variables de la classe.*/
         public int PositionX
         {
             get
@@ -72,19 +73,26 @@ namespace BattleShip_2014
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// 
-      
-        /// <summary>
-        /// A ajouter le code
-        /// </summary>
-        /// <param name="posx"></param>
-        /// <param name="posy"></param>
-        /// <returns></returns>
+
+        /*
+        * @Brief Sert à vérifier si la piece existe dans la case visée
+        * @Param int posx, int posy
+        * @return bool
+        */
         public bool caseExiste(int posx, int posy)
         {
-            //TODO Ajouter le code de logique de verification de l'existence de la case -JP
+            foreach (CaseDeJeux c in cases_)
+            {
+                if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)                  
+                    return true;
+            }
             return false;
         }
-
+        /*
+        * @Brief Sert à vérifier si la piece à été touchée
+        * @Param int posx, int posy
+        * @return bool
+        */
         public bool caseEstTouch(int posx, int posy)
         {
             foreach(CaseDeJeux c in cases_)
@@ -98,6 +106,11 @@ namespace BattleShip_2014
             return false;
         }
 
+        /*
+        * @Brief Fonction qui applique le tir sur la piece
+        * @Param int posx, int posy
+        * @return none
+        */
         public void tirerCase(int posx, int posy)
         {
             foreach (CaseDeJeux c in cases_)
@@ -108,7 +121,11 @@ namespace BattleShip_2014
                 }
             }
         }
-
+        /*
+        * @Brief Vérifie si toutes les cases ont été touchées
+        * @Param none
+        * @return bool
+        */
         public bool toutesCasesToucher()
         {
             foreach (CaseDeJeux c in cases_)
