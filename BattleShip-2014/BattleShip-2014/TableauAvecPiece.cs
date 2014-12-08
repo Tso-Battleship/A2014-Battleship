@@ -8,21 +8,29 @@ namespace BattleShip_2014
 {
     public class TableauAvecPiece : TableauDeJeu
     {
-        public List<Piece> pieces_;
+
+        private List<Piece> pieces_;
+
+        public List<Piece> Pieces
+        {
+            get { return pieces_; }
+            set { pieces_ = value; }
+        }
+
 
         // selon le forum de stackoverflow.com ca fonctionne :p
         public TableauAvecPiece(int tailleX, int tailleY, List<Piece> pieces) :
             base(tailleX, tailleY)
-	    {
+        {
             pieces_ = pieces;
-	    }
+        }
 
-	    public bool piecesToutesTouchees()
-	    {
+        public bool piecesToutesTouchees()
+        {
             int i = 0;
-            foreach(Piece p in pieces_)
+            foreach (Piece p in pieces_)
             {
-                if(p.toutesCasesToucher())
+                if (p.toutesCasesToucher())
                     i++;
             }
 
@@ -30,6 +38,6 @@ namespace BattleShip_2014
                 return true;
             else
                 return false;
-	    }
+        }
     }
 }
