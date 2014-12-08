@@ -28,11 +28,11 @@ namespace BattleShip_2014
     {
 
         enum enumImageCurseur {
-            aircraft_carrier = 0,
-            battleship,
-            submarine,
-            destroyer,
-            patrol_boat,
+            piece1 = 0,
+            piece2,
+            piece3,
+            piece4,
+            piece5,
             invalide
         };
         enumImageCurseur imageCurseur = enumImageCurseur.invalide;
@@ -46,6 +46,7 @@ namespace BattleShip_2014
 
         List<Piece> listePiecesJoueur;
         TableauAvecPiece tableauJoueur;
+        List<DescriptionPiece> descriptionRecueDuServeur;
 
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
@@ -58,14 +59,14 @@ namespace BattleShip_2014
                                                );
         private const int EM_SETCUEBANNER = 0x1501;
 
-
-
         [DllImport("user32.dll")]
         public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
 
+
+        
 
         public static Cursor CreateCursor(Bitmap bmp, int xHotSpot, int yHotSpot)
         {
@@ -82,10 +83,35 @@ namespace BattleShip_2014
 
         public Client()
         {
-           InitializeComponent();
+             InitializeComponent();
 
-           listePiecesJoueur = new List<Piece>();
-           tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
+            descriptionRecueDuServeur = new List<DescriptionPiece>();
+            DescriptionPiece dp;
+
+            List<CaseDeJeux> cases = new List<CaseDeJeux>();
+
+            cases.Add(new CaseDeJeux(0, 0));
+            cases.Add(new CaseDeJeux(0, 1));
+            dp = new DescriptionPiece(cases, "patrolBoat.png", "Patrol Boat");
+            descriptionRecueDuServeur.Add(dp);
+            cases = new List<CaseDeJeux>(cases);
+            cases.Add(new CaseDeJeux(0, 2));
+            dp = new DescriptionPiece(cases, "destroyer.png", "Destroyer");
+            descriptionRecueDuServeur.Add(dp);
+            cases = new List<CaseDeJeux>(cases);
+            dp = new DescriptionPiece(cases, "destroyer.png", "Submarine");
+            descriptionRecueDuServeur.Add(dp);
+            cases = new List<CaseDeJeux>(cases);
+            cases.Add(new CaseDeJeux(0, 3));
+            dp = new DescriptionPiece(cases, "battleShip.png", "Battleship ");
+            descriptionRecueDuServeur.Add(dp);
+            cases = new List<CaseDeJeux>(cases);
+            cases.Add(new CaseDeJeux(0, 4));
+            dp = new DescriptionPiece(cases, "aircraftCarrier.png", "Aircraft Carrier");
+            descriptionRecueDuServeur.Add(dp);
+            cases = new List<CaseDeJeux>(cases);
+            listePiecesJoueur = new List<Piece>();
+            tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
 
             SendMessage(textBox1.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
@@ -103,6 +129,11 @@ namespace BattleShip_2014
 
         private void Client_Load(object sender, EventArgs e)
         {
+            piece1_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).Nom;
+            piece2_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece2).Nom;
+            piece3_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece3).Nom;
+            piece4_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece4).Nom;
+            piece5_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).Nom;
             
         }
 
@@ -178,25 +209,25 @@ namespace BattleShip_2014
         {
             switch (image)
             {
-                case enumImageCurseur.aircraft_carrier:
-                    aircraftCarrier_button.Enabled = false;
-                    nbPieces = 5;
+                case enumImageCurseur.piece1:
+                    piece1_button.Enabled = false;
+                    nbPieces = descriptionRecueDuServeur.ElementAt(0).CasesDeJeu.Count();
                     break;
-                case enumImageCurseur.battleship:
-                    battleship_button.Enabled = false;
-                    nbPieces = 4;
+                case enumImageCurseur.piece2:
+                    piece2_button.Enabled = false;
+                    nbPieces = descriptionRecueDuServeur.ElementAt(1).CasesDeJeu.Count();;
                     break;
-                case enumImageCurseur.submarine:
-                    submarine_button.Enabled = false;
-                    nbPieces = 3;
+                case enumImageCurseur.piece3:
+                    piece3_button.Enabled = false;
+                    nbPieces = descriptionRecueDuServeur.ElementAt(2).CasesDeJeu.Count();;
                     break;
-                case enumImageCurseur.destroyer:
-                    destroyer_button.Enabled = false;
-                    nbPieces = 3;
+                case enumImageCurseur.piece4:
+                    piece4_button.Enabled = false;
+                    nbPieces = descriptionRecueDuServeur.ElementAt(3).CasesDeJeu.Count();;
                     break;
-                case enumImageCurseur.patrol_boat:
-                    patrolBoat_button.Enabled = false;
-                    nbPieces = 2;
+                case enumImageCurseur.piece5:
+                    piece5_button.Enabled = false;
+                    nbPieces = descriptionRecueDuServeur.ElementAt(4).CasesDeJeu.Count();;
                     break;
                 default:
                     break;
@@ -221,21 +252,21 @@ namespace BattleShip_2014
 
             switch (image)
             {
-                case enumImageCurseur.aircraft_carrier:
-                    bitmapCurseur = new Bitmap("aircraftCarrier.png");
+                case enumImageCurseur.piece1:
+                    bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).PathVisuels.ToString());
                     break;
-                case enumImageCurseur.battleship:
-                    bitmapCurseur = new Bitmap("battleShip.png");
+                case enumImageCurseur.piece2:
+                    bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece2).PathVisuels.ToString());
                     break;
-                case enumImageCurseur.submarine:
-                    bitmapCurseur = new Bitmap("destroyer.png");
+                case enumImageCurseur.piece3:
+                    bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece3).PathVisuels.ToString());
                     break;
-                case enumImageCurseur.destroyer:
-                    bitmapCurseur = new Bitmap("destroyer.png");
+                case enumImageCurseur.piece4:
+                    bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece4).PathVisuels.ToString());
                     break;
                 default:
-                case enumImageCurseur.patrol_boat:
-                    bitmapCurseur = new Bitmap("patrolBoat.png");
+                case enumImageCurseur.piece5:
+                    bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).PathVisuels.ToString());
                     break;
 
             }
@@ -257,7 +288,7 @@ namespace BattleShip_2014
             }
             else
             {
-                Cursor.Current = Cursors.Default;
+                this.Cursor = Cursors.Default;
             }
         }
 
