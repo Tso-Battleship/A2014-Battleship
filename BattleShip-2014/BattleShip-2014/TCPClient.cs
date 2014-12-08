@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.Net;
+using System.Collections;
 
 namespace BattleShip_2014
 {
@@ -16,6 +17,7 @@ namespace BattleShip_2014
        
         public string strMessage;
         public event EventHandler SomethingHappened2;
+
         public TCPClient()
         {
             this.tcpListener = new TcpListener(IPAddress.Any, 3000);            //Crée un socket avec 127.0.0.1 et le port 3000.

@@ -45,6 +45,7 @@ namespace BattleShip_2014
                 clientThread.Start();
 
                 while(adrIp[nbClients] == null);
+                envoyerCommande(nbClients, "Connection Reussi");
                 /*chagnement dans le code ici*/
                 //**************************************
                 //while (adrIp[nbClients] == "") ;
@@ -114,6 +115,7 @@ namespace BattleShip_2014
                 handler(this, EventArgs.Empty);
             }
         }
+
 
         public void envoyerCommande(int numClient, string message)
         {
