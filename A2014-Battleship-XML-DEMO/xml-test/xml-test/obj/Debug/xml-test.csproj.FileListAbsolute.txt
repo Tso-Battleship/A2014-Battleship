@@ -1,0 +1,9 @@
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\bin\Debug\xml-test.exe.config
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml_test.Form1.resources
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml_test.Properties.Resources.resources
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml-test.csproj.GenerateResource.Cache
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\bin\Debug\xml-test.exe
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\bin\Debug\xml-test.pdb
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml-test.exe
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml-test.pdb
+E:\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml-test.csprojResolveAssemblyReference.cache

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grille 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="E:/Cegep/Prog. Avancée/battleship_lab/test.xsd">
+  <modeDeJeu nomDeJeu="Classique">
+	<taille>10,10</taille>
+	<path emplacement="/images/bateau">
+      <pieces ship ="ship1.png">
+		<cases>4,3:0,1:1,1:0,2</cases>
+		<description> test ship1 </description>
+	  </pieces>
+	  <pieces ship ="ship2.png">
+			<cases>0,0:1,1:2,1:3,2</cases>
+		<description> test ship2 </description>
+	  </pieces>
+	  <pieces ship ="ship3.png">
+			<cases>2,0:2,1:2,1:2,2</cases>
+		<description> test ship3 </description>
+	  </pieces>
+	  <pieces ship ="ship4.png">
+		<cases>3,0:3,1:3,3:0,3</cases>
+		<description> test ship4 </description>
+	  </pieces>
+	  <pieces ship ="ship5.png">
+			<cases>0,0:0,1:1,1:0,2</cases>
+		<description> test ship5 </description>
+	  </pieces>
+	  <!--<tir>
+		<toucher img = "hit.png"> </toucher>
+		<rater img2 = "miss.png"> </rater>
+	  </tir>-->
+	</path>
+	
+  </modeDeJeu>
+  <!-- Fin du mode de jeu CLASSIQUE -->
+ </grille>
