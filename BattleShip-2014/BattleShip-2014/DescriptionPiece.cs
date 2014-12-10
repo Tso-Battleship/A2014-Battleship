@@ -9,8 +9,8 @@ namespace BattleShip_2014
     public class DescriptionPiece
     {
 
-        string nom_;
-        string path_visuel_;
+        protected string nom_;
+        protected string path_visuel_;
         protected List<CaseDeJeux> cases_;
 
         public DescriptionPiece()

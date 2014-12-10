@@ -18,18 +18,25 @@ namespace BattleShip_2014
 
         }
 
-        public Piece(List<CaseDeJeux> cases,string name, string path, Rotation Rotation)
-        { 
-            
-        }
-        
-
-        public Piece(DescriptionPiece Piece, int x, int y)
+        public Piece(List<CaseDeJeux> Dcases,string name, string path, Rotation rotation)
         {
+            cases_ = Dcases;
+            nom_ = name;
+            path_visuel_ = path;
+            rotation_ = rotation;
+        }
+
+        public Piece(DescriptionPiece DPiece, int x, int y, Rotation rotation)
+        {
+            nom_ = DPiece.Nom;
+            path_visuel_ = DPiece.PathVisuels;
+            cases_ = DPiece.CasesDeJeu;
             positionX_ = x;
             positionY_ = y;
-
+            rotation_ = rotation;
         }
+
+
 
         
 /////////////////////////////////////////////////////////////////////////////////////////////
