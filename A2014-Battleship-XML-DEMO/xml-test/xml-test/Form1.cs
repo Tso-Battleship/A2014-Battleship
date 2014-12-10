@@ -36,9 +36,9 @@ namespace xml_test
 
         private void genereListBoxXML(DescriptionPiece descPieces)
         {
-            listBox1.Items.Add(descPieces.gspath_visuel_);
-            listBox1.Items.Add(descPieces.gsnom_);
-            listBox1.Items.Add(descPieces.gscases_);
+            //listBox1.Items.Add(descPieces.gspath_visuel_);
+            //listBox1.Items.Add(descPieces.gsnom_);
+            //listBox1.Items.Add(descPieces.gscases_);
 
             listBox1.Items.Insert(0, xml.ModeDeJeu[0].ToString() + " " + xml.ModeDeJeu[1] + " " + xml.ModeDeJeu[2].ToString());
             listBox1.Items.Insert(0, "Ship1" + " : " + xml.PiecesDeJeu[0].ToString() + " " + xml.CasesDeJeu[0] + " " + xml.DescriptionDeJeu[0]);

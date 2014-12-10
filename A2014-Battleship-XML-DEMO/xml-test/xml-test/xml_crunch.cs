@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml; // ajout pour avoir les fonctionnalites XML reader
+using System.Xml.Schema;    //Analyser avec le xsd
+using System.IO;
 
 namespace xml_test
 
@@ -40,6 +42,15 @@ namespace xml_test
             NomFichier_ = nomFichier;
             //initialisation de lobjet configure xml et initialisation du Xml Reader
             XmlReaderSettings configurationReader = new XmlReaderSettings();
+
+            //Validation du xml par l'entremise de'un fichier .xsd, trouver sur stack overflow
+            configurationReader.ValidationType = ValidationType.Schema;
+            configurationReader.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
+            configurationReader.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
+            configurationReader.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
+            configurationReader.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
+            
+
             reader = XmlReader.Create(NomFichier_, configurationReader);
             piece = new Piece();
 
@@ -97,15 +108,28 @@ namespace xml_test
         }
         
         
+        
+
+        /// <summary>
+        /// Analyse le xml avec un fichier xsd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private static void ValidationCallBack(object sender, ValidationEventArgs args)
+        {
+            if (args.Severity == XmlSeverityType.Warning)
+                Console.WriteLine("\tWarning: Matching schema not found.  No validation occurred." + args.Message);
+            else
+                Console.WriteLine("\tValidation error: " + args.Message);
+        }
+
         //Compte de pieces, car on peut avoir 32767 pieces
         private int indexPieces_ = -1;
-
         /// <summary>
         /// lit le xml
         /// </summary>
         public void xmlreader()
         {
-            
             //Boucle jusqu'a temps qu'il n'ai plus de ligne dans le xml
             while (reader.Read())
             {
@@ -136,16 +160,13 @@ namespace xml_test
                         break;
                     case "description":
                        descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
-                       separationXY(indexPieces_);
-                       getModeDeJeu();
+                       separationXY(indexPieces_);      //Separation x y des differentes cases
+                       getModeDeJeu();                  //Ajoute la case l'endroit de l'image et le nom du ship dans La description de pieces
                         break;
                     default:
                         break;         
                 }
-                
-                ///mettre la methode pour l'association à la description de pièces dans modeDeJeu
-            }
-            
+            }    
         }
 
         /// <summary>
