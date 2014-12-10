@@ -32,11 +32,12 @@ namespace BattleShip_2014
 
             cases.Add(new CaseDeJeux(0, 0));
             cases.Add(new CaseDeJeux(0, 1));
-
+            
             DescriptionPiece dp = new DescriptionPiece(cases, "partrol_boat.pne", "Patrol Boat");
 
             descriptionDuModeDeJeu.Add(dp);
 
+            cases = new List<CaseDeJeux>(cases);
             cases.Add(new CaseDeJeux(0, 2));
             cases.Add(new CaseDeJeux(0, 3));
 
@@ -59,8 +60,7 @@ namespace BattleShip_2014
             /*
             List<
 
-            TableauAvecPiece tableauJ1;
-            tableauJ1 = new TableauAvecPiece(2,2,)
+            
              * */
         }
 
@@ -71,9 +71,18 @@ namespace BattleShip_2014
             switch (splitTrameAction[0])
             {
                 case "ACTION:CONNECT":
-                    ConnectionClient(splitTrameAction[1]);
+                    ConnectionClient(FormatteurActions.obtenirJoueur(trame));
                     break;
-                
+                case "ACTION:PIECES":
+
+                    ReceptionPiece();
+                    break;
+                case "ACTION:TIR":
+                    ReceptionTir(FormatteurActions.obtenirJoueur(trame), FormatteurActions.obtenirX(trame), FormatteurActions.obtenirY(trame));
+                    break;
+                case "ACTION:DISCONNECT":
+                    DeconnectionClient(FormatteurActions.obtenirJoueur(trame));
+                    break;
             }
         }
 
@@ -82,26 +91,16 @@ namespace BattleShip_2014
             
         }
 
-        private void btConnection1_Click(object sender, EventArgs e)
-        {
-            LogiqueServeur(FormatteurActions.genererActionConnection("JOHN"));
-            lbEnvoie.Items.Add(FormatteurActions.genererActionConnection("JOHN"));
-        }
-
         private void ConnectionClient(string trame)
         {
-            string[] splitJoueur;
             NbConnection++;
-            splitJoueur = trame.Split(':').ToArray();
             if(NbConnection==1)
             {
-                nomJoueur1 = splitJoueur[1];
-                
-
+                nomJoueur1 = trame;
             }
             else if(NbConnection==2)
             {
-                nomJoueur2 = splitJoueur[1];
+                nomJoueur2 = trame;
                 //lbReception.Items.Add(FormatteurActions.formatterActionEnvoiModeDeJeu());
                 //lbReception2.Items.Add(FormatteurActions.formatterActionEnvoiModeDeJeu());
                 lbReception.Items.Add(FormatteurActions.formatterCommencerPlacement(nomJoueur1, nomJoueur2));
@@ -110,6 +109,51 @@ namespace BattleShip_2014
 
         }
 
+        private void DeconnectionClient(string trame)
+        {
+            FormatteurActions.genererActionDeconnection(trame);
+            if(trame==nomJoueur1)
+            {
+                FinDeJeu(nomJoueur2);
+            }
+            else if (trame == nomJoueur2)
+            {
+                FinDeJeu(nomJoueur1);
+            }
+        }
+
+        private void FinDeJeu(string joueurGagnant)
+        {
+            lbReception.Items.Add(FormatteurActions.genererActionFin(joueurGagnant));
+        }
+
+       private void ReceptionTir(string nomJoueur, int x, int y)
+        {
+            if(nomJoueur==nomJoueur1)
+            {
+
+            }
+            else if(nomJoueur==nomJoueur2)
+            {
+
+            }
+            lbReception.Items.Add(FormatteurActions.retournerActionMiseAJour(nomJoueur, x, y, true, true));
+        }
+
+        private void ReceptionPiece()
+        {
+           /* TableauAvecPiece tableauJ1;
+            tableauJ1 = new TableauAvecPiece(2,2,;
+      /**/  }
+
+
+        private void btConnection1_Click(object sender, EventArgs e)
+        {
+            LogiqueServeur(FormatteurActions.genererActionConnection("JOHN"));
+            lbEnvoie.Items.Add(FormatteurActions.genererActionConnection("JOHN"));
+        }
+
+
         private void btConnection2_Click(object sender, EventArgs e)
         {
             LogiqueServeur(FormatteurActions.genererActionConnection("Jack"));
@@ -117,8 +161,7 @@ namespace BattleShip_2014
         }
 
         private void btEnvoiePiece1_Click(object sender, EventArgs e)
-        {
-            
+        {     
             //LogiqueServeur.(FormatteurActions.formatterActionEnvoiPositionPiece());
         }
     }

@@ -46,7 +46,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String formatterActionEnvoiModeDeJeu(string modeJeu, int x, int y,int nbBateau)
+        public static String formatterActionEnvoiModeDeJeu(string modeJeu, int x, int y, int nbBateau)
         {
             String retour = "";
 
@@ -111,6 +111,120 @@ namespace BattleShip_2014
             retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
+        }
+
+        public static String genererActionFin(String nomJoueur)
+        {
+            String retour = "";
+
+            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_FIN_DE_PARTIE + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA + nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
+
+            return retour;
+        }
+
+        public static String obtenirJoueur(String trame)
+        {
+            String nomJoueur = "";
+
+            string[] splitTrameAction;
+            string[] splitJoueur;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitJoueur = splitTrameAction[1].Split(':').ToArray();
+            nomJoueur = splitJoueur[1];
+
+            return nomJoueur;
+        }
+
+        public static String obtenirJoueur2(String trame)
+        {
+            String nomJoueur2 = "";
+
+            string[] splitTrameAction;
+            string[] splitJoueur2;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitJoueur2 = splitTrameAction[2].Split(':').ToArray();
+            nomJoueur2 = splitJoueur2[1];
+
+            return nomJoueur2;
+        }
+
+        public static String obtenirModeJeu(String trame)
+        {
+            String modeJeu = "";
+
+            string[] splitTrameAction;
+            string[] splitModeJeu;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitModeJeu = splitTrameAction[1].Split(':').ToArray();
+            modeJeu = splitModeJeu[1];
+
+            return modeJeu;
+        }
+
+        public static int obtenirNbBateau(String trame)
+        {
+            int nbBateau;
+
+            string[] splitTrameAction;
+            string[] splitNbBateau;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitNbBateau = splitTrameAction[3].Split(':').ToArray();
+            nbBateau = Convert.ToInt16(splitNbBateau[1]);
+
+            return nbBateau;
+        }
+
+        public static int obtenirX(String trame)
+        {
+            int X;
+
+            string[] splitTrameAction;
+            string[] splitX;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitX = splitTrameAction[2].Split(':').ToArray();
+            X = Convert.ToInt16(splitX[1]);
+
+            return X;
+        }
+
+        public static int obtenirY(String trame)
+        {
+            int Y;
+
+            string[] splitTrameAction;
+            string[] splitY;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitY = splitTrameAction[3].Split(':').ToArray();
+            Y = Convert.ToInt16(splitY[1]);
+
+            return Y;
+        }
+
+        public static bool obtenirTouche(String trame)
+        {
+            bool touche;
+
+            string[] splitTrameAction;
+            string[] splitTouche;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitTouche = splitTrameAction[4].Split(':').ToArray();
+            touche = Convert.ToBoolean(splitTouche[1]);
+
+            return touche;
+        }
+
+        public static bool obtenirCoule(String trame)
+        {
+            bool coule;
+
+            string[] splitTrameAction;
+            string[] splitCoule;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitCoule = splitTrameAction[4].Split(':').ToArray();
+            coule = Convert.ToBoolean(splitCoule[1]);
+
+            return coule;
         }
     }
 }

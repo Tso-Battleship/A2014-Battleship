@@ -70,17 +70,17 @@ namespace BattleShip_2014
         public const String TRAME_JOUEUR = "JOUEUR";
         public const String TRAME_DATA = "DATA";
 
-        //Client Envoie
         public const String ACTION_CONNECTION = "CONNECT";
         public const String ACTION_FERMETURE = "DISCONNECT";
         public const String ACTION_TIR = "TIR";
         public const String ACTION_PLACER_PIECES = "PIECES";
-        //Serveur Envoie
+
         public const String ACTION_MODE_DE_JEU = "MODEJEU";
         public const String ACTION_MISE_A_JOUR = "MAJ";
         public const String ACTION_COMMENCER_PLACEMENT = "PLACEMENT";
         public const String ACTION_COMMENCER_PARTIE = "DEBUT";
         public const String ACTION_DESCRIPTION_PIECE = "DESCRIPTION";
+        public const String ACTION_FIN_DE_PARTIE = "FIN";
 
         public const String ACTION_POINT_X = "X";
         public const String ACTION_POINT_Y = "Y";

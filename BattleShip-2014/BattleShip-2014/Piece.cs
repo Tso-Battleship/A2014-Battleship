@@ -26,6 +26,15 @@ namespace BattleShip_2014
             rotation_ = rotation;
         }
 
+        public Piece(List<CaseDeJeux> Dcases, string name, string path)
+        {
+            cases_ = Dcases;
+            nom_ = name;
+            path_visuel_ = path;
+            rotation_ = Rotation.Haut;
+        }
+
+
         public Piece(DescriptionPiece DPiece, int x, int y, Rotation rotation)
         {
             nom_ = DPiece.Nom;
@@ -34,6 +43,16 @@ namespace BattleShip_2014
             positionX_ = x;
             positionY_ = y;
             rotation_ = rotation;
+        }
+
+        public Piece(DescriptionPiece DPiece, int x, int y)
+        {
+            nom_ = DPiece.Nom;
+            path_visuel_ = DPiece.PathVisuels;
+            cases_ = DPiece.CasesDeJeu;
+            positionX_ = x;
+            positionY_ = y;
+            rotation_ = Rotation.Haut;
         }
 
 
