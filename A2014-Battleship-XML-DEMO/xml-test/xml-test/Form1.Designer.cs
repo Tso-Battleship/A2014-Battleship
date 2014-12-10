@@ -44,7 +44,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Green;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(220, 191);
+            this.button1.Location = new System.Drawing.Point(190, 191);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(233, 59);
             this.button1.TabIndex = 1;

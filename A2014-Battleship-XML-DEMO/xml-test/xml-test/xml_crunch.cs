@@ -21,8 +21,8 @@ namespace xml_test
         private string[] piecesDeJeu_ = { "", "", "", "", "", ""};
         private string[] casesDeJeu_ = { "", "", "", "", "", "" };
         private string[] descriptionDeJeu_ = { "", "", "", "", "", "" };
-        private int[] piecesX_ = { 0, 0, 0, 0, 0, 0};
-        private int[] piecesY_ = { 0, 0, 0, 0, 0, 0 };
+        private int[] piecesX_;
+        private int[] piecesY_;
         private int nbrCasePieces = 0;
 
         //Declaration de l'objet
@@ -30,6 +30,7 @@ namespace xml_test
         Piece piece;
         //Le nom du fichier xml
         private string NomFichier_ = "battleship_xml.xml";
+        
 
         /// <summary>
         /// Constructeur
@@ -136,11 +137,12 @@ namespace xml_test
                     case "description":
                        descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
                        separationXY(indexPieces_);
+                       getModeDeJeu();
                         break;
                     default:
                         break;         
                 }
-                //Slipt pour X Y donc appeler la fonction
+                
                 ///mettre la methode pour l'association à la description de pièces dans modeDeJeu
             }
             
@@ -152,33 +154,33 @@ namespace xml_test
         private void separationXY(int nbrPieces)
         {
             int i = 0;
-            int j = 0;
+            
             string[] tempString = {};
             string[] tempStringCoord = {};
             string[] split = casesDeJeu_[nbrPieces].Split(new Char[] { ':' });
-            int johntest = 0;
 
-            tempString = splitXML(split);
+            String X, Y;
 
-            //Associe le buffer
-            // les index pair du buffer seront les coordonnee en X(0.2.4.6.8.10) et les impaires seront en Y(1.3.5.7.9.11)
-            string[] split2 = tempString[i].Split(new Char[] { ',' });   
-            johntest = tempString.Length;
-            for (i = 0; i < johntest;i++ )
+            tempString = trimXML(split);
+            int longeurDeBuffer = tempString.Length;
+
+            piecesX_ = new int[longeurDeBuffer];
+            piecesY_ = new int[longeurDeBuffer];
+
+            for (i = 0; i < longeurDeBuffer; i++)
             {
-                tempStringCoord = splitXML(split2);
-            }
-
-            
-
-            for(i = 0; i <johntest;i+=2)
-            {
-                piecesX_[i] = Convert.ToInt16(tempStringCoord[i]);
-                piecesY_[i] = Convert.ToInt16(tempStringCoord[i + 1]);
-
+                X = tempString[i].Substring(0, 1);  //0 start index, 1 the length of the substring
+                Y = tempString[i].Substring(2);
+                
+                piecesX_[i] = Convert.ToInt16(X);
+                piecesY_[i] = Convert.ToInt16(Y);
             }
         }
         
+        /// <summary>
+        /// Create a list of CaseDeJeu with positionX and positionY and create a DescriptionDePiece
+        /// </summary>
+        /// <returns>Mode de Jeu</returns>
         public ModeDeJeu getModeDeJeu()
         {
             int i = 0;
@@ -202,9 +204,15 @@ namespace xml_test
             return mode;
         }
 
-        private string[] splitXML(string [] strArray1)
+
+        /// <summary>
+        /// This methode split a string array and return the result of it
+        /// </summary>
+        /// <param name="strArray1">String to split </param>
+        /// <returns>The result of the split in a array</returns>
+        private string[] trimXML(string [] strArray1)
         {
-            string[] valreturn = { "", "", "", "", "", "", "", "", "", "", "", ""};
+            string[] valreturn = new string[strArray1.Length];
             int i = 0;
             //Boucle 1 pour separer avec le couple de coordonnee x,y
             foreach (string s in strArray1)
@@ -212,7 +220,6 @@ namespace xml_test
                 if (s.Trim() != "")
                 {
                     valreturn[i] = s;
-
                 }
                 i++;
             }
