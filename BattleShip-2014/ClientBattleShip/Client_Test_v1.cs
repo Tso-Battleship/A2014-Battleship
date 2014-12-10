@@ -54,7 +54,6 @@ namespace BattleShip_2014
         TcpClient client = new TcpClient();
 
         /** TODO COMMENTER CETTE DEMARCHE QUI CRÉE DES CURSEUR **/
-        // Placeholder text dans les textboxes
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(
                                                     IntPtr hWnd,
@@ -63,13 +62,12 @@ namespace BattleShip_2014
                                                     [MarshalAs(UnmanagedType.LPWStr)]string lParam
                                                );
         private const int EM_SETCUEBANNER = 0x1501;
-
-        // Curseur
         [DllImport("user32.dll")]
         public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
+
 
         public static Cursor CreateCursor(Bitmap bmp, int xHotSpot, int yHotSpot)
         {
@@ -83,6 +81,7 @@ namespace BattleShip_2014
             return new Cursor(ptr);
         }
         /** ** ** ** ** ** **/
+
 
         public Client()
         {
@@ -124,6 +123,7 @@ namespace BattleShip_2014
             listePiecesJoueur = new List<Piece>();
             List<Piece> listePiecesEnnemie = new List<Piece>();
 
+
             tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
             tableauEnnemi = new TableauAvecPiece(10, 10, listePiecesEnnemie);
 
@@ -135,7 +135,7 @@ namespace BattleShip_2014
 
             listeCaseTouches = new List<CaseDeJeux>();
 
-            /// Placeholder pour les TextBoxes
+            /// PlaceHolder pour les TextBox
             SendMessage(nomJoueur_TB.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
         }
@@ -146,7 +146,7 @@ namespace BattleShip_2014
         /// <param name="e"></param>
         private void exit_button_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            this.Close();
         }
 
         /// <summary>

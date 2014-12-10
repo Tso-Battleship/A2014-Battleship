@@ -48,3 +48,6 @@ BattleShip-2014/ClientBattleShip/obj/Debug/BattleShip_2014.Client.resources
 *.txt
 *.pdb
 *.txt
+*.suo
+*.exe
+*.pdb
