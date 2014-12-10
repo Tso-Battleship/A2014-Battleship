@@ -73,10 +73,27 @@ namespace BattleShip_2014
             {
                 return this.rotation_;
             }
-            set
+            /*set
             {
                 this.rotation_ = value;
+            }*/
+        }
+
+        public void tournerPiece()
+        {
+            List<CaseDeJeux> nouvellesCases = new List<CaseDeJeux>();
+            foreach (CaseDeJeux casedejeu in cases_)
+            {
+                nouvellesCases.Add(new CaseDeJeux(casedejeu.OffsetY, casedejeu.OffsetX));
             }
+            cases_ = nouvellesCases;
+
+            if (rotation_ == Rotation.Droite)
+            {
+                rotation_ = Rotation.Haut;
+            }
+            else
+                rotation_ = Rotation.Droite;
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////// 

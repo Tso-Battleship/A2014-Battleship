@@ -40,3 +40,8 @@ BattleShip-2014/ClientBattleShip/obj/Debug/ClientBattleShip.csprojResolveAssembl
 BattleShip-2014/ClientBattleShip/obj/Debug/ClientBattleShip.csproj.GenerateResource.Cache
 BattleShip-2014/ClientBattleShip/obj/Debug/ClientBattleShip.csproj.FileListAbsolute.txt
 BattleShip-2014/ClientBattleShip/obj/Debug/BattleShip_2014.Client.resources
+*.suo
+*.dll
+*.pdb
+*.exe
+*.Cache

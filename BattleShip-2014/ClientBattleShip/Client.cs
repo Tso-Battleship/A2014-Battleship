@@ -273,21 +273,23 @@ namespace BattleShip_2014
             /// Vérifier qu"il n'y a pas une pieces sous la pieces que l'on tente de placer
             if (imageCurseur != enumImageCurseur.invalide)
             {
-                if ( (rotation == Rotation.Droite && (x + nbPieces) <= 10) || (rotation == Rotation.Haut && (y+nbPieces <= 10)) )
+                if ( (rotation == Rotation.Droite && (x + nbPieces) <= tableauJoueur.TailleX) || (rotation == Rotation.Haut && (y+nbPieces <= tableauJoueur.TailleY)) )
                 {
-                    Piece piecePlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation);
+                    Piece pieceAPlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation);
+                    if(rotation == Rotation.Droite)
+                        pieceAPlace.tournerPiece();
 
                     foreach (Piece piecesDejaPlace in tableauJoueur.Pieces)                     //Pour chaque Piece dans le tableau
                     {
                         foreach(CaseDeJeux caseDeJeuxDejaPlace in piecesDejaPlace.CasesDeJeu)   //Tester chaque case du tableau
                         {
-                            foreach (CaseDeJeux caseDeJeuxAPlace in piecePlace.CasesDeJeu)      //Contre chaque Case du bateau a placer
+                            foreach (CaseDeJeux caseDeJeuxAPlace in pieceAPlace.CasesDeJeu)      //Contre chaque Case du bateau a placer
                             {
-                                if (piecesDejaPlace.RotationPiece == Rotation.Droite)
+                                /*if (piecesDejaPlace.RotationPiece == Rotation.Droite)
                                 {
-                                    if (caseDeJeuxAPlace.OffsetY + piecePlace.PositionX == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionX)
+                                    if (caseDeJeuxAPlace.OffsetY + pieceAPlace.PositionX == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionX)
                                     {
-                                        if (caseDeJeuxAPlace.OffsetX + piecePlace.PositionY == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionY)
+                                        if (caseDeJeuxAPlace.OffsetX + pieceAPlace.PositionY == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionY)
                                         {
                                             positionVAlide = false;
                                         }
@@ -295,16 +297,16 @@ namespace BattleShip_2014
                                     }
                                 }
                                 else
-                                { 
-                                    if (caseDeJeuxAPlace.OffsetX + piecePlace.PositionX == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionX)
+                                { */
+                                    if (caseDeJeuxAPlace.OffsetX + pieceAPlace.PositionX == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionX)
                                     {
-                                        if (caseDeJeuxAPlace.OffsetY + piecePlace.PositionY == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionY)
+                                        if (caseDeJeuxAPlace.OffsetY + pieceAPlace.PositionY == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionY)
                                         {
                                             positionVAlide = false;
                                         }
 
                                     }
-                                }
+                                //}
 
                             }
                         }
@@ -313,7 +315,7 @@ namespace BattleShip_2014
 
                     if(positionVAlide) 
                     { 
-                        tableauJoueur.Pieces.Add(piecePlace); //Ajouter le bateau sélectionné au tableau
+                        tableauJoueur.Pieces.Add(pieceAPlace); //Ajouter le bateau sélectionné au tableau
                         redrawGridNeeded = true;                        //Indiquer qu'il y a un changement a faire a la grille
                         p1_board.Invalidate();                //Invalider le panel du joeur1 pour forcer l'évènement Paint
                     }
@@ -390,20 +392,20 @@ namespace BattleShip_2014
                 changerCurseur(imageCurseur, rotation);
                 foreach (Piece piecesPlace in tableauJoueur.Pieces)
                 {
-                    for (int i = 0; i < piecesPlace.CasesDeJeu.Count(); i++)
+                    foreach(CaseDeJeux uneCase in piecesPlace.CasesDeJeu)
                     {
-                        if (piecesPlace.RotationPiece == Rotation.Droite)
-                        {
-                            posX = (((piecesPlace.PositionX * 50) + 25) + (50 * i) - 25);
-                            posY = ((piecesPlace.PositionY * 50));
+                      /*  if (piecesPlace.RotationPiece == Rotation.Droite)
+                        {*/
+                            posX = (((piecesPlace.PositionX * 50) + 25) + (50 * uneCase.OffsetX) - 25);
+                            posY = (((piecesPlace.PositionY * 50) + 25) + (50 * uneCase.OffsetY) - 25);
                             e.Graphics.DrawImage(bitmap, posX,posY);
-                        }
+                      /*  }
                         else
                         {
                             posX = ((piecesPlace.PositionX * 50));
                             posY = (((piecesPlace.PositionY * 50) + 25) + (50 * i) - 25);
                             e.Graphics.DrawImage(bitmap,posX, posY);
-                        }
+                        }*/
 
                     }
                     
