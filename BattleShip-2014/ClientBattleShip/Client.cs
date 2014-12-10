@@ -39,10 +39,9 @@ namespace BattleShip_2014
         bool toggle = true; //Permet de changer l'orientation du curseur
        
         //Variable global pour le reDraw
-        bool redraw = false;
+        bool redrawGridNeeded = false;
         Rotation rotation = Rotation.Haut;
         int nbPieces = 0;
-        int posDepartX, posDepartY;
 
         List<Piece> listePiecesJoueur;
         TableauAvecPiece tableauJoueur;
@@ -50,6 +49,8 @@ namespace BattleShip_2014
 
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
+
+        /** TODO COMMENTER CETTE DEMARCHE QUI CRÉE DES CURSEUR **/
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(
                                                     IntPtr hWnd,
@@ -58,15 +59,12 @@ namespace BattleShip_2014
                                                     [MarshalAs(UnmanagedType.LPWStr)]string lParam
                                                );
         private const int EM_SETCUEBANNER = 0x1501;
-
         [DllImport("user32.dll")]
         public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
 
-
-        
 
         public static Cursor CreateCursor(Bitmap bmp, int xHotSpot, int yHotSpot)
         {
@@ -79,12 +77,15 @@ namespace BattleShip_2014
             ptr = CreateIconIndirect(ref tmp);
             return new Cursor(ptr);
         }
+        /** ** ** ** ** ** **/
 
 
         public Client()
         {
             InitializeComponent();
-
+            
+            ///     Variables Global pour TEST                                          
+            /// Ces Variables seront remplacer par les informations provenant du serveur
             descriptionRecueDuServeur = new List<DescriptionPiece>();
             DescriptionPiece dp;
 
@@ -113,20 +114,35 @@ namespace BattleShip_2014
             listePiecesJoueur = new List<Piece>();
             tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
 
+            /// PlaceHolder pour les TextBox
             SendMessage(textBox1.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
         }
-
+        /// <summary>
+        /// Fermer l'application lorsqu'on clique sur le X
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exit_button_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Minimizer l'application lorsqu'on click sur _
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void minimize_button_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
+        /// <summary>
+        /// Placer les textes des boutons selon le mode de jeu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Client_Load(object sender, EventArgs e)
         {
             piece1_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).Nom;
@@ -137,11 +153,17 @@ namespace BattleShip_2014
             
         }
 
+        /// <summary>
+        /// Connecter au Serveur à l'adresse dans le textBox
+        /// en fournissant le nom du joueur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void connecterServeur_button_Click(object sender, EventArgs e)
         {
             connect_panel.Visible = false;
             info_panel.Visible = true;
-
+            //TODO Rendre le connectPanel Invisible si la connection Réussis
             try
             {
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3000);
@@ -158,6 +180,11 @@ namespace BattleShip_2014
             //label1.Text = TCPClient.retourneAdresseIpClient();
         }
 
+        /// <summary>
+        /// Evenement qui retourne quelle bateau a été sélectionné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void place_ship_buttons(object sender, EventArgs e)
         {
             Button bouton;
@@ -168,21 +195,28 @@ namespace BattleShip_2014
 
         }
 
+        /// <summary>
+        /// Gère les clicks de souris
+        /// Pour placer les pièces
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormClick(object sender, MouseEventArgs e)
         {
             int grilleX, grilleY;
+            //TODO enlever le HARDCODE
             grilleX = (e.X / 50); //La grille est 10x10 et elle fait 500px X 500px
             grilleY = (e.Y / 50); //En divisant la position de la souris par 50 et en gardant seulement la partie entiere
             //On obtient la coordonnées de la case dans la grille qui a été cliqué
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left) //Click de souris Gauche
             {
                 try
                 {
                     PictureBox pb;
                     pb = (PictureBox)sender;
-                    if (pb.Name == "p1_board" && imageCurseur != enumImageCurseur.invalide)
-                    {
+                    if (pb.Name == "p1_board" && imageCurseur != enumImageCurseur.invalide) //Si nous sommes dans la grille du joueur
+                    {                                                                       //On place une piece
                         placerBateau(imageCurseur, toggle, grilleX, grilleY);
                     }
                 }
@@ -190,8 +224,8 @@ namespace BattleShip_2014
                 {
                 }
             }
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)    //Click de souris Droit
+            {                                                           //Changer la rotation de la piece a placer
                 if (rotation == Rotation.Haut)
                     rotation = Rotation.Droite;
                 else
@@ -200,9 +234,17 @@ namespace BattleShip_2014
             }
         }
 
+        /// <summary>
+        /// Placer le Bateau sélectionné dans la case Sélectionné
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="rotated"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         private void placerBateau(enumImageCurseur image, bool rotated, int x, int y)
         {
-            switch (image)
+            bool positionVAlide = true;
+            switch (image) //Trouver combien de pieces construit le bateau
             {
                 case enumImageCurseur.piece1:
                     piece1_button.Enabled = false;
@@ -228,27 +270,71 @@ namespace BattleShip_2014
                     break;
             }
 
+            /// Vérifier qu"il n'y a pas une pieces sous la pieces que l'on tente de placer
             if (imageCurseur != enumImageCurseur.invalide)
             {
                 if ( (rotation == Rotation.Droite && (x + nbPieces) <= 10) || (rotation == Rotation.Haut && (y+nbPieces <= 10)) )
                 {
                     Piece piecePlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation);
-                    tableauJoueur.Pieces.Add(piecePlace);
-                    redraw = true;
-                    p1_board.Invalidate();
+
+                    foreach (Piece piecesDejaPlace in tableauJoueur.Pieces)                     //Pour chaque Piece dans le tableau
+                    {
+                        foreach(CaseDeJeux caseDeJeuxDejaPlace in piecesDejaPlace.CasesDeJeu)   //Tester chaque case du tableau
+                        {
+                            foreach (CaseDeJeux caseDeJeuxAPlace in piecePlace.CasesDeJeu)      //Contre chaque Case du bateau a placer
+                            {
+                                if (piecesDejaPlace.RotationPiece == Rotation.Droite)
+                                {
+                                    if (caseDeJeuxAPlace.OffsetY + piecePlace.PositionX == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionX)
+                                    {
+                                        if (caseDeJeuxAPlace.OffsetX + piecePlace.PositionY == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionY)
+                                        {
+                                            positionVAlide = false;
+                                        }
+
+                                    }
+                                }
+                                else
+                                { 
+                                    if (caseDeJeuxAPlace.OffsetX + piecePlace.PositionX == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionX)
+                                    {
+                                        if (caseDeJeuxAPlace.OffsetY + piecePlace.PositionY == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionY)
+                                        {
+                                            positionVAlide = false;
+                                        }
+
+                                    }
+                                }
+
+                            }
+                        }
+                        
+                    }
+
+                    if(positionVAlide) 
+                    { 
+                        tableauJoueur.Pieces.Add(piecePlace); //Ajouter le bateau sélectionné au tableau
+                        redrawGridNeeded = true;                        //Indiquer qu'il y a un changement a faire a la grille
+                        p1_board.Invalidate();                //Invalider le panel du joeur1 pour forcer l'évènement Paint
+                    }
                 }
             }
             else
             {
-                redraw = false;
+                redrawGridNeeded = false;
             }
         }
 
+        /// <summary>
+        /// Changer l'image du curseur pour l'image du bateau sélectionné
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="directionImage"></param>
         private void changerCurseur(enumImageCurseur image, Rotation directionImage)
         {
             Bitmap bitmapCurseur;
 
-            switch (image)
+            switch (image)  //Charger l'image du bateau sélectionné
             {
                 case enumImageCurseur.piece1:
                     bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).PathVisuels.ToString());
@@ -268,31 +354,38 @@ namespace BattleShip_2014
                     break;
             }
 
-            if (directionImage == Rotation.Droite )
+            if (directionImage == Rotation.Droite ) //Pivoter L'image du bateau
             {
                 bitmapCurseur.RotateFlip(RotateFlipType.Rotate90FlipX);
             }
 
-            if (imageCurseur != enumImageCurseur.invalide)
+            if (imageCurseur != enumImageCurseur.invalide) 
             {
                 Graphics g = Graphics.FromImage(bitmapCurseur);
                 g.DrawImage(bitmapCurseur, 0, 0);
                 this.Cursor = CreateCursor(bitmapCurseur, 3, 3);
                 bitmapCurseur.Dispose();
             }
-            else
+            else //Si l'image est invalide retourner au curseur original
             {
                 this.Cursor = Cursors.Default;
             }
         }
 
+        /// <summary>
+        /// Évenement Paint
+        /// Permet de redessiner la grille du joueur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void p1_board_Paint(object sender, PaintEventArgs e)
         {
             Bitmap bitmap = new Bitmap("pieces.png");
+            int posX, posY;
 
-            if (redraw)
+            if (redrawGridNeeded)
             {
-                redraw = false;
+                redrawGridNeeded = false;
                 imageCurseur = enumImageCurseur.invalide;
                 changerCurseur(imageCurseur, rotation);
                 foreach (Piece piecesPlace in tableauJoueur.Pieces)
@@ -301,11 +394,15 @@ namespace BattleShip_2014
                     {
                         if (piecesPlace.RotationPiece == Rotation.Droite)
                         {
-                            e.Graphics.DrawImage(bitmap, (((piecesPlace.PositionX * 50) + 25) + (50 * i) - 25), ((piecesPlace.PositionY * 50)));
+                            posX = (((piecesPlace.PositionX * 50) + 25) + (50 * i) - 25);
+                            posY = ((piecesPlace.PositionY * 50));
+                            e.Graphics.DrawImage(bitmap, posX,posY);
                         }
                         else
                         {
-                            e.Graphics.DrawImage(bitmap, ((piecesPlace.PositionX * 50)), (((piecesPlace.PositionY * 50) + 25) + (50 * i) - 25));
+                            posX = ((piecesPlace.PositionX * 50));
+                            posY = (((piecesPlace.PositionY * 50) + 25) + (50 * i) - 25);
+                            e.Graphics.DrawImage(bitmap,posX, posY);
                         }
 
                     }
