@@ -164,7 +164,7 @@ namespace BattleShip_2014
             bouton = (Button)sender;
 
             imageCurseur = (enumImageCurseur)Convert.ToInt16(bouton.Tag);
-            changerCurseur(imageCurseur, false);
+            changerCurseur(imageCurseur, rotation);
 
         }
 
@@ -196,8 +196,7 @@ namespace BattleShip_2014
                     rotation = Rotation.Droite;
                 else
                     rotation = Rotation.Haut;
-                toggle = !toggle;
-                changerCurseur(imageCurseur, toggle);
+                changerCurseur(imageCurseur, rotation);
             }
         }
 
@@ -231,7 +230,7 @@ namespace BattleShip_2014
 
             if (imageCurseur != enumImageCurseur.invalide)
             {
-                if ( (rotation == Rotation.Haut && (x + nbPieces) <= 10) || (rotation == Rotation.Droite && (y+nbPieces <= 10)) )
+                if ( (rotation == Rotation.Droite && (x + nbPieces) <= 10) || (rotation == Rotation.Haut && (y+nbPieces <= 10)) )
                 {
                     Piece piecePlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation);
                     tableauJoueur.Pieces.Add(piecePlace);
@@ -245,7 +244,7 @@ namespace BattleShip_2014
             }
         }
 
-        private void changerCurseur(enumImageCurseur image, bool rotated)
+        private void changerCurseur(enumImageCurseur image, Rotation directionImage)
         {
             Bitmap bitmapCurseur;
 
@@ -269,14 +268,11 @@ namespace BattleShip_2014
                     break;
             }
 
-            if (rotated)
+            if (directionImage == Rotation.Droite )
             {
                 bitmapCurseur.RotateFlip(RotateFlipType.Rotate90FlipX);
             }
-            else
-            {
-                toggle = false;
-            }
+
             if (imageCurseur != enumImageCurseur.invalide)
             {
                 Graphics g = Graphics.FromImage(bitmapCurseur);
@@ -298,24 +294,23 @@ namespace BattleShip_2014
             {
                 redraw = false;
                 imageCurseur = enumImageCurseur.invalide;
-                changerCurseur(imageCurseur, false);
+                changerCurseur(imageCurseur, rotation);
                 foreach (Piece piecesPlace in tableauJoueur.Pieces)
                 {
                     for (int i = 0; i < piecesPlace.CasesDeJeu.Count(); i++)
                     {
-                        e.Graphics.DrawImage(bitmap, (((piecesPlace.PositionX * 50) + 25) + (50 * i) - 25), ((piecesPlace.PositionX * 50)));
+                        if (piecesPlace.RotationPiece == Rotation.Droite)
+                        {
+                            e.Graphics.DrawImage(bitmap, (((piecesPlace.PositionX * 50) + 25) + (50 * i) - 25), ((piecesPlace.PositionY * 50)));
+                        }
+                        else
+                        {
+                            e.Graphics.DrawImage(bitmap, ((piecesPlace.PositionX * 50)), (((piecesPlace.PositionY * 50) + 25) + (50 * i) - 25));
+                        }
+
                     }
                     
                 }
-                /*
-                for (int i = 0; i < nbPieces; i++)
-                {
-                    if (piecesHorizontal)
-                        e.Graphics.DrawImage(bitmap, posDepartX + (50 * i) - 25 , posDepartY - 25);
-                    else
-                        e.Graphics.DrawImage(bitmap, posDepartX - 25, posDepartY + (50 * i)-25);
-                }
-                 */
             }
         }
     }
