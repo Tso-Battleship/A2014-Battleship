@@ -186,9 +186,10 @@ namespace BattleShip_2014
                 j += 2;
             }
         }
-
+        /*
         public ModeDeJeu getModeDeJeu()
         {
+            
             int i = 0;
             ModeDeJeu mode = new ModeDeJeu();
 
@@ -202,7 +203,9 @@ namespace BattleShip_2014
             nbrCasePieces = 0;
             DescriptionPiece dp = new DescriptionPiece(mode.cases_, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]);  //cases_, emplacement, description pieces donc nom
             return mode;
-        }
+             
+            return mode;
+        }*/
 
     }
 }
