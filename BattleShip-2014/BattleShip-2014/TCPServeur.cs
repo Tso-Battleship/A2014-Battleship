@@ -19,7 +19,6 @@ namespace BattleShip_2014
         public string[] strMessage = new string[4];
         public int clientCourant = 0;
         public event EventHandler SomethingHappened;
-        ArrayList list = new ArrayList();
 
         public TCPServeur()
         {
@@ -41,20 +40,12 @@ namespace BattleShip_2014
                 //Code bloquant jusqu'à ce qu'un client soit accepté
                 TcpClient client = this.tcpListener.AcceptTcpClient();
                 //Crée un thread qui va gérer la communication avec le client
-                Thread clientThread = new Thread(() => HandleClientComm(client, nbClients));
-                clientThread.Start();
+                Thread clientThread = new Thread(() => HandleClientComm(client, nbClients)); //Envoie à la fonction l'object ainsi que le numero du client
+                clientThread.Start();       //Démarre le nouveau thread
 
-                while(adrIp[nbClients] == null);
-                envoyerCommande(nbClients, "Connection Reussi");
-                /*chagnement dans le code ici*/
-                //**************************************
-                //while (adrIp[nbClients] == "") ;
-                //IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(adrIp[nbClients]), 3000);
-                //client.Connect(serverEndPoint);
-                // NetworkStream clientStream = client.GetStream();
-                // ASCIIEncoding encoder = new ASCIIEncoding();
-                nbClients++;
-                //***************************************
+                while(adrIp[nbClients] == null);    //attend de recevoir l'addresse IP du client.
+                envoyerCommande(nbClients, "Connection Reussi");    //comfirme la connection
+                nbClients++;    //incrémente le numero pour le prochain client
             }
         }
 
@@ -73,12 +64,12 @@ namespace BattleShip_2014
 
                 try
                 {
-                    //blocks until a client sends a message
+                    //attend de recevoir un message du client
                     bytesRead = clientStream.Read(message, 0, 4096);
                 }
                 catch
                 {
-                    //a socket error has occured
+                    //une erreur s'est produit
                     break;
                 }
 
@@ -100,14 +91,18 @@ namespace BattleShip_2014
                 {
                     strMessage[numClient] = encoder.GetString(message, 0, bytesRead);
                     clientCourant = numClient;
-                    DoSomething();
+                    event_messageRecu();
+                    if(strMessage[numClient] == "1")
+                    {
+
+                    }
                 }
             }
 
             tcpClient.Close();
         }
 
-        public void DoSomething()
+        public void event_messageRecu()
         {
             EventHandler handler = SomethingHappened;
             if (handler != null)

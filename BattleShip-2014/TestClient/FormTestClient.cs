@@ -28,7 +28,8 @@ namespace BattleShip_2014
 
         private void connecterServeur_button_Click(object sender, EventArgs e)
         {
-            try
+            tcpClient.connectionServeur(tbAddresseIp.Text);
+           /*try
             {
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(tbAddresseIp.Text), 3000);
                 client.Connect(serverEndPoint);
@@ -40,13 +41,12 @@ namespace BattleShip_2014
             {
                 MessageBox.Show("La connection au serveur a été refusé");
             }
-
+            catch (System.FormatException)
+            {
+                MessageBox.Show("addresse IP invalide");
+            }
+            */
             // textBox3.Text = TCPClient.retourneAdresseIpClient();
-        }
-
-        private void exit_button_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
