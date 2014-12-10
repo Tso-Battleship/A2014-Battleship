@@ -40,7 +40,7 @@ namespace BattleShip_2014
        
         //Variable global pour le reDraw
         bool redraw = false;
-        bool piecesHorizontal = false;
+        Rotation rotation = Rotation.Haut;
         int nbPieces = 0;
         int posDepartX, posDepartY;
 
@@ -83,7 +83,7 @@ namespace BattleShip_2014
 
         public Client()
         {
-             InitializeComponent();
+            InitializeComponent();
 
             descriptionRecueDuServeur = new List<DescriptionPiece>();
             DescriptionPiece dp;
@@ -137,13 +137,6 @@ namespace BattleShip_2014
             
         }
 
-        private void positionPlaceableShips()
-        {
-            /*Image img = aircraftCarrier_placeable.Image;
-            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            aircraftCarrier_placeable.Image = img;*/
-        }
-
         private void connecterServeur_button_Click(object sender, EventArgs e)
         {
             connect_panel.Visible = false;
@@ -191,7 +184,6 @@ namespace BattleShip_2014
                     if (pb.Name == "p1_board" && imageCurseur != enumImageCurseur.invalide)
                     {
                         placerBateau(imageCurseur, toggle, grilleX, grilleY);
-                        p1_board.Invalidate();
                     }
                 }
                 catch (Exception)
@@ -200,6 +192,10 @@ namespace BattleShip_2014
             }
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
+                if (rotation == Rotation.Haut)
+                    rotation = Rotation.Droite;
+                else
+                    rotation = Rotation.Haut;
                 toggle = !toggle;
                 changerCurseur(imageCurseur, toggle);
             }
@@ -234,11 +230,14 @@ namespace BattleShip_2014
             }
 
             if (imageCurseur != enumImageCurseur.invalide)
-            { 
-                piecesHorizontal = rotated;
-                posDepartX = (x * 50) + 25;
-                posDepartY = (y * 50) + 25;                
-                redraw = true;
+            {
+                if ( (rotation == Rotation.Haut && (x + nbPieces) <= 10) || (rotation == Rotation.Droite && (y+nbPieces <= 10)) )
+                {
+                    Piece piecePlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation);
+                    tableauJoueur.Pieces.Add(piecePlace);
+                    redraw = true;
+                    p1_board.Invalidate();
+                }
             }
             else
             {
@@ -268,7 +267,6 @@ namespace BattleShip_2014
                 case enumImageCurseur.piece5:
                     bitmapCurseur = new Bitmap(descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).PathVisuels.ToString());
                     break;
-
             }
 
             if (rotated)
@@ -301,6 +299,15 @@ namespace BattleShip_2014
                 redraw = false;
                 imageCurseur = enumImageCurseur.invalide;
                 changerCurseur(imageCurseur, false);
+                foreach (Piece piecesPlace in tableauJoueur.Pieces)
+                {
+                    for (int i = 0; i < piecesPlace.CasesDeJeu.Count(); i++)
+                    {
+                        e.Graphics.DrawImage(bitmap, (((piecesPlace.PositionX * 50) + 25) + (50 * i) - 25), ((piecesPlace.PositionX * 50)));
+                    }
+                    
+                }
+                /*
                 for (int i = 0; i < nbPieces; i++)
                 {
                     if (piecesHorizontal)
@@ -308,6 +315,7 @@ namespace BattleShip_2014
                     else
                         e.Graphics.DrawImage(bitmap, posDepartX - 25, posDepartY + (50 * i)-25);
                 }
+                 */
             }
         }
     }
