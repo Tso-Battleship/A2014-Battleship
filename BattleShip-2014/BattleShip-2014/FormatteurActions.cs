@@ -12,15 +12,16 @@ namespace BattleShip_2014
             MODEJE
             MAJ
             DESPiece*/
-        public static String formatterActionEnvoiPositionPiece(Piece p)
+        public static String formatterActionEnvoiPositionPiece(String nomJoueur, Piece p)
         {
             String retour = "";
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + "NOMDELAPIECE" + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + "XEX/C.jpg" + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + 2 + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + 3 + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA + nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.PositionX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + p.PositionY + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_ROTATION + Commun.DELEMITEUR_DEBUT_DATA + p.RotationPiece + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
         }
@@ -58,11 +59,21 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String formatterActionEnvoiPieces()
+        public static String formatterActionEnvoiPieces(DescriptionPiece p)
         {
             String retour = "";
-            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_DESCRIPTION_PIECE + Commun.DELEMITEUR_FIN_DONNEE;
-            /*tour += */
+
+            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + p.PathVisuels + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
+
+            //p.CasesDeJeu.ElementAt(0).
+
+            foreach(CaseDeJeux caseDe in p.CasesDeJeu)
+            {
+                
+            }
 
             return retour;
         }

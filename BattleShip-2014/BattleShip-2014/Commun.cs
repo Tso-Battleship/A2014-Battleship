@@ -84,6 +84,7 @@ namespace BattleShip_2014
 
         public const String ACTION_POINT_X = "X";
         public const String ACTION_POINT_Y = "Y";
+        public const String ACTION_ROTATION = "ROTATION";
         public const String ACTION_BATEAU_TOUCHE = "TOUCHE";
         public const String ACTION_BATEAU_COULE = "COULE";
 

@@ -17,6 +17,9 @@ namespace BattleShip_2014
         int Case;
         int NbConnection = 0;
 
+        TableauAvecPiece joueur_un;
+        TableauAvecPiece joueur_deux;
+
         public Serveur()
         {
             InitializeComponent();
@@ -48,6 +51,8 @@ namespace BattleShip_2014
             int tailleX = 10, tailleY = 10;
 
             string nom_mode = "Nom du mode";
+
+            //joueur_deux = new TableauAvecPiece(tailleX, tailleY, )
 
             foreach(DescriptionPiece description in descriptionDuModeDeJeu)
             {
