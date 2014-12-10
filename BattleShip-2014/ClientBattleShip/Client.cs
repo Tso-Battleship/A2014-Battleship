@@ -40,12 +40,15 @@ namespace BattleShip_2014
        
         //Variable global pour le reDraw
         bool redrawGridNeeded = false;
+        bool redrawEnnemi = false;
         Rotation rotation = Rotation.Haut;
         int nbPieces = 0;
 
         List<Piece> listePiecesJoueur;
         TableauAvecPiece tableauJoueur;
+        TableauAvecPiece tableauEnnemi;
         List<DescriptionPiece> descriptionRecueDuServeur;
+        List<CaseDeJeux> listeCaseTouches;
 
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
@@ -84,7 +87,7 @@ namespace BattleShip_2014
         {
             InitializeComponent();
             
-            ///     Variables Global pour TEST                                          
+            /// Variables Global pour TEST                                          
             /// Ces Variables seront remplacer par les informations provenant du serveur
             descriptionRecueDuServeur = new List<DescriptionPiece>();
             DescriptionPiece dp;
@@ -94,28 +97,46 @@ namespace BattleShip_2014
             cases.Add(new CaseDeJeux(0, 0));
             cases.Add(new CaseDeJeux(0, 1));
             dp = new DescriptionPiece(cases, "patrolBoat.png", "Patrol Boat");
+            Piece patrolBoatEnnemie = new Piece(dp,0,0,Rotation.Droite);
             descriptionRecueDuServeur.Add(dp);
             cases = new List<CaseDeJeux>(cases);
             cases.Add(new CaseDeJeux(0, 2));
             dp = new DescriptionPiece(cases, "destroyer.png", "Destroyer");
+            Piece destroyerEnnemie = new Piece(dp,2,0,Rotation.Haut);
             descriptionRecueDuServeur.Add(dp);
             cases = new List<CaseDeJeux>(cases);
             dp = new DescriptionPiece(cases, "destroyer.png", "Submarine");
+            Piece submarinetEnnemie = new Piece(dp,5,5,Rotation.Droite);
             descriptionRecueDuServeur.Add(dp);
             cases = new List<CaseDeJeux>(cases);
             cases.Add(new CaseDeJeux(0, 3));
             dp = new DescriptionPiece(cases, "battleShip.png", "Battleship ");
+            Piece battleshipEnnemie = new Piece(dp,6,0,Rotation.Haut);
             descriptionRecueDuServeur.Add(dp);
             cases = new List<CaseDeJeux>(cases);
             cases.Add(new CaseDeJeux(0, 4));
             dp = new DescriptionPiece(cases, "aircraftCarrier.png", "Aircraft Carrier");
+            Piece aircraftEnnemie = new Piece(dp,0,8,Rotation.Droite);
             descriptionRecueDuServeur.Add(dp);
             cases = new List<CaseDeJeux>(cases);
+
             listePiecesJoueur = new List<Piece>();
+            List<Piece> listePiecesEnnemie = new List<Piece>();
+
+
             tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
+            tableauEnnemi = new TableauAvecPiece(10, 10, listePiecesEnnemie);
+
+            tableauEnnemi.Pieces.Add(patrolBoatEnnemie);
+            tableauEnnemi.Pieces.Add(destroyerEnnemie);
+            tableauEnnemi.Pieces.Add(submarinetEnnemie);
+            tableauEnnemi.Pieces.Add(battleshipEnnemie);
+            tableauEnnemi.Pieces.Add(aircraftEnnemie);
+
+            listeCaseTouches = new List<CaseDeJeux>();
 
             /// PlaceHolder pour les TextBox
-            SendMessage(textBox1.Handle, EM_SETCUEBANNER, 0, "Player 1");
+            SendMessage(nomJoueur_TB.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
         }
         /// <summary>
@@ -149,8 +170,7 @@ namespace BattleShip_2014
             piece2_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece2).Nom;
             piece3_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece3).Nom;
             piece4_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece4).Nom;
-            piece5_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).Nom;
-            
+            piece5_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).Nom;    
         }
 
         /// <summary>
@@ -170,7 +190,9 @@ namespace BattleShip_2014
                 client.Connect(serverEndPoint);
                 NetworkStream clientStream = client.GetStream();
                 ASCIIEncoding encoder = new ASCIIEncoding();
-                tcpClient.envoyerCommande(client, tcpClient.retourneAdresseIpClient());
+                //tcpClient.envoyerCommande(client, tcpClient.retourneAdresseIpClient());
+                //stcpClient.envoyerCommande(client, FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
+                
             }
             catch (System.Net.Sockets.SocketException)
             {
@@ -189,7 +211,6 @@ namespace BattleShip_2014
         {
             Button bouton;
             bouton = (Button)sender;
-
             imageCurseur = (enumImageCurseur)Convert.ToInt16(bouton.Tag);
             changerCurseur(imageCurseur, rotation);
 
@@ -219,9 +240,15 @@ namespace BattleShip_2014
                     {                                                                       //On place une piece
                         placerBateau(imageCurseur, toggle, grilleX, grilleY);
                     }
+                    if(pb.Name == "p2_board")
+                    {
+                        attaquerEnnemie(grilleX,grilleY);
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
                 }
             }
             if (e.Button == System.Windows.Forms.MouseButtons.Right)    //Click de souris Droit
@@ -234,6 +261,40 @@ namespace BattleShip_2014
             }
         }
 
+        private void attaquerEnnemie(int x, int y)
+        {
+            FormatteurActions.genererActionTir(nomJoueur_TB.Text, x, y);
+            //Lecture de la réponse du serveur
+            //Si la réponse est true pour hit
+            bool hit = false;
+
+            foreach (Piece piecesEnnemie in tableauEnnemi.Pieces)                     //Pour chaque Piece dans le tableau
+            {
+                foreach (CaseDeJeux caseDeJeuxEnnemie in piecesEnnemie.CasesDeJeu)   //Tester chaque case du tableau
+                {
+                    if (piecesEnnemie.PositionX + caseDeJeuxEnnemie.OffsetX == x)
+                    {
+                        if (piecesEnnemie.PositionY + caseDeJeuxEnnemie.OffsetY == y)
+                        {
+                            hit = true;
+                        }
+                    }
+                }
+            }
+
+            if(hit)
+            {
+                listeCaseTouches.Add(new CaseDeJeux(x, y));   
+            }
+            else
+            {
+                tableauEnnemi.Cases[x, y].tirer();
+            }
+
+            redrawEnnemi = true;
+            p2_board.Invalidate();
+        }
+
         /// <summary>
         /// Placer le Bateau sélectionné dans la case Sélectionné
         /// </summary>
@@ -244,26 +305,27 @@ namespace BattleShip_2014
         private void placerBateau(enumImageCurseur image, bool rotated, int x, int y)
         {
             bool positionVAlide = true;
+            Button boutonAppuyer = new Button();
             switch (image) //Trouver combien de pieces construit le bateau
             {
                 case enumImageCurseur.piece1:
-                    piece1_button.Enabled = false;
+                    boutonAppuyer = piece1_button;
                     nbPieces = descriptionRecueDuServeur.ElementAt(0).CasesDeJeu.Count();
                     break;
                 case enumImageCurseur.piece2:
-                    piece2_button.Enabled = false;
+                    boutonAppuyer = piece2_button;
                     nbPieces = descriptionRecueDuServeur.ElementAt(1).CasesDeJeu.Count();;
                     break;
                 case enumImageCurseur.piece3:
-                    piece3_button.Enabled = false;
+                    boutonAppuyer = piece3_button;
                     nbPieces = descriptionRecueDuServeur.ElementAt(2).CasesDeJeu.Count();;
                     break;
                 case enumImageCurseur.piece4:
-                    piece4_button.Enabled = false;
+                    boutonAppuyer = piece4_button;
                     nbPieces = descriptionRecueDuServeur.ElementAt(3).CasesDeJeu.Count();;
                     break;
                 case enumImageCurseur.piece5:
-                    piece5_button.Enabled = false;
+                    boutonAppuyer = piece5_button;
                     nbPieces = descriptionRecueDuServeur.ElementAt(4).CasesDeJeu.Count();;
                     break;
                 default:
@@ -285,36 +347,20 @@ namespace BattleShip_2014
                         {
                             foreach (CaseDeJeux caseDeJeuxAPlace in pieceAPlace.CasesDeJeu)      //Contre chaque Case du bateau a placer
                             {
-                                /*if (piecesDejaPlace.RotationPiece == Rotation.Droite)
+                                if (caseDeJeuxAPlace.OffsetX + pieceAPlace.PositionX == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionX)
                                 {
-                                    if (caseDeJeuxAPlace.OffsetY + pieceAPlace.PositionX == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionX)
+                                    if (caseDeJeuxAPlace.OffsetY + pieceAPlace.PositionY == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionY)
                                     {
-                                        if (caseDeJeuxAPlace.OffsetX + pieceAPlace.PositionY == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionY)
-                                        {
-                                            positionVAlide = false;
-                                        }
-
+                                        positionVAlide = false;
                                     }
                                 }
-                                else
-                                { */
-                                    if (caseDeJeuxAPlace.OffsetX + pieceAPlace.PositionX == caseDeJeuxDejaPlace.OffsetX + piecesDejaPlace.PositionX)
-                                    {
-                                        if (caseDeJeuxAPlace.OffsetY + pieceAPlace.PositionY == caseDeJeuxDejaPlace.OffsetY + piecesDejaPlace.PositionY)
-                                        {
-                                            positionVAlide = false;
-                                        }
-
-                                    }
-                                //}
-
                             }
-                        }
-                        
+                        }                        
                     }
 
                     if(positionVAlide) 
-                    { 
+                    {
+                        boutonAppuyer.Enabled = false;
                         tableauJoueur.Pieces.Add(pieceAPlace); //Ajouter le bateau sélectionné au tableau
                         redrawGridNeeded = true;                        //Indiquer qu'il y a un changement a faire a la grille
                         p1_board.Invalidate();                //Invalider le panel du joeur1 pour forcer l'évènement Paint
@@ -394,21 +440,52 @@ namespace BattleShip_2014
                 {
                     foreach(CaseDeJeux uneCase in piecesPlace.CasesDeJeu)
                     {
-                      /*  if (piecesPlace.RotationPiece == Rotation.Droite)
-                        {*/
-                            posX = (((piecesPlace.PositionX * 50) + 25) + (50 * uneCase.OffsetX) - 25);
-                            posY = (((piecesPlace.PositionY * 50) + 25) + (50 * uneCase.OffsetY) - 25);
-                            e.Graphics.DrawImage(bitmap, posX,posY);
-                      /*  }
-                        else
-                        {
-                            posX = ((piecesPlace.PositionX * 50));
-                            posY = (((piecesPlace.PositionY * 50) + 25) + (50 * i) - 25);
-                            e.Graphics.DrawImage(bitmap,posX, posY);
-                        }*/
+                        posX = (((piecesPlace.PositionX * 50) + 25) + (50 * uneCase.OffsetX) - 25);
+                        posY = (((piecesPlace.PositionY * 50) + 25) + (50 * uneCase.OffsetY) - 25);
+                        e.Graphics.DrawImage(bitmap, posX,posY);
+                    }  
+                }
+            }
+        }
 
+        private void p2_board_Paint(object sender, PaintEventArgs e)
+        {
+            Bitmap bitmapHit = new Bitmap("hit.png");
+            Bitmap bitmapMiss = new Bitmap("miss.png");
+            int posX, posY;
+
+            if (redrawEnnemi)
+            {
+                foreach (CaseDeJeux casesTire in tableauEnnemi.Cases)
+                {
+                    if (casesTire.EstTouchee == true)
+                    {
+                        posX = (casesTire.OffsetX * 50);
+                        posY = (casesTire.OffsetY * 50);
+                        try
+                        {
+                            e.Graphics.DrawImage(bitmapMiss, posX, posY);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("slefgih");
+                        }
+                        
                     }
-                    
+                }
+
+                foreach (CaseDeJeux caseTouche in listeCaseTouches)
+                {
+                    posX = (caseTouche.OffsetX * 50);
+                    posY = (caseTouche.OffsetY * 50);
+                    try
+                    {
+                        e.Graphics.DrawImage(bitmapHit, posX, posY);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("slefgadwadwadih");
+                    }
                 }
             }
         }

@@ -37,11 +37,14 @@ namespace BattleShip_2014
 
         public TableauDeJeu(int tailleX, int tailleY)
 	    {
-            for (int i = 0; i <= tailleX; i++)
+            cases_ = new CaseDeJeux[tailleX, tailleY];
+
+            for (int i = 0; i < tailleX; i++)
             {
-                for (int j = 0; j <= tailleY; j++)
+                for(int j = 0; j < tailleY; j++)
                 {
-                    cases_ = new CaseDeJeux[i, j];
+                    cases_[i, j] = new CaseDeJeux(i, j);
+                    
                 }
             }
                 

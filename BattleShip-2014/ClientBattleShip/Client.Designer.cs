@@ -35,7 +35,7 @@
             this.adresseServeur_label = new System.Windows.Forms.Label();
             this.nomJoueur_Label = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nomJoueur_TB = new System.Windows.Forms.TextBox();
             this.main_panel = new System.Windows.Forms.Panel();
             this.place_panel = new System.Windows.Forms.Panel();
             this.piece5_button = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             this.connect_panel.Controls.Add(this.adresseServeur_label);
             this.connect_panel.Controls.Add(this.nomJoueur_Label);
             this.connect_panel.Controls.Add(this.textBox2);
-            this.connect_panel.Controls.Add(this.textBox1);
+            this.connect_panel.Controls.Add(this.nomJoueur_TB);
             this.connect_panel.Location = new System.Drawing.Point(618, 3);
             this.connect_panel.Name = "connect_panel";
             this.connect_panel.Size = new System.Drawing.Size(398, 215);
@@ -131,16 +131,16 @@
             this.textBox2.TabIndex = 1;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox1
+            // nomJoueur_TB
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(169, 79);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(210, 23);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nomJoueur_TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.nomJoueur_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nomJoueur_TB.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nomJoueur_TB.Location = new System.Drawing.Point(169, 79);
+            this.nomJoueur_TB.Name = "nomJoueur_TB";
+            this.nomJoueur_TB.Size = new System.Drawing.Size(210, 23);
+            this.nomJoueur_TB.TabIndex = 0;
+            this.nomJoueur_TB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // main_panel
             // 
@@ -259,6 +259,7 @@
             this.p2_board.Size = new System.Drawing.Size(504, 504);
             this.p2_board.TabIndex = 7;
             this.p2_board.TabStop = false;
+            this.p2_board.Paint += new System.Windows.Forms.PaintEventHandler(this.p2_board_Paint);
             this.p2_board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormClick);
             // 
             // info_panel
@@ -383,7 +384,7 @@
 
         private System.Windows.Forms.Panel connect_panel;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nomJoueur_TB;
         private System.Windows.Forms.Label titreBattleship_label;
         private System.Windows.Forms.Button connecterServeur_button;
         private System.Windows.Forms.Label adresseServeur_label;
