@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grille 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="D:/Windows/Documents/GitHub/A2014-Battleship/BattleShip-2014/battleship_xml.xsd">
+xsi:noNamespaceSchemaLocation="battleship_xml.xsd">
   <modeDeJeu nomDeJeu="Classique">
 	<taille>10,10</taille>
 	<path emplacement="..../images/bateau">
