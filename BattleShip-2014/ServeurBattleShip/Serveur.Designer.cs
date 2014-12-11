@@ -188,8 +188,6 @@
             this.tbX1.Name = "tbX1";
             this.tbX1.Size = new System.Drawing.Size(44, 20);
             this.tbX1.TabIndex = 14;
-            this.tbX1.Text = "1";
-            this.tbX1.TextChanged += new System.EventHandler(this.tbX1_TextChanged);
             // 
             // tbY1
             // 
@@ -197,7 +195,6 @@
             this.tbY1.Name = "tbY1";
             this.tbY1.Size = new System.Drawing.Size(43, 20);
             this.tbY1.TabIndex = 15;
-            this.tbY1.Text = "1";
             this.tbY1.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // tbX2
@@ -206,7 +203,6 @@
             this.tbX2.Name = "tbX2";
             this.tbX2.Size = new System.Drawing.Size(43, 20);
             this.tbX2.TabIndex = 16;
-            this.tbX2.Text = "1";
             // 
             // tbY2
             // 
@@ -214,7 +210,6 @@
             this.tbY2.Name = "tbY2";
             this.tbY2.Size = new System.Drawing.Size(44, 20);
             this.tbY2.TabIndex = 17;
-            this.tbY2.Text = "1";
             // 
             // lX1
             // 
