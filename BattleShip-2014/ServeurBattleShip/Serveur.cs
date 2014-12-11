@@ -18,6 +18,8 @@ namespace BattleShip_2014
         int NbConnection = 0;
         int tailleX;
         int tailleY;
+        int nbPiece;
+        string nomMode;
 
 
         TableauAvecPiece joueur_un;
@@ -37,7 +39,26 @@ namespace BattleShip_2014
 
         public void lectureModeJeu()
         {
+<<<<<<< Updated upstream
             descriptionDuModeDeJeu = new List<DescriptionPiece>();
+=======
+
+            mode_ = (new xml_crunch("battleship_xml.xml").getModeDeJeu());
+
+            nomMode = mode_.NomModeDeJeu;
+            tailleX = mode_.TailleX;
+            tailleY = mode_.TailleY;
+            nbPiece = mode_.Pieces.Count;
+
+            List<CaseDeJeux> cases = new List<CaseDeJeux>();
+
+            /*foreach (Piece p in mode_.Pieces)
+            {
+
+            }
+            */
+            /*descriptionDuModeDeJeu = new List<DescriptionPiece>();
+>>>>>>> Stashed changes
 
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
 

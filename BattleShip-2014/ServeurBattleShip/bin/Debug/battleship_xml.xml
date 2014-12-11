@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grille 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="battleship_xml.xsd">
+  <modeDeJeu nomDeJeu="Classique">
+	<taille>10,10</taille>
+	<path emplacement="..../images/bateau">
+      <pieces ship ="aircraftCarrier.png">
+		<cases>0,0:0,1:0,2:0,3:0,4</cases>
+		<description>aircraftCarrier</description>
+	  </pieces>
+	  <pieces ship ="battleShip.png">
+			<cases>0,0:0,1:0,2:0,3</cases>
+		<description>battleShip</description>
+	  </pieces>
+	  <pieces ship ="destroyer.png">
+			<cases>0,0:0,1:0,2</cases>
+		<description>destroyer</description>
+	  </pieces>
+	  <pieces ship ="destroyer.png">
+		<cases>0,0:0,1:0,2</cases>
+		<description>destroyer2</description>
+	  </pieces>
+	  <pieces ship ="patrolBoat.png">
+			<cases>0,0:0,1</cases>
+		<description>patrolBoat</description>
+	  </pieces>
+	  <!--<tir>
+		<toucher img = "hit.png"> </toucher>
+		<rater img2 = "miss.png"> </rater>
+	  </tir>-->
+	</path>
+	
+  </modeDeJeu>
+  <!-- Fin du mode de jeu CLASSIQUE -->
+ </grille>
