@@ -194,23 +194,25 @@ namespace xml_test
 
             try
             {
+                piecesX_ = new int[longeurDeBuffer];
+                piecesY_ = new int[longeurDeBuffer];
+
+                for (i = 0; i < longeurDeBuffer; i++)
+                {
+                    X = tempString[i].Substring(0, 1);  //0 start index, 1 the length of the substring
+                    Y = tempString[i].Substring(2);
+
+                    piecesX_[i] = Convert.ToInt16(X);
+                    piecesY_[i] = Convert.ToInt16(Y);
+                }
 
             }
             catch(FormatException ex)
             {
                 MessageBox.Show(ex.Message);        
             }
-            piecesX_ = new int[longeurDeBuffer];
-            piecesY_ = new int[longeurDeBuffer];
+          
 
-            for (i = 0; i < longeurDeBuffer; i++)
-            {
-                X = tempString[i].Substring(0, 1);  //0 start index, 1 the length of the substring
-                Y = tempString[i].Substring(2);
-                
-                piecesX_[i] = Convert.ToInt16(X);
-                piecesY_[i] = Convert.ToInt16(Y);
-            }
         }
         
         /// <summary>
