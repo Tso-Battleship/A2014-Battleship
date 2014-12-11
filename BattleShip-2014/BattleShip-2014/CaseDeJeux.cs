@@ -65,5 +65,10 @@ namespace BattleShip_2014
         {
             estTouchee_ = true;
         }
+
+        public void resetCase()
+        {
+            estTouchee_ = false;
+        }
     }
 }

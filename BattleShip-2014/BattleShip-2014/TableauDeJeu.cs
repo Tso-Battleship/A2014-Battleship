@@ -78,5 +78,14 @@ namespace BattleShip_2014
                 return false;
             }
         }
+
+        public void resetCases()
+        {
+            foreach(CaseDeJeux c in cases_)
+            {
+                c.resetCase();
+            }
+        }
+
     }
 }
