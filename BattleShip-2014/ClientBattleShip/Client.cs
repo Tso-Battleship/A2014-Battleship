@@ -214,7 +214,7 @@ namespace BattleShip_2014
 
             state = StateClient.stateOuverture;
             receptionMessageStateMachine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
-
+            
             //label1.Text = TCPClient.retourneAdresseIpClient();
         }
 
@@ -645,27 +645,48 @@ namespace BattleShip_2014
             {
                 case StateClient.stateInit:
                     
-
+                    
                     break;
                 case StateClient.stateOuverture:
                     if(action == Commun.ACTION_CONNECTION)
                     {
+                        String s;
+                        Console.WriteLine(FormatteurActions.obtenirJoueur(trameRecue));
+                        Console.WriteLine(s = FormatteurActions.formatterActionEnvoiModeDeJeu("NOMDEJEU", 10, 10, 5));
+                        Console.WriteLine(s = FormatteurActions.genererActionDescriptionPiece(descriptionRecueDuServeur.ElementAt(0)));
+                        Console.WriteLine(s = FormatteurActions.genererActionCasesDeJeux(descriptionRecueDuServeur.ElementAt(0)));
                         
-                        //TODO Envoyer la connexion au serveur par TCP
                     }
                     else if(action == Commun.ACTION_MODE_DE_JEU)
                     {
-                        //TODO populer le mode de jeu
+                        /*String s;
+                        Console.WriteLine(s = FormatteurActions.formatterActionEnvoiModeDeJeu("NOMDEJEU", 10, 10, 5));
+                        Console.WriteLine("LE NOM :" + FormatteurActions.obtenirModeJeu(s));
+                        Console.WriteLine("LE TAILLEX :" + FormatteurActions.obtenirX(s));
+                        Console.WriteLine("LE TAILLEY :" + FormatteurActions.obtenirY(s));
+                        Console.WriteLine("LE NBR :" + FormatteurActions.obtenirNbBateau(s));*/
                     }
                     else if(action == Commun.ACTION_DESCRIPTION_PIECE)
                     {
                         //TODO populer les descriptions de pieces recues du serveur   
+                       /* String s;
+                        Console.WriteLine(s = FormatteurActions.formatterActionEnvoiModeDeJeu("NOMDEJEU", 10, 10, 5));
+                        Console.WriteLine("LE NOM :" + FormatteurActions.obtenirModeJeu(s));
+                        Console.WriteLine("LE TAILLEX :" + FormatteurActions.obtenirX(s));
+                        Console.WriteLine("LE TAILLEY :" + FormatteurActions.obtenirY(s));*/
+                        
                     }
                     break;
                 case StateClient.stateSetup:
                     if(action == Commun.ACTION_PLACER_PIECES)
                     {
+                        /*
                         //TODO envoyer pieces au serveur
+                        Console.WriteLine(s = FormatteurActions.formatterActionEnvoiModeDeJeu("NOMDEJEU", 10, 10, 5));
+                        Console.WriteLine("LE NOM :" + FormatteurActions.obtenirModeJeu(s));
+                        Console.WriteLine("LE TAILLEX :" + FormatteurActions.obtenirX(s));
+                        Console.WriteLine("LE TAILLEY :" + FormatteurActions.obtenirY(s));
+                        Console.WriteLine("LE NBR :" + FormatteurActions.obtenirNbBateau(s));*/
                     }
                     else if(action == Commun.ACTION_COMMENCER_PARTIE)
                     {
