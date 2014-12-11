@@ -19,8 +19,8 @@ namespace BattleShip_2014
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA + nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.PositionX + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + p.PositionY + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.PositionX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + p.PositionY + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_ROTATION + Commun.DELEMITEUR_DEBUT_DATA + p.RotationPiece + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
@@ -47,46 +47,33 @@ namespace BattleShip_2014
             return retour;
         }
 
+        //DONE
         public static String formatterActionEnvoiModeDeJeu(string modeJeu, int x, int y, int nbBateau)
         {
             String retour = "";
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_MODE_DE_JEU + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_MODE + Commun.DELEMITEUR_DEBUT_DATA + modeJeu + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + x + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + y + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + x + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + y + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + nbBateau + Commun.DELEMITEUR_FIN_DONNEE;
             return retour;
         }
-
-        public static String formatterActionEnvoiPieces(DescriptionPiece p)
-        {
-            String retour = "";
-
-            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + p.PathVisuels + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
-
-            
-
-            return retour;
-        }
-
+        
         public static String retournerActionMiseAJour(String nomJoueur, int x, int y, bool touche, bool coule)
         {
             String retour = "";
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_MISE_A_JOUR + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA +  nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_BATEAU_TOUCHE + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(touche) + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_BATEAU_COULE + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(coule) + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
         }
-
+        //DONE
         public static String genererActionConnection(String nomJoueur)
         {
             String retour = "";
@@ -113,8 +100,8 @@ namespace BattleShip_2014
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_TIR + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA + nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
         }
@@ -140,6 +127,34 @@ namespace BattleShip_2014
             nomJoueur = splitJoueur[1];
 
             return nomJoueur;
+        }
+
+        public static String genererActionDescriptionPiece(DescriptionPiece dp)
+        {
+            String retour = "";
+
+            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_DESCRIPTION_PIECE + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + dp.Nom + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + dp.PathVisuels + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + dp.CasesDeJeu.Count + Commun.DELEMITEUR_FIN_DONNEE;
+
+            return retour;
+        }
+
+        public static String genererActionCasesDeJeux(DescriptionPiece dp)
+        {
+            String retour = "";
+
+            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_CASES_DE_JEUX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + dp.Nom + Commun.DELEMITEUR_FIN_DONNEE;
+
+            foreach(CaseDeJeux UneCase in dp.CasesDeJeu)
+            {
+                retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + UneCase.OffsetX + Commun.DELEMITEUR_FIN_DONNEE;
+                retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + UneCase.OffsetY + Commun.DELEMITEUR_FIN_DONNEE;
+            }         
+
+            return retour;
         }
 
         public static String obtenirJoueur2(String trame)
@@ -175,10 +190,23 @@ namespace BattleShip_2014
             string[] splitTrameAction;
             string[] splitNbBateau;
             splitTrameAction = trame.Split(';').ToArray();
-            splitNbBateau = splitTrameAction[3].Split(':').ToArray();
+            splitNbBateau = splitTrameAction[4].Split(':').ToArray();
             nbBateau = Convert.ToInt16(splitNbBateau[1]);
 
             return nbBateau;
+        }
+
+        public static int obtenirNbCasesDescription(String trame)
+        {
+            int nbCases;
+
+            string[] splitTrameAction;
+            string[] splitNbBateau;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitNbBateau = splitTrameAction[3].Split(':').ToArray();
+            nbCases = Convert.ToInt16(splitNbBateau[1]);
+
+            return nbCases;
         }
 
         public static int obtenirX(String trame)

@@ -105,9 +105,10 @@ namespace BattleShip_2014
         public const String ACTION_COMMENCER_PARTIE = "DEBUT";
         public const String ACTION_DESCRIPTION_PIECE = "DESCRIPTION";
         public const String ACTION_FIN_DE_PARTIE = "FIN";
+        public const String ACTION_CASES_DE_JEUX = "CASES";
 
-        public const String ACTION_POINT_X = "X";
-        public const String ACTION_POINT_Y = "Y";
+        public const String DATA_POINT_X = "X";
+        public const String DATA_POINT_Y = "Y";
         public const String ACTION_ROTATION = "ROTATION";
         public const String ACTION_BATEAU_TOUCHE = "TOUCHE";
         public const String ACTION_BATEAU_COULE = "COULE";
