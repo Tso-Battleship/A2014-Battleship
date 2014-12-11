@@ -14,6 +14,30 @@ namespace BattleShip_2014
         Gauche = 270
     }
 
+    public enum StateClient
+    {
+        stateInit,
+        stateOuverture,
+        stateSetup,
+        stateGame,
+        stateAttenteConfirmation,
+        stateAttenteAutreJoueur,
+        stateFin,
+        stateMax
+    }
+
+    public enum StateServeur
+    {
+        stateInit,
+        stateAttenteConnexion,
+        stateSetup,
+        stateGameWait,
+        stateReceptionTir,
+        stateGameUpdate,
+        stateFin,
+        stateMax
+    }
+
     struct sPoint
     {
         private int x_;
