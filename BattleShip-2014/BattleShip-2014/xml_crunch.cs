@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml; // ajout pour avoir les fonctionnalites XML reader
+using System.Xml.Schema;    //Analyser avec le xsd
+using System.IO;
+using System.Windows.Forms;
 
-namespace BattleShip_2014
+namespace xml_test
+
 {
 
     /// <summary>
@@ -16,19 +20,24 @@ namespace BattleShip_2014
         /// <summary>
         /// !!! Les variables pour l'acquisition des coordonées de pieces !!!
         /// </summary>
-        private string[] modeDeJeu_ = { "", "", "", "", "", "" };
-        private string[] piecesDeJeu_ = { "", "", "", "", "", "" };
+        private string[] dataModeDeJeu= {"","","","","",""};
+        private string[] piecesDeJeu_ = { "", "", "", "", "", ""};
         private string[] casesDeJeu_ = { "", "", "", "", "", "" };
         private string[] descriptionDeJeu_ = { "", "", "", "", "", "" };
-        private int[] piecesX_ = { 0, 0, 0, 0, 0, 0 };
-        private int[] piecesY_ = { 0, 0, 0, 0, 0, 0 };
+        private int[] piecesX_;
+        private int[] piecesY_;
         private int nbrCasePieces = 0;
+
+        List<DescriptionPiece> descriptionDesPieces;
+        int tailleDuModeX, tailleDuModeY;
+        String nomDuModeDeJeu;
 
         //Declaration de l'objet
         XmlReader reader;
         Piece piece;
         //Le nom du fichier xml
         private string NomFichier_ = "battleship_xml.xml";
+        
 
         /// <summary>
         /// Constructeur
@@ -38,8 +47,18 @@ namespace BattleShip_2014
             NomFichier_ = nomFichier;
             //initialisation de lobjet configure xml et initialisation du Xml Reader
             XmlReaderSettings configurationReader = new XmlReaderSettings();
+
+            //Validation du xml par l'entremise de'un fichier .xsd, trouver sur stack overflow
+            configurationReader.ValidationType = ValidationType.Schema;
+            configurationReader.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
+            configurationReader.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
+            configurationReader.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
+            configurationReader.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
+            
+
             reader = XmlReader.Create(NomFichier_, configurationReader);
             piece = new Piece();
+            descriptionDesPieces = new List<DescriptionPiece>();
 
 
             //config du xml reader qui est linker sa ligne en haut
@@ -47,7 +66,7 @@ namespace BattleShip_2014
             configurationReader.IgnoreComments = true;
             configurationReader.IgnoreWhitespace = false;
 
-
+  
         }
 
         /// <summary>
@@ -59,7 +78,7 @@ namespace BattleShip_2014
             get { return piecesDeJeu_; }
             set { piecesDeJeu_ = value; }
         }
-
+        
         /// <summary>
         /// Description get set selon le xml
         /// </summary>
@@ -68,8 +87,8 @@ namespace BattleShip_2014
             get { return descriptionDeJeu_; }
             set { descriptionDeJeu_ = value; }
         }
-
-
+        
+       
         /// <summary>
         /// get set Case de jeu selon le xml
         /// </summary>
@@ -78,14 +97,14 @@ namespace BattleShip_2014
             get { return casesDeJeu_; }
             set { casesDeJeu_ = value; }
         }
-
+        
         /// <summary>
         /// get set du type de jeu
         /// </summary>
         public string[] ModeDeJeu
         {
-            get { return modeDeJeu_; }
-            set { modeDeJeu_ = value; }
+            get { return dataModeDeJeu; }
+            set { dataModeDeJeu = value; }
         }
 
         public int indexPieces
@@ -93,31 +112,48 @@ namespace BattleShip_2014
             get { return indexPieces_; }
             set { indexPieces_ = value; }
         }
+        
+        
+        
 
+        /// <summary>
+        /// Analyse le xml avec un fichier xsd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private static void ValidationCallBack(object sender, ValidationEventArgs args)
+        {
+            if (args.Severity == XmlSeverityType.Warning)
+                Console.WriteLine("\tWarning: Matching schema not found.  No validation occurred." + args.Message);
+            else
+                Console.WriteLine("\tValidation error: " + args.Message);
+        }
 
         //Compte de pieces, car on peut avoir 32767 pieces
         private int indexPieces_ = -1;
-        public void xmlreader()
+        /// <summary>
+        /// lit le xml
+        /// </summary>
+        private void xmlreader()
         {
-
             //Boucle jusqu'a temps qu'il n'ai plus de ligne dans le xml
             while (reader.Read())
             {
                 //Change au prochain element du xml
                 reader.MoveToElement();
-                switch (reader.Name)
-                {
+                switch(reader.Name){
                     case "modeDeJeu":
                         if (reader.HasAttributes)
-                            modeDeJeu_[0] = reader["nomDeJeu"];
+                            nomDuModeDeJeu = reader["nomDeJeu"];
                         indexPieces_ = -1;
                         break;
                     case "taille":
-                        modeDeJeu_[1] = reader.ReadElementContentAsString();
+                        //TODO Separer les tailles
+                        dataModeDeJeu[1] = reader.ReadElementContentAsString();
                         break;
                     case "path":
                         if (reader.HasAttributes)
-                            modeDeJeu_[2] = reader["emplacement"];
+                            dataModeDeJeu[2] = reader["emplacement"];
                         break;
                     case "pieces":
                         if (reader.HasAttributes)
@@ -127,21 +163,17 @@ namespace BattleShip_2014
                         }
                         break;
                     case "cases":
-                        casesDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
+                       casesDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
                         break;
                     case "description":
-                        descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
+                       descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
+                       separationXY(indexPieces_);      //Separation x y des differentes cases
+                       getPiece();                  //Ajoute la case l'endroit de l'image et le nom du ship dans La description de pieces
                         break;
                     default:
-                        break;
+                        break;         
                 }
-                //Slipt pour X Y donc appeler la fonction
-                separationXY(indexPieces_);
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //!!!!!!!!!!!!!!mettre la methode pour l'association à la description de pièces dans modeDeJeu!!!!!!!!!
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            }
-
+            }    
         }
 
         /// <summary>
@@ -150,62 +182,89 @@ namespace BattleShip_2014
         private void separationXY(int nbrPieces)
         {
             int i = 0;
-            int j = 0;
-            string[] tempString = { "", "", "", "", "", "", "" };
+            
+            string[] tempString = {};
+            string[] tempStringCoord = {};
+            string[] split = casesDeJeu_[nbrPieces].Split(new Char[] { ':' });
 
-            string[] split = piecesDeJeu_[nbrPieces].Split(new Char[] { ':' });
+            String X, Y;
 
+            tempString = trimXML(split);
+            int longeurDeBuffer = tempString.Length;
 
-            //Boucle 1 pour separer avec le couple de coordonnee x,y
-            foreach (string s in split)
+            try
             {
-                if (s.Trim() != "")
-                {
-                    tempString[i] = s;
 
-                }
-                i++;
             }
-
-            i = 0;
-            //Associe le buffer
-            // les index pair du buffer seront les coordonnee en X(0.2.4.6.8.10) et les impaires seront en Y(1.3.5.7.9.11)
-            string[] split2 = tempString[nbrPieces].Split(new Char[] { ',' });
-
-            foreach (string s in split2)
+            catch(FormatException ex)
             {
-                if (s.Trim() != "")
-                {
-                    //piecesX[i] selon le split, j = x et j+2 = y
-                    piecesX_[i] = Convert.ToInt16(s[j]);
-                    piecesY_[i] = Convert.ToInt16(s[j + 1]);
-                }
-                //Sauter une coordonnee donc 2 caracteres
-                i++;
-                nbrCasePieces = i;
-                j += 2;
+                MessageBox.Show(ex.Message);        
+            }
+            piecesX_ = new int[longeurDeBuffer];
+            piecesY_ = new int[longeurDeBuffer];
+
+            for (i = 0; i < longeurDeBuffer; i++)
+            {
+                X = tempString[i].Substring(0, 1);  //0 start index, 1 the length of the substring
+                Y = tempString[i].Substring(2);
+                
+                piecesX_[i] = Convert.ToInt16(X);
+                piecesY_[i] = Convert.ToInt16(Y);
             }
         }
-        /*
-        public ModeDeJeu getModeDeJeu()
+        
+        /// <summary>
+        /// Create a list of CaseDeJeu with positionX and positionY and create a DescriptionDePiece
+        /// </summary>
+        /// <returns>Mode de Jeu</returns>
+        public void getPiece()
         {
-            
             int i = 0;
-            ModeDeJeu mode = new ModeDeJeu();
+            List<CaseDeJeux> cases = new List<CaseDeJeux>();
 
-
-            for (i = 0; i <= nbrCasePieces; i++)
+            for (i = 0; i < piecesX_.Length; i++)
             {
                 CaseDeJeux c = new CaseDeJeux(piecesX_[i], piecesY_[i]);
-                mode.cases_.Add(c);
+                cases.Add(c);
             }
             //resetter la valeur du nbr de case d'une piece
-            nbrCasePieces = 0;
-            DescriptionPiece dp = new DescriptionPiece(mode.cases_, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]);  //cases_, emplacement, description pieces donc nom
-            return mode;
-             
-            return mode;
-        }*/
+            //indexPieces_ = 0;
+            //nbrCasePieces = 0;
 
+
+            descriptionDesPieces.Add(new DescriptionPiece(cases, piecesDeJeu_[indexPieces_], descriptionDeJeu_[indexPieces_])); //création d l'objet description de pièces
+            //DescriptionPiece dp = new DescriptionPiece(mode.cases_, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]);  //cases_, emplacement, description pieces donc nom
+
+            //mode = dp.CasesDeJeu;
+        }
+
+        public ModeDeJeu getModeDeJeu()
+        {
+            xmlreader();
+            return new ModeDeJeu(10, 10, descriptionDesPieces, nomDuModeDeJeu);
+        }
+
+
+        /// <summary>
+        /// This methode split a string array and return the result of it
+        /// </summary>
+        /// <param name="strArray1">String to split </param>
+        /// <returns>The result of the split in a array</returns>
+        private string[] trimXML(string [] strArray1)
+        {
+            string[] valreturn = new string[strArray1.Length];
+            int i = 0;
+            //Boucle 1 pour separer avec le couple de coordonnee x,y
+            foreach (string s in strArray1)
+            {
+                if (s.Trim() != "")
+                {
+                    valreturn[i] = s;
+                }
+                i++;
+            }
+            return valreturn;
+        }
+        
     }
 }
