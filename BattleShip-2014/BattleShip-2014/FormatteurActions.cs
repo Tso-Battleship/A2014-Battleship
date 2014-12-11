@@ -141,6 +141,16 @@ namespace BattleShip_2014
             return retour;
         }
 
+        /*public static DescriptionPiece obtenirDescriptionPiece(String trame)
+        {
+            
+        }*/
+
+        public static List<CaseDeJeux> obtenirListeCaseDeJeux(String trame)
+        {
+            return new List<CaseDeJeux>();
+        }
+
         public static String genererActionCasesDeJeux(DescriptionPiece dp)
         {
             String retour = "";

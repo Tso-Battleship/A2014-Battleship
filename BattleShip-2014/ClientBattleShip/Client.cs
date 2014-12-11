@@ -651,7 +651,7 @@ namespace BattleShip_2014
                     if(action == Commun.ACTION_CONNECTION)
                     {
                         String s;
-                        Console.WriteLine(FormatteurActions.obtenirJoueur(trameRecue));
+                        //Console.WriteLine(FormatteurActions.obtenirJoueur(trameRecue));
                         Console.WriteLine(s = FormatteurActions.formatterActionEnvoiModeDeJeu("NOMDEJEU", 10, 10, 5));
                         Console.WriteLine(s = FormatteurActions.genererActionDescriptionPiece(descriptionRecueDuServeur.ElementAt(0)));
                         Console.WriteLine(s = FormatteurActions.genererActionCasesDeJeux(descriptionRecueDuServeur.ElementAt(0)));
