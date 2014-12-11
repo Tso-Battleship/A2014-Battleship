@@ -126,7 +126,11 @@ namespace xml_test
             if (args.Severity == XmlSeverityType.Warning)
                 Console.WriteLine("\tWarning: Matching schema not found.  No validation occurred." + args.Message);
             else
+            {
                 Console.WriteLine("\tValidation error: " + args.Message);
+                MessageBox.Show("Error in .XSD validation oopsi");
+            }
+                
         }
 
         //Compte de pieces, car on peut avoir 32767 pieces
@@ -139,9 +143,12 @@ namespace xml_test
             //Boucle jusqu'a temps qu'il n'ai plus de ligne dans le xml
             while (reader.Read())
             {
-                //Change au prochain element du xml
+                try
+                {
+                     //Change au prochain element du xml
                 reader.MoveToElement();
-                switch(reader.Name){
+                switch (reader.Name)
+                {
                     case "modeDeJeu":
                         if (reader.HasAttributes)
                             nomDuModeDeJeu = reader["nomDeJeu"];
@@ -163,16 +170,22 @@ namespace xml_test
                         }
                         break;
                     case "cases":
-                       casesDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
+                        casesDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
                         break;
                     case "description":
-                       descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
-                       separationXY(indexPieces_);      //Separation x y des differentes cases
-                       getPiece();                  //Ajoute la case l'endroit de l'image et le nom du ship dans La description de pieces
+                        descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
+                        separationXY(indexPieces_);      //Separation x y des differentes cases
+                        getPiece();                  //Ajoute la case l'endroit de l'image et le nom du ship dans La description de pieces
                         break;
                     default:
-                        break;         
+                        break;
+                    }
                 }
+                catch(IndexOutOfRangeException ex)
+                {
+                    MessageBox.Show("Erreur dans le XML ");
+                }
+               
             }    
         }
 

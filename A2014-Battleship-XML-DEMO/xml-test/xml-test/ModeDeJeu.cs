@@ -39,7 +39,7 @@ namespace xml_test
         /// <summary>
         /// Constructeur
         /// </summary>
-        public ModeDeJeu(int tailleX, int tailleY, List<DescriptionPiece> pieces, String nomModeDeJeu = "Battleship")
+        public ModeDeJeu(int tailleX, int tailleY, List<DescriptionPiece> pieces, String nomModeDeJeu = "classique")
         {
             pieces_ = pieces;
             tailleX_ = tailleX;

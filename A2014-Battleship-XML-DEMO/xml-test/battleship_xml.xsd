@@ -24,9 +24,9 @@
       <xs:element type="pathType" name="path">
         <xs:annotation>
           <xs:documentation><![CDATA[<tir>
-		<toucher img = "hit.png"> </toucher>
-		<rater img2 = "miss.png"> </rater>
-	  </tir>]]></xs:documentation>
+    <toucher img = "hit.png"> </toucher>
+    <rater img2 = "miss.png"> </rater>
+    </tir>]]></xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
