@@ -600,14 +600,14 @@ namespace BattleShip_2014
 
         private void resetClient()
         {
+            tableauEnnemi.resetCases();
             tableauJoueur.Pieces.Clear();
             tableauEnnemi.Pieces.Clear();
-            
+
             listeCaseTouches.Clear();
             listePiecesJoueur.Clear();
             listePiecesJoueur.Clear();
-            
-            
+        
             caseJoueurHit.Clear();
             caseJoueurMiss.Clear();
 
@@ -616,11 +616,14 @@ namespace BattleShip_2014
             piece3_button.Enabled = true;
             piece4_button.Enabled = true;
             piece5_button.Enabled = true;
+
             redrawPlacement_ = true;
             redrawHitMiss_ = true;
             redrawEnnemi_ = true;
+
             p1_board.Invalidate();
             p2_board.Invalidate();
+
         }
     }
 }
