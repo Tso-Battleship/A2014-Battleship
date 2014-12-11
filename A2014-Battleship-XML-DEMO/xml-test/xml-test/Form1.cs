@@ -35,7 +35,7 @@ namespace xml_test
             string tempCaseY = "";
             
             //foreach pour afficher ce qui ce retrouve dans la DescriptionPiece
-            foreach(DescriptionPiece dp in modeDeJeu.pieces_)
+            foreach(DescriptionPiece dp in modeDeJeu.Pieces)
             {
                 //foreach pour afficher les cases qui sont dans la DescriptionPiece
                 foreach(CaseDeJeux c in dp.CasesDeJeu)

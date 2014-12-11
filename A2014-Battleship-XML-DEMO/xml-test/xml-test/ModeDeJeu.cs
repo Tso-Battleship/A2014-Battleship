@@ -11,7 +11,15 @@ namespace xml_test
         /// <summary>
         /// création de la liste de Description de pièces
         /// </summary>
-        public List<DescriptionPiece> pieces_;
+        private List<DescriptionPiece> pieces_;
+
+
+        public List<DescriptionPiece> Pieces
+        {
+            get { return pieces_; }
+            set { pieces_ = value; }
+        }
+        
 
 
         /// <summary>
