@@ -53,7 +53,8 @@ namespace BattleShip_2014
                 clientThread.Start();       //Démarre le nouveau thread
 
                 while(adrIp[nbClients] == null);    //attend de recevoir l'addresse IP du client.
-                envoyerCommande(nbClients, "Connection Reussi");    //comfirme la connection
+                envoyerCommande(nbClients, "Connection Reussi");    //comfirme la connection<
+                etatJoueur[nbClients] = true;
                 nbClients++;    //incrémente le numero pour le prochain client
             }
         }
@@ -171,6 +172,7 @@ namespace BattleShip_2014
                 if (etatJoueur[numeroClient] == true)
                 {
                     envoyerCommande(numeroClient, "test de connection");
+                    etatJoueur[numeroClient] = false;
                 }
             }
         }

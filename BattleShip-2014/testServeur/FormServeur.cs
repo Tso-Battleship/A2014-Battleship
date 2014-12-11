@@ -74,5 +74,10 @@ namespace BattleShip_2014
             //   string test = serveur.strMessage[numClient];
 
         }
+
+        private void bDeconnection_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

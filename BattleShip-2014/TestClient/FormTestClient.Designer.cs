@@ -34,6 +34,7 @@
             this.textBoxEnvoie = new System.Windows.Forms.TextBox();
             this.connecterServeur_button = new System.Windows.Forms.Button();
             this.tbAddresseIp = new System.Windows.Forms.TextBox();
+            this.bDeconnection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxRecoi
@@ -99,11 +100,22 @@
             this.tbAddresseIp.Size = new System.Drawing.Size(210, 20);
             this.tbAddresseIp.TabIndex = 12;
             // 
+            // bDeconnection
+            // 
+            this.bDeconnection.Location = new System.Drawing.Point(220, 298);
+            this.bDeconnection.Name = "bDeconnection";
+            this.bDeconnection.Size = new System.Drawing.Size(90, 23);
+            this.bDeconnection.TabIndex = 13;
+            this.bDeconnection.Text = "déconnection";
+            this.bDeconnection.UseVisualStyleBackColor = true;
+            this.bDeconnection.Click += new System.EventHandler(this.bDeconnection_Click);
+            // 
             // FormTestClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 425);
+            this.Controls.Add(this.bDeconnection);
             this.Controls.Add(this.tbAddresseIp);
             this.Controls.Add(this.connecterServeur_button);
             this.Controls.Add(this.textBoxRecoi);
@@ -125,6 +137,7 @@
         private System.Windows.Forms.TextBox textBoxEnvoie;
         private System.Windows.Forms.Button connecterServeur_button;
         private System.Windows.Forms.TextBox tbAddresseIp;
+        private System.Windows.Forms.Button bDeconnection;
     }
 }
 

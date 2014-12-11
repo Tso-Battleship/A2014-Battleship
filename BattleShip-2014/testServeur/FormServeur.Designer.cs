@@ -34,6 +34,7 @@
             this.tbEnvoie = new System.Windows.Forms.TextBox();
             this.bNumClient = new System.Windows.Forms.Button();
             this.tbNumClient = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbReception
@@ -100,11 +101,22 @@
             this.tbNumClient.TabIndex = 18;
             this.tbNumClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(85, 268);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.bDeconnection_Click);
+            // 
             // FormServeur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(259, 324);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbNumClient);
             this.Controls.Add(this.bNumClient);
             this.Controls.Add(this.tbReception);
@@ -126,6 +138,7 @@
         private System.Windows.Forms.TextBox tbEnvoie;
         private System.Windows.Forms.Button bNumClient;
         private System.Windows.Forms.TextBox tbNumClient;
+        private System.Windows.Forms.Button button1;
     }
 }
 

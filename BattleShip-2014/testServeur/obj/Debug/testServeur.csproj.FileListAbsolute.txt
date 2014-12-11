@@ -20,3 +20,14 @@ C:\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.csprojReso
 C:\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\BattleShip_2014.FormServeur.resources
 C:\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.Properties.Resources.resources
 C:\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.csproj.GenerateResource.Cache
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\bin\Debug\testServeur.exe.config
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.exe
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.pdb
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\bin\Debug\testServeur.exe
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\bin\Debug\testServeur.pdb
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\bin\Debug\BattleShip-2014.dll
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\bin\Debug\BattleShip-2014.pdb
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.csprojResolveAssemblyReference.cache
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\BattleShip_2014.FormServeur.resources
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.Properties.Resources.resources
+C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\testServeur\obj\Debug\testServeur.csproj.GenerateResource.Cache

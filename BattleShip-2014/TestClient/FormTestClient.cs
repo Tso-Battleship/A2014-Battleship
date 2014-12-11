@@ -24,6 +24,7 @@ namespace BattleShip_2014
         public FormTestClient()
         {
             InitializeComponent();
+            //Event
             tcpClient.messageRecu += this.HandleEvent_messageRecu;      //Fonction qui relie 
             //Delegate
             recoiClient += this.TraiteRecoiClient;
@@ -55,6 +56,11 @@ namespace BattleShip_2014
             textBoxRecoi.Text = tcpClient.strMessage;
             //   string test = serveur.strMessage[numClient];
 
+        }
+
+        private void bDeconnection_Click(object sender, EventArgs e)
+        {
+            tcpClient.deconnection();
         }
 
     }

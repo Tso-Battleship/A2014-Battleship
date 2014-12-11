@@ -13,7 +13,7 @@ namespace BattleShip_2014
 {
     public class TCPClient
     {
-        
+        private bool fermerServer = false;
         private TcpListener tcpListener;
         private Thread listenThread;
         TcpClient tcpClient = new TcpClient();
@@ -52,7 +52,7 @@ namespace BattleShip_2014
         private void ListenForClients()
         {
             this.tcpListener.Start();
-            while (true)
+            while (fermerServer == false)
             {
                 //Code bloquant jusqu'à ce qu'un client soit accepté
                 TcpClient client = this.tcpListener.AcceptTcpClient();
@@ -70,7 +70,7 @@ namespace BattleShip_2014
             byte[] message = new byte[4096];
             int bytesRead;
 
-            while (true)
+            while (fermerServer == false)
             {
                 bytesRead = 0;
 
@@ -134,6 +134,11 @@ namespace BattleShip_2014
                 return false;
             }
         }
+        public void deconnection()
+        {
+            tcpClient.Close();
+            fermerServer = true;
+        }
         public void envoyerCommande(string message)
         {
             try
@@ -144,7 +149,7 @@ namespace BattleShip_2014
 
             clientStream.Write(buffer, 0 , buffer.Length);
             clientStream.Flush();
-                }
+            }
             catch
             {
 
