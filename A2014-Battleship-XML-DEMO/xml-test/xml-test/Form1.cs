@@ -37,14 +37,16 @@ namespace xml_test
             string tempCaseX = "";
             string tempCaseY = "";
             
+            //foreach pour afficher ce qui ce retrouve dans la DescriptionPiece
             foreach(DescriptionPiece dp in modeDeJeu.pieces_)
             {
-                //listBox1.Items.Insert(0,  + " : " + xml.PiecesDeJeu[2].ToString() + " " + xml.CasesDeJeu[2] + " " + xml.DescriptionDeJeu[2]);
+                //foreach pour afficher les cases qui sont dans la DescriptionPiece
                 foreach(CaseDeJeux c in dp.CasesDeJeu)
                 {
                     tempCaseX += c.OffsetX.ToString() + ",";
                     tempCaseY += c.OffsetY.ToString() + ":";
                 }
+                //ajout dans dans le listBox de la descriptionPiece courante POUR UNE PIECE
                 listBox1.Items.Insert(0, dp.Nom  + " : " + tempCaseX + ":" + tempCaseY + " " + dp.PathVisuels);
                 tempCaseX = "";
                 tempCaseY = "";
