@@ -61,7 +61,16 @@ namespace BattleShip_2014
         private void bDeconnection_Click(object sender, EventArgs e)
         {
             tcpClient.deconnection();
+            Environment.Exit(0); 
         }
+
+        private void FormTestClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tcpClient.deconnection();
+            Environment.Exit(0); 
+        }
+
+      
 
     }
 }

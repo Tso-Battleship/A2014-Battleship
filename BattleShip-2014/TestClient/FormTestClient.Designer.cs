@@ -124,6 +124,7 @@
             this.Controls.Add(this.textBoxEnvoie);
             this.Name = "FormTestClient";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTestClient_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

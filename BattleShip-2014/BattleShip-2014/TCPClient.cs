@@ -99,6 +99,7 @@ namespace BattleShip_2014
             }
 
             tcpClient.Close();
+            
         }
         /// <summary>
         /// Crée un event
