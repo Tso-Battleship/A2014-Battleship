@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grille 
-xmlns:xsi="http:/cwww.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="D:/Windows/Documents/GitHub/A2014-Battleship/A2014-Battleship-XML-DEMO/xml-test/battleship_xml.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="D:/Windows/Documents/GitHub/A2014-Battleship/BattleShip-2014/battleship_xml.xsd">
   <modeDeJeu nomDeJeu="Classique">
 	<taille>10,10</taille>
-	<path emplacement="/images/bateau">
-      <pieces ship ="ship1.png">s
+	<path emplacement="..../images/bateau">
+      <pieces ship ="ship1.png">
 		<cases>4,3:0,1:1,1:0,2</cases>
 		<description>ship1</description>
 	  </pieces>
