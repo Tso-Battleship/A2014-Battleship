@@ -10,9 +10,9 @@ namespace BattleShip_2014
     {
 
         private int positionX_, positionY_;
-        Rotation rotation_;
+        private Rotation rotation_;
 
-        /*Les 3 constructeurs avec différents paramètres*/
+        /*Les 5 constructeurs avec différents paramètres*/
         public Piece()
         {
 
