@@ -145,8 +145,9 @@ namespace BattleShip_2014
             }
             catch (System.Net.Sockets.SocketException)
             {
-                event_joueurDeconecte();
                 etatJoueur[numClient] = false;
+                if(etatJoueur[numClient] == false)
+                    event_joueurDeconecte();
             }
              catch
             {
@@ -172,7 +173,6 @@ namespace BattleShip_2014
                 if (etatJoueur[numeroClient] == true)
                 {
                     envoyerCommande(numeroClient, "test de connection");
-                    etatJoueur[numeroClient] = false;
                 }
             }
         }
