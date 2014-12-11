@@ -155,6 +155,19 @@ namespace BattleShip_2014
             return nomJoueur2;
         }
 
+        public static String obtenirPathVisuel(String trame)
+        {
+            String path = "";
+
+            string[] splitTrameAction;
+            string[] splitpath;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitpath = splitTrameAction[2].Split(':').ToArray();
+            path = splitpath[1];
+
+            return path;
+        }
+
         public static String obtenirModeJeu(String trame)
         {
             String modeJeu = "";

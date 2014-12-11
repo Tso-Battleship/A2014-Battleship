@@ -634,30 +634,35 @@ namespace BattleShip_2014
 
         private void receptionMessageStateMachine(String trameRecue)
         {
+            DescriptionPiece dp;
+            List<CaseDeJeux> cases = new List<CaseDeJeux>();
             String action = FormatteurActions.obtenirAction(trameRecue);
             Console.WriteLine(trameRecue);
 
             switch(state)
             {
-                case StateClient.stateInit:
-                    
+                case StateClient.stateInit:                   
 
                     break;
                 case StateClient.stateOuverture:
                     if(action == Commun.ACTION_CONNECTION)
                     {
                         tcpClient.envoyerCommande(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
-
                         //TODO Envoyer la connexion au serveur par TCP
+                        Console.WriteLine(FormatteurActions.obtenirPathVisuel(trameRecue));
                     }
                     else if(action == Commun.ACTION_MODE_DE_JEU)
                     {
-                      //  tcpClient.envoyerCommande("");
+                        FormatteurActions.obtenirModeJeu(trameRecue);
                         //TODO populer le mode de jeu
                     }
                     else if(action == Commun.ACTION_DESCRIPTION_PIECE)
                     {
-                      //  tcpClient.envoyerCommande("");
+                        
+                        FormatteurActions.obtenirNbBateau(trameRecue);
+
+                        dp = new DescriptionPiece(cases, FormatteurActions.obtenirPathVisuel(trameRecue), FormatteurActions.obtenirNomPiece(trameRecue));
+                        loadButtonsText();
                         //TODO populer les descriptions de pieces recues du serveur   
                     }
                     break;
