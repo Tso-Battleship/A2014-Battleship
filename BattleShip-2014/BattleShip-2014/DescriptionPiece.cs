@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace BattleShip_2014
 {
-    public class DescriptionPiece
+    public class DescriptionPiece //Devrait être vu comme un type de Pièce et non une simple description
     {
 
-        protected string nom_;
-        protected string path_visuel_;
-        protected List<CaseDeJeux> cases_;
+        protected string nom_;  //Nom du nouveau type de pièce.
+        protected string path_visuel_; //Emplacement de l'image représentant la pièce dans le jeu.
+        protected List<CaseDeJeux> cases_;  //Liste de case composant la nouvelle pièce.
 
+        /*Constructeur de pièce générique qui ne sera probablement pas utilisée*/
         public DescriptionPiece()
         {
             cases_ = new List<CaseDeJeux>();
@@ -20,7 +21,10 @@ namespace BattleShip_2014
             nom_ = "UneCaseGenerique";
             path_visuel_ = "/";
         }
-
+        /*
+         * Constructeur de pièce qui crée un nouveau type de pièce contenant une liste de case vide par défault, un nom
+         * et l'emplacement de sa représentation graphique sur la machine
+         */
         public DescriptionPiece(List<CaseDeJeux> cases, string path_visuel, string nom)
         {
             nom_ = nom;
@@ -29,6 +33,7 @@ namespace BattleShip_2014
         }
 
 
+        //Définitions des Getter et Setter pour DescriptionPiece
         public string Nom
         {
             get

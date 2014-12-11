@@ -9,15 +9,18 @@ namespace BattleShip_2014
     public class Piece : DescriptionPiece
     {
 
-        private int positionX_, positionY_;
-        private Rotation rotation_;
+        private int positionX_, positionY_; //Variable membre de la Position de la pièce
+        private Rotation rotation_;         //Variable de type rotation qui contient le sens du bateau(pièce)
 
         /*Les 5 constructeurs avec différents paramètres*/
+
+        /*Constructeur par défault. Ne devrait pas être utilisé.*/
         public Piece()
         {
 
         }
 
+        /*Création d'une pièce standalone sans description de pièce avec ou sans rotation*/
         public Piece(List<CaseDeJeux> Dcases,string name, string path, Rotation rotation)
         {
             cases_ = Dcases;
@@ -33,8 +36,8 @@ namespace BattleShip_2014
             path_visuel_ = path;
             rotation_ = Rotation.Haut;
         }
-
-
+        
+        /*Création d'une pièce d'un type DescriptionPièce existant avec ou sans rotation*/
         public Piece(DescriptionPiece DPiece, int x, int y, Rotation rotation)
         {
             nom_ = DPiece.Nom;
@@ -54,12 +57,8 @@ namespace BattleShip_2014
             positionY_ = y;
             rotation_ = Rotation.Haut;
         }
-
-
-
-        
+    
 /////////////////////////////////////////////////////////////////////////////////////////////
-
 
         /*Déclaration des getters et setters pour accéder aux variables de la classe.*/
         public int PositionX
@@ -98,6 +97,13 @@ namespace BattleShip_2014
             }*/
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+
+        /*
+        * @Brief Fonction qui change le sens de rotation de la pièce
+        * @Param none
+        * @return N/A
+        */
         public void tournerPiece()
         {
             List<CaseDeJeux> nouvellesCases = new List<CaseDeJeux>();
@@ -115,8 +121,6 @@ namespace BattleShip_2014
                 rotation_ = Rotation.Droite;
         }
 
-///////////////////////////////////////////////////////////////////////////////////////////// 
-
         /*
         * @Brief Sert à vérifier si la piece existe dans la case visée
         * @Param int posx, int posy
@@ -131,6 +135,7 @@ namespace BattleShip_2014
             }
             return false;
         }
+
         /*
         * @Brief Sert à vérifier si la piece à été touchée
         * @Param int posx, int posy
@@ -164,6 +169,7 @@ namespace BattleShip_2014
                 }
             }
         }
+
         /*
         * @Brief Vérifie si toutes les cases ont été touchées
         * @Param none
