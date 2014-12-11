@@ -147,6 +147,10 @@ namespace BattleShip_2014
                 event_joueurDeconecte();
                 etatJoueur[numClient] = false;
             }
+             catch
+            {
+
+            }
         }
 
         /// <summary>

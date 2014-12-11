@@ -44,7 +44,14 @@ namespace BattleShip_2014
 
         private void bNumClient_Click(object sender, EventArgs e)
         {
-            numClient = Convert.ToInt16(tbNumClient.Text);
+            try
+            {
+                numClient = Convert.ToInt16(tbNumClient.Text);
+            }
+           catch
+            {
+
+            }
         }
 
         public void HandleEvent_joueurDeconnecte(object sender, EventArgs args)

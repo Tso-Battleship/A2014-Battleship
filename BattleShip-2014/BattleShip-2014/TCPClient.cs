@@ -114,8 +114,8 @@ namespace BattleShip_2014
         public bool connectionServeur(string addresseIp)
         {
             //Return true si la connection au serveur est accepté.
-            //try
-           // {
+            try
+            {
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(addresseIp), 3000);
                 tcpClient.Connect(serverEndPoint);
                 NetworkStream clientStream = tcpClient.GetStream();
@@ -123,21 +123,32 @@ namespace BattleShip_2014
                 StartTimer(testTimer);
                 envoyerCommande(retourneAdresseIpClient());
                 return true;
-           // }
+            }
             //Return false si il y a eu une erreur lors de la connection au serveur.
-          //  catch (System.Net.Sockets.SocketException)
-           // {
-            //    return false;
-           // }
+            catch (System.Net.Sockets.SocketException)
+            {
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public void envoyerCommande(string message)
         {
+            try
+            { 
             NetworkStream clientStream = tcpClient.GetStream();
             ASCIIEncoding encoder = new ASCIIEncoding();
             byte[] buffer = encoder.GetBytes(message);
 
             clientStream.Write(buffer, 0 , buffer.Length);
             clientStream.Flush();
+                }
+            catch
+            {
+
+            }
         }
         /// <summary>
         /// Retourne l'adresse Ip du windows qui utilise le programme 
