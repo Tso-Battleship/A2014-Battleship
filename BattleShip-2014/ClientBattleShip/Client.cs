@@ -183,11 +183,7 @@ namespace BattleShip_2014
         /// <param name="e"></param>
         private void Client_Load(object sender, EventArgs e)
         {
-            piece1_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).Nom;
-            piece2_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece2).Nom;
-            piece3_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece3).Nom;
-            piece4_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece4).Nom;
-            piece5_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).Nom;    
+            place_panel.Visible = false;
         }
 
         /// <summary>
@@ -198,9 +194,9 @@ namespace BattleShip_2014
         /// <param name="e"></param>
         private void connecterServeur_button_Click(object sender, EventArgs e)
         {
+            //TODO Rendre le connectPanel Invisible si la connection Réussis
             connect_panel.Visible = false;
             info_panel.Visible = true;
-            //TODO Rendre le connectPanel Invisible si la connection Réussis
             try
             {
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3000);
@@ -233,7 +229,6 @@ namespace BattleShip_2014
             bouton = (Button)sender;
             imageCurseur = (enumImageCurseur)Convert.ToInt16(bouton.Tag);
             changerCurseur(imageCurseur, rotation_);
-
         }
 
         /// <summary>
@@ -473,7 +468,6 @@ namespace BattleShip_2014
             {
                 redrawHitMiss_ = false;
 
-
                 foreach (CaseDeJeux caseHit in caseJoueurHit)
                 {
                     posX = (caseHit.OffsetX * 50);
@@ -511,7 +505,6 @@ namespace BattleShip_2014
                         catch
                         {
                         }
-                        
                     }
                 }
 
@@ -632,7 +625,15 @@ namespace BattleShip_2014
 
             p1_board.Invalidate();
             p2_board.Invalidate();
+        }
 
+        private void loadButtonsText()
+        {
+            piece1_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).Nom;
+            piece2_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece2).Nom;
+            piece3_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece3).Nom;
+            piece4_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece4).Nom;
+            piece5_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece5).Nom; 
         }
 
         private void receptionMessageStateMachine(String trameRecue)
@@ -658,7 +659,7 @@ namespace BattleShip_2014
                     }
                     else if(action == Commun.ACTION_DESCRIPTION_PIECE)
                     {
-                        //TODO populer les descriptions de pieces recues du serveur
+                        //TODO populer les descriptions de pieces recues du serveur   
                     }
                     break;
                 case StateClient.stateSetup:
