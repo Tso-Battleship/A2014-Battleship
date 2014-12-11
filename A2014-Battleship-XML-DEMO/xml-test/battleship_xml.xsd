@@ -5,7 +5,7 @@
       <xs:documentation> Fin du mode de jeu CLASSIQUE </xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name="piecesType" mixed="true">
+  <xs:complexType name="piecesType">
     <xs:sequence>
       <xs:element type="xs:string" name="cases"/>
       <xs:element type="xs:string" name="description"/>
@@ -36,6 +36,6 @@
     <xs:sequence>
       <xs:element type="modeDeJeuType" name="modeDeJeu"/>
     </xs:sequence>
-    <xs1:attribute xmlns:xs="http:/cwww.w3.org/2001/XMLSchema-instance" xmlns:xs1="http://www.w3.org/2001/XMLSchema" ref="xs:noNamespaceSchemaLocation"/>
   </xs:complexType>
 </xs:schema>
+
