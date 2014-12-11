@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Xml; // ajout pour avoir les fonctionnalites XML reader
 using System.Xml.Schema;    //Analyser avec le xsd
 using System.IO;
-using System.Windows.Forms;
 
-namespace xml_test
+
+namespace BattleShip_2014
 
 {
 
@@ -75,7 +75,7 @@ namespace xml_test
         /// <summary>
         /// get set pieces endroit
         /// </summary>
-        public string[] PiecesDeJeu
+        private string[] PiecesDeJeu
         {
             get { return piecesDeJeu_; }
             set { piecesDeJeu_ = value; }
@@ -84,7 +84,7 @@ namespace xml_test
         /// <summary>
         /// Description get set selon le xml
         /// </summary>
-        public string[] DescriptionDeJeu
+        private string[] DescriptionDeJeu
         {
             get { return descriptionDeJeu_; }
             set { descriptionDeJeu_ = value; }
@@ -94,7 +94,7 @@ namespace xml_test
         /// <summary>
         /// get set Case de jeu selon le xml
         /// </summary>
-        public string[] CasesDeJeu
+        private string[] CasesDeJeu
         {
             get { return casesDeJeu_; }
             set { casesDeJeu_ = value; }
@@ -103,7 +103,7 @@ namespace xml_test
         /// <summary>
         /// get set du type de jeu
         /// </summary>
-        public string[] ModeDeJeu
+        private string[] DataModeDeJeu
         {
             get { return dataModeDeJeu; }
             set { dataModeDeJeu = value; }
@@ -121,7 +121,7 @@ namespace xml_test
             else
             {
                 Console.WriteLine("\tValidation error: " + args.Message);
-                MessageBox.Show("Error in .XSD validation oopsi");
+                Console.WriteLine("Error in .XSD validation oopsi");
             }
                 
         }
@@ -182,7 +182,7 @@ namespace xml_test
                 }
                 catch(IndexOutOfRangeException ex)
                 {
-                    MessageBox.Show("Erreur dans le XML ");
+                    Console.WriteLine("Erreur dans le XML ");
                 }
                
             }    
@@ -224,7 +224,7 @@ namespace xml_test
             catch(FormatException ex)
             {
                 //s'il y a une erreur un messageBox apparait
-                MessageBox.Show(ex.Message);        
+                Console.WriteLine(ex.Message);        
             }
           
 
