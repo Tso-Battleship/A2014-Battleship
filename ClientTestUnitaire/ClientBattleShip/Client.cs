@@ -177,6 +177,7 @@ namespace BattleShip_2014
         /// <param name="e"></param>
         private void Client_Load(object sender, EventArgs e) 
         {
+            DoubleBuffered = true;
             piece1_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece1).Nom;
             piece2_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece2).Nom;
             piece3_button.Text = descriptionRecueDuServeur.ElementAt((int)enumImageCurseur.piece3).Nom;
