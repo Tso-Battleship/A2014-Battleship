@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml; // ajout pour avoir les fonctionnalites XML reader
 using System.Xml.Schema;    //Analyser avec le xsd
 using System.IO;
+using System.Windows.Forms;
 
 namespace xml_test
 
@@ -185,6 +186,14 @@ namespace xml_test
             tempString = trimXML(split);
             int longeurDeBuffer = tempString.Length;
 
+            try
+            {
+
+            }
+            catch(FormatException ex)
+            {
+                MessageBox.Show(ex.Message);        
+            }
             piecesX_ = new int[longeurDeBuffer];
             piecesY_ = new int[longeurDeBuffer];
 
@@ -208,14 +217,14 @@ namespace xml_test
             ModeDeJeu mode = new ModeDeJeu();
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
 
-            for (i = 0; i <= nbrCasePieces; i++)
+            for (i = 0; i < piecesX_.Length; i++)
             {
                 CaseDeJeux c = new CaseDeJeux(piecesX_[i], piecesY_[i]);
                 cases.Add(c);
             }
             //resetter la valeur du nbr de case d'une piece
-            indexPieces_ = 0;
-            nbrCasePieces = 0;
+            //indexPieces_ = 0;
+            //nbrCasePieces = 0;
 
 
             DescriptionPiece dp = new DescriptionPiece(cases, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]); //création d l'objet description de pièces

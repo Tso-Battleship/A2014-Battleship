@@ -15,3 +15,4 @@ D:\Windows\Documents\GitHub\A2014-Battleship\A2014-Battleship-XML-DEMO\xml-test\
 D:\Windows\Documents\GitHub\A2014-Battleship\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml_test.Form1.resources
 D:\Windows\Documents\GitHub\A2014-Battleship\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml_test.Properties.Resources.resources
 D:\Windows\Documents\GitHub\A2014-Battleship\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml-test.csproj.GenerateResource.Cache
+D:\Windows\Documents\GitHub\A2014-Battleship\A2014-Battleship-XML-DEMO\xml-test\xml-test\obj\Debug\xml-test.csprojResolveAssemblyReference.cache
