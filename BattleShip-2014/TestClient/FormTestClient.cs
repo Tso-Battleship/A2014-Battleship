@@ -15,44 +15,29 @@ namespace BattleShip_2014
 {
     public partial class FormTestClient : Form
     {
-        
+        delegate void delegateClient();
+        delegateClient recoiClient;
+
         TCPClient tcpClient = new TCPClient();
         TcpClient client = new TcpClient();
-
+       
         public FormTestClient()
         {
             InitializeComponent();
-
+            tcpClient.messageRecu += this.HandleEvent_messageRecu;      //Fonction qui relie 
+            //Delegate
+            recoiClient += this.TraiteRecoiClient;
         }
-
 
         private void connecterServeur_button_Click(object sender, EventArgs e)
         {
             tcpClient.connectionServeur(tbAddresseIp.Text);
-           /*try
-            {
-                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(tbAddresseIp.Text), 3000);
-                client.Connect(serverEndPoint);
-                NetworkStream clientStream = client.GetStream();
-                ASCIIEncoding encoder = new ASCIIEncoding();
-                tcpClient.envoyerCommande(client, tcpClient.retourneAdresseIpClient());
-            }
-            catch (System.Net.Sockets.SocketException)
-            {
-                MessageBox.Show("La connection au serveur a été refusé");
-            }
-            catch (System.FormatException)
-            {
-                MessageBox.Show("addresse IP invalide");
-            }
-            */
-            // textBox3.Text = TCPClient.retourneAdresseIpClient();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             
-            tcpClient.envoyerCommande(client, textBoxEnvoie.Text);
+            tcpClient.envoyerCommande(textBoxEnvoie.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -60,12 +45,17 @@ namespace BattleShip_2014
             textBoxRecoi.Text = tcpClient.strMessage;
         }
 
-        public void HandleEvent(object sender, EventArgs args)
+        public void HandleEvent_messageRecu(object sender, EventArgs args)
         {
-            MessageBox.Show("Event");
-            textBoxRecoi.Text = tcpClient.strMessage;
+            BeginInvoke(recoiClient);
         }
 
+        public void TraiteRecoiClient() // étape 4 définition de la méthode qui sera appelée... les paramètres doivent être conformes à la définition à l'étape 1
+        {
+            textBoxRecoi.Text = tcpClient.strMessage;
+            //   string test = serveur.strMessage[numClient];
+
+        }
 
     }
 }

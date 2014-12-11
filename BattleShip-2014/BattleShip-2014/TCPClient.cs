@@ -37,14 +37,14 @@ namespace BattleShip_2014
         void StartTimer( int testTimer)
         {
             
-            aTimer = new System.Timers.Timer(500);
+            aTimer = new System.Timers.Timer(2000);
             aTimer.Elapsed += (sender, e) => _timer_Elapsed(sender, e, ref testTimer);
             aTimer.Enabled = true; // active le timer
         }
 
          void _timer_Elapsed(object sender, ElapsedEventArgs e, ref int testTimer)
          {
-             envoyerCommande("1");
+            // envoyerCommande("1");
          }
         /// <summary>
         /// Delegate qui attends de nouveaux clients. Il crée un nouveau thread lorsqu'un client se connecte.
@@ -131,13 +131,20 @@ namespace BattleShip_2014
         }
         public void envoyerCommande(string message)
         {
-            byte[] buffer = new byte[4096];
-            TcpClient Client = (TcpClient)tcpClient;
-            NetworkStream clientStream = Client.GetStream();
-            ASCIIEncoding encoder = new ASCIIEncoding();
-            buffer = encoder.GetBytes(message);
-            clientStream.Write(buffer, 0, buffer.Length);
-            clientStream.Flush();
+            //try
+           // {
+                byte[] buffer = new byte[4096];
+                TcpClient Client = (TcpClient)tcpClient;
+                NetworkStream clientStream = Client.GetStream();
+                ASCIIEncoding encoder = new ASCIIEncoding();
+                buffer = encoder.GetBytes(message);
+                clientStream.Write(buffer, 0, buffer.Length);
+                clientStream.Flush();
+           // }
+           // catch
+           // {
+
+           // }
         }
         /// <summary>
         /// Retourne l'adresse Ip du windows qui utilise le programme 

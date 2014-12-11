@@ -16,13 +16,20 @@ namespace BattleShip_2014
     public partial class FormServeur : Form
     {
 
+        delegate void delegateServeur();
+        delegateServeur recoiServeur;
+
         TCPServeur serveur = new TCPServeur();
         int numClient = 0;
 
         public FormServeur()
         {
             InitializeComponent();
-            serveur.SomethingHappened += this.HandleEvent;
+            //Event
+            serveur.messageRecu += this.HandleEvent_messageRecu;
+            serveur.joueurDeconnecte += this.HandleEvent_joueurDeconnecte;
+            //Delegate
+            recoiServeur += this.TraiteRecoiServeur;
         }
 
         private void bEnvoie_Click(object sender, EventArgs e)
@@ -39,12 +46,26 @@ namespace BattleShip_2014
         {
             numClient = Convert.ToInt16(tbNumClient.Text);
         }
-        
-        public void HandleEvent(object sender, EventArgs args)
+
+        public void HandleEvent_joueurDeconnecte(object sender, EventArgs args)
         {
-            MessageBox.Show("Event");
-            tbReception.Text = serveur.strMessage[serveur.clientCourant];
+            MessageBox.Show("Joueur déconnecté");
         }
-        
+
+        public void HandleEvent_messageRecu(object sender, EventArgs args)
+        {
+            MessageBox.Show("Message Recu");
+            BeginInvoke(recoiServeur); 
+            //tbReception.Text = serveur.strMessage[serveur.clientCourant];
+        }
+        /// <summary>
+        /// Delegate
+        /// </summary>
+        public void TraiteRecoiServeur() // étape 4 définition de la méthode qui sera appelée... les paramètres doivent être conformes à la définition à l'étape 1
+        {
+            tbReception.Text = serveur.strMessage[serveur.clientCourant]; 
+            //   string test = serveur.strMessage[numClient];
+
+        }
     }
 }

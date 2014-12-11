@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 using System.Collections;
+using System.Timers;
 
 
 namespace BattleShip_2014
@@ -16,17 +17,26 @@ namespace BattleShip_2014
         private TcpListener tcpListener;
         private Thread listenThread;
         private string[] adrIp = { "" };
+        private int nbClients = 0;
+
+        System.Timers.Timer aTimer = new System.Timers.Timer();
+        public bool[] etatJoueur = new bool[4];
         public string[] strMessage = new string[4];
         public int clientCourant = 0;
-        public event EventHandler SomethingHappened;
+
+        //Event 
+        public event EventHandler messageRecu;
+
+        public event EventHandler joueurDeconnecte;
+
 
         public TCPServeur()
         {
+            StartTimer();
             this.tcpListener = new TcpListener(IPAddress.Any, 3000);            //Crée un socket avec 127.0.0.1 et le port 3000.
             this.listenThread = new Thread(new ThreadStart(ListenForClients));  //Crée un nouveau thread qui écoute pour des clients
             this.listenThread.Start();
             adrIp = new string[4];
-
         }
         /// <summary>
         /// Delegate qui attends de nouveaux clients. Il crée un nouveau thread lorsqu'un client se connecte.
@@ -34,7 +44,6 @@ namespace BattleShip_2014
         private void ListenForClients()
         {
             this.tcpListener.Start();
-            int nbClients = 0;
             while (true)
             {
                 //Code bloquant jusqu'à ce qu'un client soit accepté
@@ -92,10 +101,6 @@ namespace BattleShip_2014
                     strMessage[numClient] = encoder.GetString(message, 0, bytesRead);
                     clientCourant = numClient;
                     event_messageRecu();
-                    if(strMessage[numClient] == "1")
-                    {
-
-                    }
                 }
             }
 
@@ -104,7 +109,18 @@ namespace BattleShip_2014
 
         public void event_messageRecu()
         {
-            EventHandler handler = SomethingHappened;
+            EventHandler handler = messageRecu;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+        /// <summary>
+        /// Event pour la déconnection d'un joueur
+        /// </summary>
+        public void event_joueurDeconecte()
+        {
+            EventHandler handler = joueurDeconnecte;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
@@ -128,6 +144,30 @@ namespace BattleShip_2014
             }
             catch (System.Net.Sockets.SocketException)
             {
+                event_joueurDeconecte();
+                etatJoueur[numClient] = false;
+            }
+        }
+
+        /// <summary>
+        /// Timer de la classe serveur
+        /// À tous les 2000ms, il envoie un ping au client
+        /// </summary>
+        void StartTimer()
+        {
+            aTimer = new System.Timers.Timer(2000);
+            aTimer.Elapsed += (sender, e) => _timer_Elapsed(sender, e);
+            aTimer.Enabled = true; // active le timer
+        }
+
+        void _timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            for (int numeroClient = 0; numeroClient < nbClients; numeroClient++)
+            {
+                if (etatJoueur[numeroClient] == true)
+                {
+                    envoyerCommande(numeroClient, "test de connection");
+                }
             }
         }
     }
