@@ -1,4 +1,12 @@
-﻿using System;
+﻿/**
+ * @file   Piece.cs
+ * @author Anthony Collard
+ * @date   Décembre 2014
+ * @brief  Contient les différentes variables, fonctions et getters setters pour créer et manipuler les pièces.
+ * @version 1.1 : Version Fonctionnelle
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

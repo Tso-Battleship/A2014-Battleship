@@ -1,4 +1,12 @@
-﻿using System;
+﻿/**
+ * @file   DescriptionPiece.cs
+ * @author Anthony Collard
+ * @date   Décembre 2014
+ * @brief  Contient les différentes variables, constructeurs et getters setters pour créer un type de pièce.
+ * @version 1.0 : Version Fonctionnelle
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
