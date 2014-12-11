@@ -289,5 +289,10 @@ namespace BattleShip_2014
 
             return rotation;
         }
+
+        public static string obtenirAction(String trame)
+        {
+            return trame.Substring(trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1, (trame.IndexOf(Commun.DELEMITEUR_FIN_DONNEE) - trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) - 1));
+        }
     }
 }
