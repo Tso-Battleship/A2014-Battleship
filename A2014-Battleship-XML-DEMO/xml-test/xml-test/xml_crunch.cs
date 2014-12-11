@@ -234,7 +234,7 @@ namespace xml_test
         /// créer une liste de CaseDeJeu avec une positionX, positionY et créer une DescriptionDePiece avec ses paramètres
         /// </summary>
         /// <returns>Mode de Jeu</returns>
-        public void getPiece()
+        private void getPiece()
         {
             int i = 0;
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
