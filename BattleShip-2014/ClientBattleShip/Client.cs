@@ -39,14 +39,20 @@ namespace BattleShip_2014
         bool toggle = true; //Permet de changer l'orientation du curseur
        
         //Variable global pour le reDraw
-        bool redrawGridNeeded = false;
-        bool redrawEnnemi = false;
-        Rotation rotation = Rotation.Haut;
-        int nbPieces = 0;
+        bool redrawPlacement_ = false;
+        bool redrawHitMiss_ = false;
+        bool redrawEnnemi_ = false;
+        Rotation rotation_ = Rotation.Haut;
+        int nbPieces_ = 0;
 
+        //Objet Global
         List<Piece> listePiecesJoueur;
         TableauAvecPiece tableauJoueur;
         TableauAvecPiece tableauEnnemi;
+
+        List<CaseDeJeux> caseJoueurHit;
+        List<CaseDeJeux> caseJoueurMiss;
+
         List<DescriptionPiece> descriptionRecueDuServeur;
         List<CaseDeJeux> listeCaseTouches;
 
@@ -123,6 +129,11 @@ namespace BattleShip_2014
 
             listePiecesJoueur = new List<Piece>();
             List<Piece> listePiecesEnnemie = new List<Piece>();
+            List<Piece> listePiecesHitMiss = new List<Piece>();
+
+
+            caseJoueurHit = new List<CaseDeJeux>();
+            caseJoueurMiss = new List<CaseDeJeux>();
 
             tableauJoueur = new TableauAvecPiece(10, 10, listePiecesJoueur);
             tableauEnnemi = new TableauAvecPiece(10, 10, listePiecesEnnemie);
@@ -212,7 +223,7 @@ namespace BattleShip_2014
             Button bouton;
             bouton = (Button)sender;
             imageCurseur = (enumImageCurseur)Convert.ToInt16(bouton.Tag);
-            changerCurseur(imageCurseur, rotation);
+            changerCurseur(imageCurseur, rotation_);
 
         }
 
@@ -253,11 +264,11 @@ namespace BattleShip_2014
             }
             if (e.Button == System.Windows.Forms.MouseButtons.Right)    //Click de souris Droit
             {                                                           //Changer la rotation de la piece a placer
-                if (rotation == Rotation.Haut)
-                    rotation = Rotation.Droite;
+                if (rotation_ == Rotation.Haut)
+                    rotation_ = Rotation.Droite;
                 else
-                    rotation = Rotation.Haut;
-                changerCurseur(imageCurseur, rotation);
+                    rotation_ = Rotation.Haut;
+                changerCurseur(imageCurseur, rotation_);
             }
         }
 
@@ -291,7 +302,7 @@ namespace BattleShip_2014
                 tableauEnnemi.Cases[x, y].tirer();
             }
 
-            redrawEnnemi = true;
+            redrawEnnemi_ = true;
             p2_board.Invalidate();
         }
 
@@ -310,23 +321,23 @@ namespace BattleShip_2014
             {
                 case enumImageCurseur.piece1:
                     boutonAppuyer = piece1_button;
-                    nbPieces = descriptionRecueDuServeur.ElementAt(0).CasesDeJeu.Count();
+                    nbPieces_ = descriptionRecueDuServeur.ElementAt(0).CasesDeJeu.Count();
                     break;
                 case enumImageCurseur.piece2:
                     boutonAppuyer = piece2_button;
-                    nbPieces = descriptionRecueDuServeur.ElementAt(1).CasesDeJeu.Count();;
+                    nbPieces_ = descriptionRecueDuServeur.ElementAt(1).CasesDeJeu.Count();;
                     break;
                 case enumImageCurseur.piece3:
                     boutonAppuyer = piece3_button;
-                    nbPieces = descriptionRecueDuServeur.ElementAt(2).CasesDeJeu.Count();;
+                    nbPieces_ = descriptionRecueDuServeur.ElementAt(2).CasesDeJeu.Count();;
                     break;
                 case enumImageCurseur.piece4:
                     boutonAppuyer = piece4_button;
-                    nbPieces = descriptionRecueDuServeur.ElementAt(3).CasesDeJeu.Count();;
+                    nbPieces_ = descriptionRecueDuServeur.ElementAt(3).CasesDeJeu.Count();;
                     break;
                 case enumImageCurseur.piece5:
                     boutonAppuyer = piece5_button;
-                    nbPieces = descriptionRecueDuServeur.ElementAt(4).CasesDeJeu.Count();;
+                    nbPieces_ = descriptionRecueDuServeur.ElementAt(4).CasesDeJeu.Count();;
                     break;
                 default:
                     break;
@@ -335,10 +346,10 @@ namespace BattleShip_2014
             /// Vérifier qu"il n'y a pas une pieces sous la pieces que l'on tente de placer
             if (imageCurseur != enumImageCurseur.invalide)
             {
-                if ( (rotation == Rotation.Droite && (x + nbPieces) <= tableauJoueur.TailleX) || (rotation == Rotation.Haut && (y+nbPieces <= tableauJoueur.TailleY)) )
+                if ( (rotation_ == Rotation.Droite && (x + nbPieces_) <= tableauJoueur.TailleX) || (rotation_ == Rotation.Haut && (y+nbPieces_ <= tableauJoueur.TailleY)) )
                 {
-                    Piece pieceAPlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation);
-                    if(rotation == Rotation.Droite)
+                    Piece pieceAPlace = new Piece(descriptionRecueDuServeur.ElementAt((int)image),x,y,rotation_);
+                    if(rotation_ == Rotation.Droite)
                         pieceAPlace.tournerPiece();
 
                     foreach (Piece piecesDejaPlace in tableauJoueur.Pieces)                     //Pour chaque Piece dans le tableau
@@ -362,14 +373,14 @@ namespace BattleShip_2014
                     {
                         boutonAppuyer.Enabled = false;
                         tableauJoueur.Pieces.Add(pieceAPlace); //Ajouter le bateau sélectionné au tableau
-                        redrawGridNeeded = true;                        //Indiquer qu'il y a un changement a faire a la grille
+                        redrawPlacement_ = true;                        //Indiquer qu'il y a un changement a faire a la grille
                         p1_board.Invalidate();                //Invalider le panel du joeur1 pour forcer l'évènement Paint
                     }
                 }
             }
             else
             {
-                redrawGridNeeded = false;
+                redrawPlacement_ = false;
             }
         }
 
@@ -428,22 +439,44 @@ namespace BattleShip_2014
         /// <param name="e"></param>
         private void p1_board_Paint(object sender, PaintEventArgs e)
         {
-            Bitmap bitmap = new Bitmap("pieces.png");
+            Bitmap bitmapPieces = new Bitmap("pieces.png");
+            Bitmap bitmapHit = new Bitmap("piecesHit.png");
+            Bitmap bitmapMiss = new Bitmap("miss.png");
             int posX, posY;
 
-            if (redrawGridNeeded)
+            if (redrawPlacement_)
             {
-                redrawGridNeeded = false;
+                redrawPlacement_ = false;
                 imageCurseur = enumImageCurseur.invalide;
-                changerCurseur(imageCurseur, rotation);
+                changerCurseur(imageCurseur, rotation_);
                 foreach (Piece piecesPlace in tableauJoueur.Pieces)
                 {
                     foreach(CaseDeJeux uneCase in piecesPlace.CasesDeJeu)
                     {
                         posX = (((piecesPlace.PositionX * 50) + 25) + (50 * uneCase.OffsetX) - 25);
                         posY = (((piecesPlace.PositionY * 50) + 25) + (50 * uneCase.OffsetY) - 25);
-                        e.Graphics.DrawImage(bitmap, posX,posY);
+                        e.Graphics.DrawImage(bitmapPieces, posX,posY);
                     }  
+                }
+            }
+
+            if (redrawHitMiss_)
+            {
+                redrawHitMiss_ = false;
+
+
+                foreach (CaseDeJeux caseHit in caseJoueurHit)
+                {
+                    posX = (caseHit.OffsetX * 50);
+                    posY = (caseHit.OffsetY * 50);
+                    e.Graphics.DrawImage(bitmapHit, posX, posY);
+
+                }
+                foreach (CaseDeJeux caseMiss in caseJoueurMiss)
+                {
+                    posX = (caseMiss.OffsetX * 50);
+                    posY = (caseMiss.OffsetY * 50);
+                    e.Graphics.DrawImage(bitmapMiss, posX, posY);
                 }
             }
         }
@@ -454,7 +487,7 @@ namespace BattleShip_2014
             Bitmap bitmapMiss = new Bitmap("miss.png");
             int posX, posY;
 
-            if (redrawEnnemi)
+            if (redrawEnnemi_)
             {
                 foreach (CaseDeJeux casesTire in tableauEnnemi.Cases)
                 {
@@ -488,6 +521,88 @@ namespace BattleShip_2014
                     }
                 }
             }
+        }
+
+        private void recevoirTir(int x, int y, bool hit)
+        {
+            CaseDeJeux caseTouche = new CaseDeJeux(x,y);
+            bool ajouteCJHit = false, ajouteCJMiss = false;
+
+            if (hit)
+            {
+                if(caseJoueurHit.Count == 0)
+                {
+                    caseJoueurHit.Add(caseTouche);
+                }
+                else
+                {
+                    foreach (CaseDeJeux cj in caseJoueurHit)
+                    {
+                        if(!(cj.OffsetX == caseTouche.OffsetX && cj.OffsetY == caseTouche.OffsetY))
+                        {
+                            ajouteCJHit = true;
+                        }
+                    }     
+                }
+
+                if (ajouteCJHit)
+                {
+                    caseJoueurHit.Add(caseTouche);
+                }
+
+                foreach (CaseDeJeux testCase in caseJoueurMiss)
+                {
+                    if(caseTouche.OffsetX == testCase.OffsetX && caseTouche.OffsetY == testCase.OffsetY)
+                    {
+                        caseJoueurHit.Remove(caseTouche);
+                    }                    
+                }
+            }
+            else
+            {
+                if (caseJoueurMiss.Count == 0)
+                {
+                    caseJoueurMiss.Add(caseTouche);
+                }
+                else
+                {
+                    foreach (CaseDeJeux cj in caseJoueurMiss)
+                    {
+                        if (!(cj.OffsetX == caseTouche.OffsetX && cj.OffsetY == caseTouche.OffsetY))
+                        {
+                            ajouteCJMiss = true;
+                        }
+                    }
+                }
+
+                if (ajouteCJMiss)
+                {
+                    caseJoueurMiss.Add(caseTouche);
+                }
+
+                foreach (CaseDeJeux testCase in caseJoueurHit)
+                {
+                    if (caseTouche.OffsetX == testCase.OffsetX && caseTouche.OffsetY == testCase.OffsetY)
+                    {
+                        caseJoueurMiss.Remove(caseTouche);
+                    }
+                }
+            }
+            redrawPlacement_ = true;
+            redrawHitMiss_ = true;
+            p1_board.Invalidate();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+                recevoirTir(Convert.ToInt16(X_tb.Text), Convert.ToInt16(Y_tb.Text), checkBox1.Checked);
+        }
+
+        private void Client_Activated(object sender, EventArgs e)
+        {
+            redrawPlacement_ = true;
+            redrawHitMiss_ = true;
+            redrawEnnemi_ = true;
         }
     }
 }
