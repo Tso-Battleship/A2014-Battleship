@@ -94,8 +94,11 @@ namespace BattleShip_2014
                 //message has successfully been received
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 System.Diagnostics.Debug.WriteLine(encoder.GetString(message, 0, bytesRead));
-                strMessage = encoder.GetString(message, 0, bytesRead);
-                event_messageRecu();
+                if (encoder.GetString(message, 0, bytesRead) != "test de connection")
+                {
+                    strMessage = encoder.GetString(message, 0, bytesRead);
+                    event_messageRecu();
+                }
             }
 
             tcpClient.Close();

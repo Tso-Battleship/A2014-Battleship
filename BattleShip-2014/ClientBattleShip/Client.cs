@@ -36,6 +36,9 @@ namespace BattleShip_2014
             invalide
         };
 
+        //Delegate pour la reception
+        delegate void delegateClient();
+        delegateClient recoiClient;
 
         StateClient state;
 
@@ -61,7 +64,6 @@ namespace BattleShip_2014
         List<CaseDeJeux> listeCaseTouches;
 
         TCPClient tcpClient = new TCPClient();
-        TcpClient client = new TcpClient();
 
         /** TODO COMMENTER CETTE DEMARCHE QUI CRÉE DES CURSEUR **/
         // Placeholder text dans les textboxes
@@ -97,7 +99,12 @@ namespace BattleShip_2014
         public Client()
         {
             InitializeComponent();
-            
+
+            //Event
+            tcpClient.messageRecu += this.HandleEvent_messageRecu;      //Reception du serveur
+            //Delegate
+            recoiClient += this.TraiteRecoiClient;
+
             /// Variables Global pour TEST                                          
             /// Ces Variables seront remplacer par les informations provenant du serveur
             descriptionRecueDuServeur = new List<DescriptionPiece>();
@@ -152,7 +159,7 @@ namespace BattleShip_2014
 
             /// Placeholder pour les TextBoxes
             SendMessage(nomJoueur_TB.Handle, EM_SETCUEBANNER, 0, "Player 1");
-            SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
+            SendMessage(adresseIP_TB.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
 
             state = StateClient.stateInit;
         }
@@ -197,21 +204,10 @@ namespace BattleShip_2014
             //TODO Rendre le connectPanel Invisible si la connection Réussis
             connect_panel.Visible = false;
             info_panel.Visible = true;
-            try
-            {
-                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3000);
-                client.Connect(serverEndPoint);
-                NetworkStream clientStream = client.GetStream();
-                ASCIIEncoding encoder = new ASCIIEncoding();
-                //tcpClient.envoyerCommande(client, tcpClient.retourneAdresseIpClient());
-                //stcpClient.envoyerCommande(client, FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
-                
-            }
-            catch (System.Net.Sockets.SocketException)
-            {
-                MessageBox.Show("La connection au serveur a été refusé");
-            }
 
+            //tcpClient.connectionServeur(nomJoueur_TB.Text);
+
+            tcpClient.connectionServeur(adresseIP_TB.Text);
             state = StateClient.stateOuverture;
             receptionMessageStateMachine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
 
@@ -650,21 +646,25 @@ namespace BattleShip_2014
                 case StateClient.stateOuverture:
                     if(action == Commun.ACTION_CONNECTION)
                     {
-                        
+                        tcpClient.envoyerCommande(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
+
                         //TODO Envoyer la connexion au serveur par TCP
                     }
                     else if(action == Commun.ACTION_MODE_DE_JEU)
                     {
+                      //  tcpClient.envoyerCommande("");
                         //TODO populer le mode de jeu
                     }
                     else if(action == Commun.ACTION_DESCRIPTION_PIECE)
                     {
+                      //  tcpClient.envoyerCommande("");
                         //TODO populer les descriptions de pieces recues du serveur   
                     }
                     break;
                 case StateClient.stateSetup:
                     if(action == Commun.ACTION_PLACER_PIECES)
                     {
+
                         //TODO envoyer pieces au serveur
                     }
                     else if(action == Commun.ACTION_COMMENCER_PARTIE)
@@ -699,5 +699,17 @@ namespace BattleShip_2014
                     break;
             }
         }
+
+        public void TraiteRecoiClient()
+        {
+            receptionMessageStateMachine(tcpClient.strMessage);
+            //   string test = serveur.strMessage[numClient];
+
+        }
+        public void HandleEvent_messageRecu(object sender, EventArgs args)
+        {
+            BeginInvoke(recoiClient);
+        }
+
     }
 }

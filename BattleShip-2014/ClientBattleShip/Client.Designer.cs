@@ -34,7 +34,7 @@
             this.connecterServeur_button = new System.Windows.Forms.Button();
             this.adresseServeur_label = new System.Windows.Forms.Label();
             this.nomJoueur_Label = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.adresseIP_TB = new System.Windows.Forms.TextBox();
             this.nomJoueur_TB = new System.Windows.Forms.TextBox();
             this.main_panel = new System.Windows.Forms.Panel();
             this.place_panel = new System.Windows.Forms.Panel();
@@ -65,7 +65,7 @@
             this.connect_panel.Controls.Add(this.connecterServeur_button);
             this.connect_panel.Controls.Add(this.adresseServeur_label);
             this.connect_panel.Controls.Add(this.nomJoueur_Label);
-            this.connect_panel.Controls.Add(this.textBox2);
+            this.connect_panel.Controls.Add(this.adresseIP_TB);
             this.connect_panel.Controls.Add(this.nomJoueur_TB);
             this.connect_panel.Location = new System.Drawing.Point(618, 3);
             this.connect_panel.Name = "connect_panel";
@@ -79,7 +79,7 @@
             this.titreBattleship_label.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.titreBattleship_label.Location = new System.Drawing.Point(26, 9);
             this.titreBattleship_label.Name = "titreBattleship_label";
-            this.titreBattleship_label.Size = new System.Drawing.Size(352, 46);
+            this.titreBattleship_label.Size = new System.Drawing.Size(353, 46);
             this.titreBattleship_label.TabIndex = 5;
             this.titreBattleship_label.Text = "BattleShip TSO 2014";
             // 
@@ -120,16 +120,16 @@
             this.nomJoueur_Label.TabIndex = 2;
             this.nomJoueur_Label.Text = "Nom Joueur";
             // 
-            // textBox2
+            // adresseIP_TB
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(169, 108);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(210, 23);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.adresseIP_TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.adresseIP_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.adresseIP_TB.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adresseIP_TB.Location = new System.Drawing.Point(169, 108);
+            this.adresseIP_TB.Name = "adresseIP_TB";
+            this.adresseIP_TB.Size = new System.Drawing.Size(210, 23);
+            this.adresseIP_TB.TabIndex = 1;
+            this.adresseIP_TB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // nomJoueur_TB
             // 
@@ -267,7 +267,7 @@
             this.info_panel.Controls.Add(this.label1);
             this.info_panel.Controls.Add(this.label2);
             this.info_panel.Controls.Add(this.label3);
-            this.info_panel.Location = new System.Drawing.Point(618, 3);
+            this.info_panel.Location = new System.Drawing.Point(482, 3);
             this.info_panel.Name = "info_panel";
             this.info_panel.Size = new System.Drawing.Size(398, 215);
             this.info_panel.TabIndex = 6;
@@ -384,7 +384,7 @@
         #endregion
 
         private System.Windows.Forms.Panel connect_panel;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox adresseIP_TB;
         private System.Windows.Forms.TextBox nomJoueur_TB;
         private System.Windows.Forms.Label titreBattleship_label;
         private System.Windows.Forms.Button connecterServeur_button;
