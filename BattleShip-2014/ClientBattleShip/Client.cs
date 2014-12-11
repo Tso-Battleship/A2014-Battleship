@@ -216,8 +216,7 @@ namespace BattleShip_2014
                 MessageBox.Show("La connection au serveur a été refusé");
             }
 
-            Console.WriteLine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
-            Console.WriteLine(FormatteurActions.obtenirAction(FormatteurActions.genererActionConnection(nomJoueur_TB.Text)));
+            state = StateClient.stateOuverture;
             receptionMessageStateMachine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
 
             //label1.Text = TCPClient.retourneAdresseIpClient();
@@ -638,6 +637,9 @@ namespace BattleShip_2014
 
         private void receptionMessageStateMachine(String trameRecue)
         {
+            String action = FormatteurActions.obtenirAction(trameRecue);
+            Console.WriteLine(trameRecue);
+
             switch(state)
             {
                 case StateClient.stateInit:
@@ -645,7 +647,15 @@ namespace BattleShip_2014
 
                     break;
                 case StateClient.stateOuverture:
-                    //if(FormatteurActions.)
+                    if(action == Commun.ACTION_CONNECTION)
+                    {
+                        
+                        //TODO Envoyer la connexion au serveur par TCP
+                    }
+                    else if(action == Commun.ACTION_MODE_DE_JEU)
+                    {
+                        //TODO populer les descriptions de pieces recues du serveur
+                    }
                     break;
                 case StateClient.stateSetup:
 
