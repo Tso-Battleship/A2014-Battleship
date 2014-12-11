@@ -253,7 +253,7 @@ namespace BattleShip_2014
                     }
                     if(pb.Name == "p2_board")
                     {
-                        attaquerEnnemie(grilleX,grilleY);
+                        attaquerEnnemie(grilleX, grilleY);
                     }
                 }
                 catch (Exception ex)
@@ -501,7 +501,6 @@ namespace BattleShip_2014
                         }
                         catch
                         {
-                            Console.WriteLine("slefgih");
                         }
                         
                     }
@@ -517,7 +516,6 @@ namespace BattleShip_2014
                     }
                     catch
                     {
-                        Console.WriteLine("slefgadwadwadih");
                     }
                 }
             }
@@ -593,16 +591,36 @@ namespace BattleShip_2014
             p1_board.Invalidate();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-                recevoirTir(Convert.ToInt16(X_tb.Text), Convert.ToInt16(Y_tb.Text), checkBox1.Checked);
-        }
-
         private void Client_Activated(object sender, EventArgs e)
         {
             redrawPlacement_ = true;
             redrawHitMiss_ = true;
             redrawEnnemi_ = true;
+        }
+
+        private void resetClient()
+        {
+            tableauJoueur.Pieces.Clear();
+            tableauEnnemi.Pieces.Clear();
+            
+            listeCaseTouches.Clear();
+            listePiecesJoueur.Clear();
+            listePiecesJoueur.Clear();
+            
+            
+            caseJoueurHit.Clear();
+            caseJoueurMiss.Clear();
+
+            piece1_button.Enabled = true;
+            piece2_button.Enabled = true;
+            piece3_button.Enabled = true;
+            piece4_button.Enabled = true;
+            piece5_button.Enabled = true;
+            redrawPlacement_ = true;
+            redrawHitMiss_ = true;
+            redrawEnnemi_ = true;
+            p1_board.Invalidate();
+            p2_board.Invalidate();
         }
     }
 }

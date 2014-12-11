@@ -51,10 +51,6 @@
             this.p1_board = new System.Windows.Forms.PictureBox();
             this.minimize_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Y_tb = new System.Windows.Forms.TextBox();
-            this.X_tb = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.connect_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
             this.place_panel.SuspendLayout();
@@ -83,7 +79,7 @@
             this.titreBattleship_label.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.titreBattleship_label.Location = new System.Drawing.Point(26, 9);
             this.titreBattleship_label.Name = "titreBattleship_label";
-            this.titreBattleship_label.Size = new System.Drawing.Size(353, 46);
+            this.titreBattleship_label.Size = new System.Drawing.Size(352, 46);
             this.titreBattleship_label.TabIndex = 5;
             this.titreBattleship_label.Text = "BattleShip TSO 2014";
             // 
@@ -354,61 +350,15 @@
             this.exit_button.UseVisualStyleBackColor = false;
             this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(508, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Y_tb
-            // 
-            this.Y_tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Y_tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Y_tb.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Y_tb.Location = new System.Drawing.Point(308, 13);
-            this.Y_tb.Name = "Y_tb";
-            this.Y_tb.Size = new System.Drawing.Size(71, 23);
-            this.Y_tb.TabIndex = 1;
-            this.Y_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // X_tb
-            // 
-            this.X_tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.X_tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.X_tb.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.X_tb.Location = new System.Drawing.Point(385, 13);
-            this.X_tb.Name = "X_tb";
-            this.X_tb.Size = new System.Drawing.Size(71, 23);
-            this.X_tb.TabIndex = 8;
-            this.X_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(463, 17);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(39, 17);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Hit";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(1043, 791);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.X_tb);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.exit_button);
             this.Controls.Add(this.main_panel);
             this.Controls.Add(this.minimize_button);
-            this.Controls.Add(this.Y_tb);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -428,7 +378,6 @@
             this.info_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1_board)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -456,10 +405,6 @@
         private System.Windows.Forms.Button piece3_button;
         private System.Windows.Forms.Button piece2_button;
         private System.Windows.Forms.Button piece1_button;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox Y_tb;
-        private System.Windows.Forms.TextBox X_tb;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
