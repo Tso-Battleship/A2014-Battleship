@@ -23,16 +23,13 @@ namespace xml_test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //xml.xmlreader();
-            //genereListBoxXML();
-            xml = new xml_crunch("battleship_xml.xml");
-            modeDeJeu = xml.getModeDeJeu();
-            //ModeDeJeu mode = xml.getModeDeJeu();
-            DescriptionPiece dp = new DescriptionPiece();
-            genereListBoxXML(dp);
+
+            modeDeJeu = (new xml_crunch("battleship_xml.xml").getModeDeJeu());
+
+            genereListBoxXML();
         }
 
-        private void genereListBoxXML(DescriptionPiece descPieces)
+        private void genereListBoxXML()
         {
             string tempCaseX = "";
             string tempCaseY = "";
@@ -51,18 +48,8 @@ namespace xml_test
                 tempCaseX = "";
                 tempCaseY = "";
             }
-
-            /*
-            listBox1.Items.Insert(0, xml.ModeDeJeu[0].ToString() + " " + xml.ModeDeJeu[1] + " " + xml.ModeDeJeu[2].ToString());
-            listBox1.Items.Insert(0, "Ship1" + " : " + xml.PiecesDeJeu[0].ToString() + " " + xml.CasesDeJeu[0] + " " + xml.DescriptionDeJeu[0]);
-            listBox1.Items.Insert(0, "Ship2" + " : " + xml.PiecesDeJeu[1].ToString() + " " + xml.CasesDeJeu[1] + " " + xml.DescriptionDeJeu[1]);
-            listBox1.Items.Insert(0, "Ship3" + " : " + xml.PiecesDeJeu[2].ToString() + " " + xml.CasesDeJeu[2] + " " + xml.DescriptionDeJeu[2]);
-            listBox1.Items.Insert(0, "Ship4" + " : " + xml.PiecesDeJeu[3].ToString() + " " + xml.CasesDeJeu[3] + " " + xml.DescriptionDeJeu[3]);
-            listBox1.Items.Insert(0, "Ship5" + " : " + xml.PiecesDeJeu[4].ToString() + " " + xml.CasesDeJeu[4] + " " + xml.DescriptionDeJeu[4]);
-             * */
            
         }
-
 
     }
 }
