@@ -68,12 +68,7 @@ namespace BattleShip_2014
             retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + p.PathVisuels + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
 
-            //p.CasesDeJeu.ElementAt(0).
-
-            /*foreach(CaseDeJeux caseDe in p.CasesDeJeu)
-            {
-                
-            }*/
+            
 
             return retour;
         }

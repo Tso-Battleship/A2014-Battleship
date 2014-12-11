@@ -671,6 +671,7 @@ namespace BattleShip_2014
                     {
                         //TODO analyser a quel joueur c'est
                     }
+                    
                     break;
                 case StateClient.stateGame:
                     if(action == Commun.ACTION_TIR)
