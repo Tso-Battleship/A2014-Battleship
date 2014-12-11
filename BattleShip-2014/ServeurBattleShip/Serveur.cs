@@ -12,6 +12,7 @@ namespace BattleShip_2014
 {
     public partial class Serveur : Form
     {
+        ModeDeJeu mode_;
         string nomJoueur1;
         string nomJoueur2;
         int Case;
@@ -19,11 +20,13 @@ namespace BattleShip_2014
         int tailleX;
         int tailleY;
 
-
         TableauAvecPiece joueur_un;
         TableauAvecPiece joueur_deux;
+        
 
         List<DescriptionPiece> descriptionDuModeDeJeu;
+        List<CaseDeJeux> listeCaseTouchesJoueur1 = new List<CaseDeJeux>();
+        List<CaseDeJeux> listeCaseTouchesJoueur2= new List<CaseDeJeux>();
 
         public Serveur()
         {
@@ -37,7 +40,9 @@ namespace BattleShip_2014
 
         public void lectureModeJeu()
         {
-            descriptionDuModeDeJeu = new List<DescriptionPiece>();
+
+            //mode_ = (new xml_crunch("battleship_xml.xml").getModeDeJeu());
+            /*descriptionDuModeDeJeu = new List<DescriptionPiece>();
 
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
 
@@ -48,13 +53,15 @@ namespace BattleShip_2014
 
             descriptionDuModeDeJeu.Add(dp);
 
-            cases = new List<CaseDeJeux>(cases);
-            cases.Add(new CaseDeJeux(0, 2));
-            cases.Add(new CaseDeJeux(0, 3));
+            List<CaseDeJeux> cases2 = new List<CaseDeJeux>();
+            cases2.Add(new CaseDeJeux(0, 0));
+            cases2.Add(new CaseDeJeux(0, 1));
+            cases2.Add(new CaseDeJeux(0, 2));
+            cases2.Add(new CaseDeJeux(0, 3));
 
-            dp = new DescriptionPiece(cases, "battleship.pne", "Battleship");
+            DescriptionPiece dp2 = new DescriptionPiece(cases2, "battleship.pne", "Battleship");
 
-            descriptionDuModeDeJeu.Add(dp);
+            descriptionDuModeDeJeu.Add(dp2);
 
             tailleX = 10;
             tailleY = 10;
@@ -76,7 +83,7 @@ namespace BattleShip_2014
                /* FormatteurActions.
                 description.*/
                   
-            }
+            //}
 
             /*
             List<
@@ -117,10 +124,12 @@ namespace BattleShip_2014
             if(NbConnection==1)
             {
                 nomJoueur1 = trame;
+                lJoueur1.Text = "Joueur 1 : Connecter";
             }
             else if(NbConnection==2)
             {
                 nomJoueur2 = trame;
+                lJoueur2.Text = "Joueur 2 : Connecter";
                 //lbReception.Items.Add(FormatteurActions.formatterActionEnvoiModeDeJeu());
                 //lbReception2.Items.Add(FormatteurActions.formatterActionEnvoiModeDeJeu());
                 lbReception.Items.Add(FormatteurActions.formatterCommencerPlacement(nomJoueur1, nomJoueur2));
@@ -135,10 +144,12 @@ namespace BattleShip_2014
             if(trame==nomJoueur1)
             {
                 FinDeJeu(nomJoueur2);
+                lJoueur1.Text = "Joueur 1 : non connecter";
             }
             else if (trame == nomJoueur2)
             {
                 FinDeJeu(nomJoueur1);
+                lJoueur2.Text = "Joueur 2 : non connecter";
             }
         }
 
@@ -159,15 +170,107 @@ namespace BattleShip_2014
 
        private void ReceptionTir(string nomJoueur, int x, int y)
         {
+           bool touche=false;
+           bool dejaTirer = false;
+           bool couler = false;
             if(nomJoueur==nomJoueur1)
             {
+                foreach (Piece piecesEnnemie in joueur_deux.Pieces)                     //Pour chaque Piece dans le tableau
+                {
+                    foreach (CaseDeJeux caseDeJeuxEnnemie in piecesEnnemie.CasesDeJeu)   //Tester chaque case du tableau
+                    {
+                        CaseDeJeux caseTemp = new CaseDeJeux((piecesEnnemie.PositionX + caseDeJeuxEnnemie.OffsetX),(piecesEnnemie.PositionY + caseDeJeuxEnnemie.OffsetY)); 
+                    
+                        if ((caseTemp.OffsetX == x) && (caseTemp.OffsetY == y))
+                        {
 
+                            if (piecesEnnemie.caseEstTouch(x,y))
+                            {
+                                MessageBox.Show("Case déjà tirer");
+                                dejaTirer = true;
+                            }
+                            else
+                            {
+                                piecesEnnemie.tirerCase(x,y);    
+                                touche = true;
+                            }
+                        }
+                        if(piecesEnnemie.toutesCasesToucher()) 
+                        {
+                            couler = true;
+                        }
+                        
+                    }
+                }
+                if(touche==false)
+                { 
+                    if(joueur_deux.Cases[x,y].EstTouchee)
+                    {
+                        MessageBox.Show("Case déjà tirer");
+                        dejaTirer = true;
+                    }
+                    else
+                    {
+                        joueur_deux.Cases[x, y].tirer();
+                    }
+                }
             }
-            else if(nomJoueur==nomJoueur2)
+
+            if (nomJoueur == nomJoueur2)
             {
+                foreach (Piece piecesEnnemie in joueur_un.Pieces)                     //Pour chaque Piece dans le tableau
+                {
+                    foreach (CaseDeJeux caseDeJeuxEnnemie in piecesEnnemie.CasesDeJeu)   //Tester chaque case du tableau
+                    {
+                        CaseDeJeux caseTemp = new CaseDeJeux((piecesEnnemie.PositionX + caseDeJeuxEnnemie.OffsetX), (piecesEnnemie.PositionY + caseDeJeuxEnnemie.OffsetY));
 
+                        if ((caseTemp.OffsetX == x) && (caseTemp.OffsetY == y))
+                        {
+
+                            if (piecesEnnemie.caseEstTouch(x, y))
+                            {
+                                MessageBox.Show("Case déjà tirer");
+                                dejaTirer = true;
+                            }
+                            else
+                            {
+                                piecesEnnemie.tirerCase(x, y);
+                                touche = true;
+                            }
+                        }
+                        if (piecesEnnemie.toutesCasesToucher())
+                        {
+                            couler = true;
+                        }
+
+                    }
+                }
+                if (touche == false)
+                {
+                    if (joueur_un.Cases[x, y].EstTouchee)
+                    {
+                        MessageBox.Show("Case déjà tirer");
+                        dejaTirer = true;
+                    }
+                    else
+                    {
+                        joueur_un.Cases[x, y].tirer();
+                    }
+                }
             }
-            lbReception.Items.Add(FormatteurActions.retournerActionMiseAJour(nomJoueur, x, y, true, true));
+            if(dejaTirer==false)
+            {
+                lbReception.Items.Add(FormatteurActions.retournerActionMiseAJour(nomJoueur, x, y, touche, couler));
+                lbReception2.Items.Add(FormatteurActions.retournerActionMiseAJour(nomJoueur, x, y, touche, couler));
+            }
+            if(joueur_deux.piecesToutesTouchees())
+            {
+                FinDeJeu(nomJoueur1);
+            }
+            else if(joueur_un.piecesToutesTouchees())
+            {
+                FinDeJeu(nomJoueur2);
+            }
         }
 
         private bool ReceptionPiece(string nomJoueur, string nomPiece, int x, int y, string rotation)
@@ -196,7 +299,13 @@ namespace BattleShip_2014
                             pieceExiste = false;
                     }
                     if(pieceExiste)
+                    {
                         joueur_un.Pieces.Add(p);
+                        
+
+                    }
+                        
+                        
 
                     
                 }
@@ -263,12 +372,12 @@ namespace BattleShip_2014
 
         private void btTir1_Click(object sender, EventArgs e)
         {
-
+            LogiqueServeur(FormatteurActions.genererActionTir(nomJoueur1, Convert.ToInt16(tbX1.Text), Convert.ToInt16(tbY1.Text)));
         }
 
         private void btTir2_Click(object sender, EventArgs e)
         {
-
+            LogiqueServeur(FormatteurActions.genererActionTir(nomJoueur2, Convert.ToInt16(tbX2.Text), Convert.ToInt16(tbY2.Text)));
         }
 
         private void btDeconnection1_Click(object sender, EventArgs e)
@@ -289,6 +398,11 @@ namespace BattleShip_2014
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbX1_TextChanged(object sender, EventArgs e)
         {
 
         }

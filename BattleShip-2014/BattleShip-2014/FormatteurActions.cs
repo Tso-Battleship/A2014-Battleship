@@ -266,7 +266,7 @@ namespace BattleShip_2014
             string[] splitTrameAction;
             string[] splitY;
             splitTrameAction = trame.Split(';').ToArray();
-            splitY = splitTrameAction[3].Split(':').ToArray();
+            splitY = splitTrameAction[4].Split(':').ToArray();
             offY = Convert.ToInt16(splitY[1]);
 
             return offY;
