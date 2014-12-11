@@ -20,13 +20,17 @@ namespace xml_test
         /// <summary>
         /// !!! Les variables pour l'acquisition des coordonées de pieces !!!
         /// </summary>
-        private string[] modeDeJeu_= {"","","","","",""};
+        private string[] dataModeDeJeu= {"","","","","",""};
         private string[] piecesDeJeu_ = { "", "", "", "", "", ""};
         private string[] casesDeJeu_ = { "", "", "", "", "", "" };
         private string[] descriptionDeJeu_ = { "", "", "", "", "", "" };
         private int[] piecesX_;
         private int[] piecesY_;
         private int nbrCasePieces = 0;
+
+        List<DescriptionPiece> descriptionDesPieces;
+        int tailleDuModeX, tailleDuModeY;
+        String nomDuModeDeJeu;
 
         //Declaration de l'objet
         XmlReader reader;
@@ -54,6 +58,7 @@ namespace xml_test
 
             reader = XmlReader.Create(NomFichier_, configurationReader);
             piece = new Piece();
+            descriptionDesPieces = new List<DescriptionPiece>();
 
 
             //config du xml reader qui est linker sa ligne en haut
@@ -98,8 +103,8 @@ namespace xml_test
         /// </summary>
         public string[] ModeDeJeu
         {
-            get { return modeDeJeu_; }
-            set { modeDeJeu_ = value; }
+            get { return dataModeDeJeu; }
+            set { dataModeDeJeu = value; }
         }
 
         public int indexPieces
@@ -139,15 +144,16 @@ namespace xml_test
                 switch(reader.Name){
                     case "modeDeJeu":
                         if (reader.HasAttributes)
-                            modeDeJeu_[0] = reader["nomDeJeu"];
+                            nomDuModeDeJeu = reader["nomDeJeu"];
                         indexPieces_ = -1;
                         break;
                     case "taille":
-                        modeDeJeu_[1] = reader.ReadElementContentAsString();
+                        //TODO Separer les tailles
+                        dataModeDeJeu[1] = reader.ReadElementContentAsString();
                         break;
                     case "path":
                         if (reader.HasAttributes)
-                            modeDeJeu_[2] = reader["emplacement"];
+                            dataModeDeJeu[2] = reader["emplacement"];
                         break;
                     case "pieces":
                         if (reader.HasAttributes)
@@ -162,7 +168,7 @@ namespace xml_test
                     case "description":
                        descriptionDeJeu_[indexPieces_] = reader.ReadElementContentAsString();
                        separationXY(indexPieces_);      //Separation x y des differentes cases
-                       getModeDeJeu();                  //Ajoute la case l'endroit de l'image et le nom du ship dans La description de pieces
+                       getPiece();                  //Ajoute la case l'endroit de l'image et le nom du ship dans La description de pieces
                         break;
                     default:
                         break;         
@@ -211,10 +217,9 @@ namespace xml_test
         /// Create a list of CaseDeJeu with positionX and positionY and create a DescriptionDePiece
         /// </summary>
         /// <returns>Mode de Jeu</returns>
-        public ModeDeJeu getModeDeJeu()
+        public void getPiece()
         {
             int i = 0;
-            ModeDeJeu mode = new ModeDeJeu();
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
 
             for (i = 0; i < piecesX_.Length; i++)
@@ -227,11 +232,16 @@ namespace xml_test
             //nbrCasePieces = 0;
 
 
-            DescriptionPiece dp = new DescriptionPiece(cases, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]); //création d l'objet description de pièces
+            descriptionDesPieces.Add(new DescriptionPiece(cases, dataModeDeJeu[2], descriptionDeJeu_[indexPieces_])); //création d l'objet description de pièces
             //DescriptionPiece dp = new DescriptionPiece(mode.cases_, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]);  //cases_, emplacement, description pieces donc nom
 
             //mode = dp.CasesDeJeu;
-            return mode;
+        }
+
+        public ModeDeJeu getModeDeJeu()
+        {
+            xmlreader();
+            return new ModeDeJeu(10, 10, descriptionDesPieces, nomDuModeDeJeu);
         }
 
 

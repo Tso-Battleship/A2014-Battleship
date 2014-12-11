@@ -12,14 +12,12 @@ namespace xml_test
 {
     public partial class Form1 : Form
     {
-        //creation de l'objet
-        ModeDeJeu mode;
-        DescriptionPiece dp;
+        ModeDeJeu modeDeJeu;
         xml_crunch xml;
         public Form1()
         {
             InitializeComponent();
-            mode = new ModeDeJeu();
+            
             
         }
 
@@ -28,7 +26,7 @@ namespace xml_test
             //xml.xmlreader();
             //genereListBoxXML();
             xml = new xml_crunch("battleship_xml.xml");
-            xml.xmlreader();
+            modeDeJeu = xml.getModeDeJeu();
             //ModeDeJeu mode = xml.getModeDeJeu();
             DescriptionPiece dp = new DescriptionPiece();
             genereListBoxXML(dp);
@@ -39,6 +37,15 @@ namespace xml_test
             //listBox1.Items.Add(descPieces.gspath_visuel_);
             //listBox1.Items.Add(descPieces.gsnom_);
             //listBox1.Items.Add(descPieces.gscases_);
+            
+            foreach(DescriptionPiece dp in modeDeJeu.pieces_)
+            {
+                //listBox1.Items.Insert(0,  + " : " + xml.PiecesDeJeu[2].ToString() + " " + xml.CasesDeJeu[2] + " " + xml.DescriptionDeJeu[2]);
+                foreach(CaseDeJeux c in dp.cases_)
+                {
+                    //c.
+                }
+            }
 
             listBox1.Items.Insert(0, xml.ModeDeJeu[0].ToString() + " " + xml.ModeDeJeu[1] + " " + xml.ModeDeJeu[2].ToString());
             listBox1.Items.Insert(0, "Ship1" + " : " + xml.PiecesDeJeu[0].ToString() + " " + xml.CasesDeJeu[0] + " " + xml.DescriptionDeJeu[0]);
