@@ -8,8 +8,15 @@ namespace xml_test
 {
     public class ModeDeJeu
     {
+        /// <summary>
+        /// création de la liste de Description de pièces
+        /// </summary>
         public List<DescriptionPiece> pieces_;
 
+
+        /// <summary>
+        /// section des getter pour les variables globales incluse dans la classe ModeDeJeu
+        /// </summary>
         private int tailleY_;
 
         public int TailleY
@@ -37,7 +44,9 @@ namespace xml_test
         }
 
         /// <summary>
-        /// Constructeur
+        /// Constructeur du ModeDeJeu pour l'association de la taille du tableau de jeu en x et y
+        /// de la liste des pièce avec leurs cases, nom et emplacement visuel
+        /// ainsi que le nom du mode de jeu
         /// </summary>
         public ModeDeJeu(int tailleX, int tailleY, List<DescriptionPiece> pieces, String nomModeDeJeu = "classique")
         {
