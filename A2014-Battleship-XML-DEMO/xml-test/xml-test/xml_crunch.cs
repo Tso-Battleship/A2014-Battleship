@@ -134,7 +134,7 @@ namespace xml_test
         /// <summary>
         /// lit le xml
         /// </summary>
-        public void xmlreader()
+        private void xmlreader()
         {
             //Boucle jusqu'a temps qu'il n'ai plus de ligne dans le xml
             while (reader.Read())
