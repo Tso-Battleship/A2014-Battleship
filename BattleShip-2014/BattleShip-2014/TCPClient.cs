@@ -22,7 +22,7 @@ namespace BattleShip_2014
         //public int testTimer = 0;
         int testTimer = 0;
         public string strMessage;
-        public event EventHandler SomethingHappened2;
+        public event EventHandler messageRecu;
 
         public TCPClient()
         {
@@ -44,7 +44,7 @@ namespace BattleShip_2014
 
          void _timer_Elapsed(object sender, ElapsedEventArgs e, ref int testTimer)
          {
-             envoyerCommande(tcpClient, "1");
+             envoyerCommande("1");
          }
         /// <summary>
         /// Delegate qui attends de nouveaux clients. Il crée un nouveau thread lorsqu'un client se connecte.
@@ -95,7 +95,7 @@ namespace BattleShip_2014
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 System.Diagnostics.Debug.WriteLine(encoder.GetString(message, 0, bytesRead));
                 strMessage = encoder.GetString(message, 0, bytesRead);
-                DoSomething();
+                event_messageRecu();
             }
 
             tcpClient.Close();
@@ -103,9 +103,9 @@ namespace BattleShip_2014
         /// <summary>
         /// Crée un event
         /// </summary>
-        public void DoSomething()
+        public void event_messageRecu()
         {
-            EventHandler handler = SomethingHappened2;
+            EventHandler handler = messageRecu;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
