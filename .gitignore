@@ -1,8 +1,6 @@
 *.cache
 *.Cache
 *.txt
-*.resources
-*.resx
 *.suo
 *.dll
 *.pdb
