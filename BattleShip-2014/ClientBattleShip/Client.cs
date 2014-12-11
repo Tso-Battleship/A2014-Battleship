@@ -35,6 +35,10 @@ namespace BattleShip_2014
             piece5,
             invalide
         };
+
+
+        StateClient state;
+
         enumImageCurseur imageCurseur = enumImageCurseur.invalide;
         bool toggle = true; //Permet de changer l'orientation du curseur
        
@@ -149,6 +153,8 @@ namespace BattleShip_2014
             /// Placeholder pour les TextBoxes
             SendMessage(nomJoueur_TB.Handle, EM_SETCUEBANNER, 0, "Player 1");
             SendMessage(textBox2.Handle, EM_SETCUEBANNER, 0, "127.0.0.1");
+
+            state = StateClient.stateInit;
         }
         /// <summary>
         /// Fermer l'application lorsqu'on clique sur le X
@@ -209,6 +215,10 @@ namespace BattleShip_2014
             {
                 MessageBox.Show("La connection au serveur a été refusé");
             }
+
+            Console.WriteLine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
+            Console.WriteLine(FormatteurActions.obtenirAction(FormatteurActions.genererActionConnection(nomJoueur_TB.Text)));
+            receptionMessageStateMachine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
 
             //label1.Text = TCPClient.retourneAdresseIpClient();
         }
@@ -624,6 +634,38 @@ namespace BattleShip_2014
             p1_board.Invalidate();
             p2_board.Invalidate();
 
+        }
+
+        private void receptionMessageStateMachine(String trameRecue)
+        {
+            switch(state)
+            {
+                case StateClient.stateInit:
+                    
+
+                    break;
+                case StateClient.stateOuverture:
+                    //if(FormatteurActions.)
+                    break;
+                case StateClient.stateSetup:
+
+                    break;
+                case StateClient.stateGame:
+
+                    break;
+                case StateClient.stateAttenteConfirmation:
+
+                    break;
+                case StateClient.stateAttenteAutreJoueur:
+
+                    break;
+                case StateClient.stateFin:
+
+                    break;
+                default:
+
+                    break;
+            }
         }
     }
 }
