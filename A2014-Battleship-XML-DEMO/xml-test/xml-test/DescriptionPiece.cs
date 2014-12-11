@@ -5,18 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace xml_test
-
 {
     public class DescriptionPiece
     {
 
-        string nom_;
-        string path_visuel_;
-        public List<CaseDeJeux> cases_;
+        protected string nom_;
+        protected string path_visuel_;
+        protected List<CaseDeJeux> cases_;
 
         public DescriptionPiece()
         {
-
+            cases_ = new List<CaseDeJeux>();
+            cases_.Add(new CaseDeJeux(0, 0));
+            nom_ = "UneCaseGenerique";
+            path_visuel_ = "/";
         }
 
         public DescriptionPiece(List<CaseDeJeux> cases, string path_visuel, string nom)
@@ -27,38 +29,29 @@ namespace xml_test
         }
 
 
-        public string gsnom_
+        public string Nom
         {
             get
             {
                 return this.nom_;
             }
-            set
-            {
-                this.nom_ = value;
-            }
+
         }
-        public string gspath_visuel_
+        public string PathVisuels
         {
             get
             {
                 return this.path_visuel_;
             }
-            set
-            {
-                this.path_visuel_ = value;
-            }
+
         }
-        public List<CaseDeJeux> gscases_
+        public List<CaseDeJeux> CasesDeJeu
         {
             get
             {
                 return this.cases_;
             }
-            set
-            {
-                this.cases_ = value;
-            }
+
         }
 
     }

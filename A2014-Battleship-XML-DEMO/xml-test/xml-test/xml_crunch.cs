@@ -232,7 +232,7 @@ namespace xml_test
             //nbrCasePieces = 0;
 
 
-            descriptionDesPieces.Add(new DescriptionPiece(cases, dataModeDeJeu[2], descriptionDeJeu_[indexPieces_])); //création d l'objet description de pièces
+            descriptionDesPieces.Add(new DescriptionPiece(cases, piecesDeJeu_[indexPieces_], descriptionDeJeu_[indexPieces_])); //création d l'objet description de pièces
             //DescriptionPiece dp = new DescriptionPiece(mode.cases_, modeDeJeu_[2], descriptionDeJeu_[indexPieces_]);  //cases_, emplacement, description pieces donc nom
 
             //mode = dp.CasesDeJeu;

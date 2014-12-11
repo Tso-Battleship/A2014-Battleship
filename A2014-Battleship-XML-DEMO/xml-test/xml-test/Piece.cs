@@ -12,50 +12,69 @@ namespace xml_test
         private int positionX_, positionY_;
         Rotation rotation_;
 
+        /*Les 3 constructeurs avec différents paramètres*/
         public Piece()
         {
 
         }
 
-        public Piece(List<CaseDeJeux> cases,string name, string path,Rotation Rotation)
-        { 
-            
-        }
-        
-
-        public Piece(DescriptionPiece Piece, int x, int y)
+        public Piece(List<CaseDeJeux> Dcases,string name, string path, Rotation rotation)
         {
+            cases_ = Dcases;
+            nom_ = name;
+            path_visuel_ = path;
+            rotation_ = rotation;
+        }
+
+        public Piece(List<CaseDeJeux> Dcases, string name, string path)
+        {
+            cases_ = Dcases;
+            nom_ = name;
+            path_visuel_ = path;
+            rotation_ = Rotation.Haut;
+        }
+
+
+        public Piece(DescriptionPiece DPiece, int x, int y, Rotation rotation)
+        {
+            nom_ = DPiece.Nom;
+            path_visuel_ = DPiece.PathVisuels;
+            cases_ = DPiece.CasesDeJeu;
             positionX_ = x;
             positionY_ = y;
-
+            rotation_ = rotation;
         }
+
+        public Piece(DescriptionPiece DPiece, int x, int y)
+        {
+            nom_ = DPiece.Nom;
+            path_visuel_ = DPiece.PathVisuels;
+            cases_ = DPiece.CasesDeJeu;
+            positionX_ = x;
+            positionY_ = y;
+            rotation_ = Rotation.Haut;
+        }
+
+
 
         
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-        
 
-        
-
-
-
-        public int gspositionX
+        /*Déclaration des getters et setters pour accéder aux variables de la classe.*/
+        public int PositionX
         {
             get
             {
                 return this.positionX_;
             }
-
-        }
-        public int gspositionY
-        {
-            get
+            set
             {
-                return this.positionY_;
+                this.positionX_ = value;
             }
 
         }
-        public int gsrotation
+        public int PositionY
         {
             get
             {
@@ -65,14 +84,58 @@ namespace xml_test
             {
                 this.positionY_ = value;
             }
+
+        }
+        public Rotation RotationPiece
+        {
+            get
+            {
+                return this.rotation_;
+            }
+            /*set
+            {
+                this.rotation_ = value;
+            }*/
         }
 
+        public void tournerPiece()
+        {
+            List<CaseDeJeux> nouvellesCases = new List<CaseDeJeux>();
+            foreach (CaseDeJeux casedejeu in cases_)
+            {
+                nouvellesCases.Add(new CaseDeJeux(casedejeu.OffsetY, casedejeu.OffsetX));
+            }
+            cases_ = nouvellesCases;
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+            if (rotation_ == Rotation.Droite)
+            {
+                rotation_ = Rotation.Haut;
+            }
+            else
+                rotation_ = Rotation.Droite;
+        }
 
+///////////////////////////////////////////////////////////////////////////////////////////// 
 
-        
-
+        /*
+        * @Brief Sert à vérifier si la piece existe dans la case visée
+        * @Param int posx, int posy
+        * @return bool
+        */
+        public bool caseExiste(int posx, int posy)
+        {
+            foreach (CaseDeJeux c in cases_)
+            {
+                if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)                  
+                    return true;
+            }
+            return false;
+        }
+        /*
+        * @Brief Sert à vérifier si la piece à été touchée
+        * @Param int posx, int posy
+        * @return bool
+        */
         public bool caseEstTouch(int posx, int posy)
         {
             foreach(CaseDeJeux c in cases_)
@@ -81,35 +144,37 @@ namespace xml_test
                  {
                      if (c.EstTouchee)
                          return true;
-                 }
-                 
+                 }                 
             }
             return false;
         }
 
+        /*
+        * @Brief Fonction qui applique le tir sur la piece
+        * @Param int posx, int posy
+        * @return none
+        */
         public void tirerCase(int posx, int posy)
         {
             foreach (CaseDeJeux c in cases_)
-            {
-                
+            {                
                 if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
                 {
                     c.tirer();
                 }
-
             }
         }
-
-        public bool toutesCasesToucher(int posx, int posy)
+        /*
+        * @Brief Vérifie si toutes les cases ont été touchées
+        * @Param none
+        * @return bool
+        */
+        public bool toutesCasesToucher()
         {
             foreach (CaseDeJeux c in cases_)
             {
-                if (positionX_ + c.OffsetX == posx && positionY_ + c.OffsetY == posy)
-                {
-                    if (!c.EstTouchee)
-                        return false;
-                }
-
+                if (!c.EstTouchee)
+                    return false;
             }
             return true;
         }
