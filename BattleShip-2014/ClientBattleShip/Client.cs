@@ -654,20 +654,40 @@ namespace BattleShip_2014
                     }
                     else if(action == Commun.ACTION_MODE_DE_JEU)
                     {
+                        //TODO populer le mode de jeu
+                    }
+                    else if(action == Commun.ACTION_DESCRIPTION_PIECE)
+                    {
                         //TODO populer les descriptions de pieces recues du serveur
                     }
                     break;
                 case StateClient.stateSetup:
-
+                    if(action == Commun.ACTION_PLACER_PIECES)
+                    {
+                        //TODO envoyer pieces au serveur
+                    }
+                    else if(action == Commun.ACTION_COMMENCER_PARTIE)
+                    {
+                        //TODO analyser a quel joueur c'est
+                    }
                     break;
                 case StateClient.stateGame:
-
+                    if(action == Commun.ACTION_TIR)
+                    {
+                        //TODO envoyer la trame de tir
+                    }
                     break;
                 case StateClient.stateAttenteConfirmation:
-
+                    if(action == Commun.ACTION_MISE_A_JOUR)
+                    {
+                        //TODO reception d'une action de mise a jour si miss or hit
+                    }
                     break;
                 case StateClient.stateAttenteAutreJoueur:
-
+                    if(action == Commun.ACTION_MISE_A_JOUR)
+                    {
+                        //TODO reception d'une action de mise a jour si miss or hit
+                    }
                     break;
                 case StateClient.stateFin:
 
