@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace xml_test
+namespace BattleShip_2014
 {
     public class ModeDeJeu
     {
