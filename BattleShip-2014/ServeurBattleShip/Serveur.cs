@@ -16,19 +16,27 @@ namespace BattleShip_2014
         string nomJoueur2;
         int Case;
         int NbConnection = 0;
+        int tailleX;
+        int tailleY;
+
 
         TableauAvecPiece joueur_un;
         TableauAvecPiece joueur_deux;
+
+        List<DescriptionPiece> descriptionDuModeDeJeu;
 
         public Serveur()
         {
             InitializeComponent();
             lectureModeJeu();
+
+
+            if("Droite".Equals(Rotation.Droite.ToString()))
+                Console.WriteLine(Rotation.Droite);
         }
 
         public void lectureModeJeu()
         {
-            List<DescriptionPiece> descriptionDuModeDeJeu;
             descriptionDuModeDeJeu = new List<DescriptionPiece>();
 
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
@@ -48,9 +56,17 @@ namespace BattleShip_2014
 
             descriptionDuModeDeJeu.Add(dp);
 
-            int tailleX = 10, tailleY = 10;
+            tailleX = 10;
+            tailleY = 10;
 
+            joueur_un = new TableauAvecPiece(tailleX, tailleY, new List<Piece>());
+            joueur_deux = new TableauAvecPiece(tailleX, tailleY, new List<Piece>());
+
+            
             string nom_mode = "Nom du mode";
+
+
+
 
             //joueur_deux = new TableauAvecPiece(tailleX, tailleY, )
 
@@ -67,7 +83,7 @@ namespace BattleShip_2014
 
             
              * */
-        }
+            }
 
         public void LogiqueServeur(string trame)
         {
@@ -79,8 +95,7 @@ namespace BattleShip_2014
                     ConnectionClient(FormatteurActions.obtenirJoueur(trame));
                     break;
                 case "ACTION:PIECES":
-
-                    ReceptionPiece();
+                    ReceptionPiece(FormatteurActions.obtenirJoueur(trame), FormatteurActions.obtenirNomPiece(trame), FormatteurActions.obtenirOffX(trame), FormatteurActions.obtenirOffY(trame), FormatteurActions.obtenirRotation(trame));
                     break;
                 case "ACTION:TIR":
                     ReceptionTir(FormatteurActions.obtenirJoueur(trame), FormatteurActions.obtenirX(trame), FormatteurActions.obtenirY(trame));
@@ -129,7 +144,17 @@ namespace BattleShip_2014
 
         private void FinDeJeu(string joueurGagnant)
         {
-            lbReception.Items.Add(FormatteurActions.genererActionFin(joueurGagnant));
+            if (joueurGagnant == nomJoueur1)
+            {
+                lbReception2.Items.Add(FormatteurActions.genererActionFin(joueurGagnant));
+                lbReception.Items.Add(FormatteurActions.genererActionFin(joueurGagnant));
+            }
+            else if (joueurGagnant == nomJoueur2)
+            {
+                lbReception.Items.Add(FormatteurActions.genererActionFin(joueurGagnant));
+                lbReception2.Items.Add(FormatteurActions.genererActionFin(joueurGagnant));
+            }
+            
         }
 
        private void ReceptionTir(string nomJoueur, int x, int y)
@@ -145,11 +170,54 @@ namespace BattleShip_2014
             lbReception.Items.Add(FormatteurActions.retournerActionMiseAJour(nomJoueur, x, y, true, true));
         }
 
-        private void ReceptionPiece()
+        private bool ReceptionPiece(string nomJoueur, string nomPiece, int x, int y, string rotation)
         {
-           /* TableauAvecPiece tableauJ1;
-            tableauJ1 = new TableauAvecPiece(2,2,;
-      /**/  }
+            Piece p = new Piece(new List<CaseDeJeux>(), "AUCUNE", "NULL");
+            bool pieceExiste = false;
+            foreach(DescriptionPiece dp in descriptionDuModeDeJeu)
+            {
+                if(dp.Nom.Equals(nomPiece))
+                {
+                    p = new Piece(dp, x, y);
+                    pieceExiste = true;
+                }
+            }                      
+            if(pieceExiste)
+            {
+
+                if (rotation.Equals("Droite"))
+                    p.tournerPiece();
+
+                if(nomJoueur1==nomJoueur)
+                {
+                    foreach(Piece pieceDejaPlacee in joueur_un.Pieces)
+                    {
+                        if (pieceDejaPlacee.Nom.Equals(p.Nom))
+                            pieceExiste = false;
+                    }
+                    if(pieceExiste)
+                        joueur_un.Pieces.Add(p);
+
+                    
+                }
+                else if(nomJoueur2==nomJoueur)
+                {
+                    foreach (Piece pieceDejaPlacee in joueur_deux.Pieces)
+                    {
+                        if (pieceDejaPlacee.Nom.Equals(p.Nom))
+                            pieceExiste = false;
+                    }
+                    if(pieceExiste)
+                        joueur_deux.Pieces.Add(p);
+                }
+            }
+            if (descriptionDuModeDeJeu.Count == joueur_deux.Pieces.Count && descriptionDuModeDeJeu.Count == joueur_un.Pieces.Count)
+            {
+                lbReception.Items.Add(FormatteurActions.formatterCommencerPartie(nomJoueur1));
+                lbReception2.Items.Add(FormatteurActions.formatterCommencerPartie(nomJoueur1));
+            }
+            return pieceExiste;
+        }
 
 
         private void btConnection1_Click(object sender, EventArgs e)
@@ -166,8 +234,65 @@ namespace BattleShip_2014
         }
 
         private void btEnvoiePiece1_Click(object sender, EventArgs e)
-        {     
-            //LogiqueServeur.(FormatteurActions.formatterActionEnvoiPositionPiece());
+        {
+            
+            Piece p = new Piece(descriptionDuModeDeJeu.ElementAt(0), 3, 5, Rotation.Droite);
+            
+            LogiqueServeur(FormatteurActions.formatterActionEnvoiPositionPiece("JOHN", p));
+            lbEnvoie.Items.Add(FormatteurActions.formatterActionEnvoiPositionPiece("JOHN", p));
+
+            p  = new Piece(descriptionDuModeDeJeu.ElementAt(1), 1, 1, Rotation.Droite);
+
+            LogiqueServeur(FormatteurActions.formatterActionEnvoiPositionPiece("JOHN", p));
+            lbEnvoie.Items.Add(FormatteurActions.formatterActionEnvoiPositionPiece("JOHN", p));
+            
         }
+
+        private void btEnvoiePiece2_Click(object sender, EventArgs e)
+        {
+            Piece p = new Piece(descriptionDuModeDeJeu.ElementAt(0), 4, 3, Rotation.Haut);
+
+            LogiqueServeur(FormatteurActions.formatterActionEnvoiPositionPiece("Jack", p));
+            lbEnvoie2.Items.Add(FormatteurActions.formatterActionEnvoiPositionPiece("Jack", p));
+
+            p = new Piece(descriptionDuModeDeJeu.ElementAt(1), 5, 3, Rotation.Haut);
+
+            LogiqueServeur(FormatteurActions.formatterActionEnvoiPositionPiece("Jack", p));
+            lbEnvoie2.Items.Add(FormatteurActions.formatterActionEnvoiPositionPiece("Jack", p));
+        }
+
+        private void btTir1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btTir2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btDeconnection1_Click(object sender, EventArgs e)
+        {
+            LogiqueServeur(FormatteurActions.genererActionDeconnection("JOHN"));
+            lbEnvoie.Items.Add(FormatteurActions.genererActionDeconnection("JOHN"));
+        }
+
+        private void btDeconnection2_Click(object sender, EventArgs e)
+        {
+            LogiqueServeur(FormatteurActions.genererActionDeconnection("Jack"));
+            lbEnvoie2.Items.Add(FormatteurActions.genererActionDeconnection("Jack"));
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

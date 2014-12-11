@@ -70,10 +70,10 @@ namespace BattleShip_2014
 
             //p.CasesDeJeu.ElementAt(0).
 
-            foreach(CaseDeJeux caseDe in p.CasesDeJeu)
+            /*foreach(CaseDeJeux caseDe in p.CasesDeJeu)
             {
                 
-            }
+            }*/
 
             return retour;
         }
@@ -236,6 +236,58 @@ namespace BattleShip_2014
             coule = Convert.ToBoolean(splitCoule[1]);
 
             return coule;
+        }
+
+        public static string obtenirNomPiece(String trame)
+        {
+            string nomPiece;
+
+            string[] splitTrameAction;
+            string[] splitNomPiece;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitNomPiece = splitTrameAction[2].Split(':').ToArray();
+            nomPiece = splitNomPiece[1];
+
+            return nomPiece;
+        }
+
+        public static int obtenirOffX(String trame)
+        {
+            int offX;
+
+            string[] splitTrameAction;
+            string[] splitX;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitX = splitTrameAction[3].Split(':').ToArray();
+            offX = Convert.ToInt16(splitX[1]);
+
+            return offX;
+        }
+
+        public static int obtenirOffY(String trame)
+        {
+            int offY;
+
+            string[] splitTrameAction;
+            string[] splitY;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitY = splitTrameAction[3].Split(':').ToArray();
+            offY = Convert.ToInt16(splitY[1]);
+
+            return offY;
+        }
+
+        public static string obtenirRotation(String trame)
+        {
+            string rotation;
+
+            string[] splitTrameAction;
+            string[] splitRotation;
+            splitTrameAction = trame.Split(';').ToArray();
+            splitRotation = splitTrameAction[3].Split(':').ToArray();
+            rotation = splitRotation[1];
+
+            return rotation;
         }
     }
 }
