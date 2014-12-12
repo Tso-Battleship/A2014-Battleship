@@ -7,7 +7,15 @@ using System.Xml; // ajout pour avoir les fonctionnalites XML reader
 using System.Xml.Schema;    //Analyser avec le xsd
 using System.IO;
 
-
+/**
+ * @file   xml_crunch.c
+ * @author Anthony Groulx, Pascal Vaillancourt et Jean-Philippe Fournier
+ * @date   Décembre 2014
+ * @brief  Xml parser, création des pieces
+ *
+ *   Système de développement: PC avec Windows 8.1
+ *   GIT HUB application pour Windows
+ */
 namespace BattleShip_2014
 
 {
@@ -28,8 +36,17 @@ namespace BattleShip_2014
         private int[] piecesY_;
         private int nbrCasePieces = 0;
 
+        /// <summary>
+        /// Création de l'objet Description de pieces pour fonction getPiece et getModeDeJeu
+        /// </summary>
         List<DescriptionPiece> descriptionDesPieces;
+        /// <summary>
+        /// Création du int pour la taille de l'interface
+        /// </summary>
         int tailleDuModeX, tailleDuModeY;
+        /// <summary>
+        /// Création du string pour le nom du jeu ("Classique")
+        /// </summary>
         String nomDuModeDeJeu;
 
         //Déclaration de l'objet lecteur d'xml
@@ -138,7 +155,7 @@ namespace BattleShip_2014
             {
                 try
                 {
-                     //Change au prochain element du xml
+                //Change au prochain element du xml
                 reader.MoveToElement();
                 switch (reader.Name)
                 {
