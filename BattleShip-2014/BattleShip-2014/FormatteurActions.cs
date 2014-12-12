@@ -215,6 +215,12 @@ namespace BattleShip_2014
             return new ModeDeJeu(tailleX, tailleY, new List<DescriptionPiece>(), nomDuMode);
         }
 
+        /// <summary>
+        /// Fonction qui obtiens une description de piece sans cases de jeu, mais avec son nom et autres membres
+        /// </summary>
+        /// <param name="trame">la trame</param>
+        /// <param name="nbreCases">le nombre de cases qui seront recues par la suite</param>
+        /// <returns>la descritption de la nouvelles piece sans ses cases de jeu</returns>
         public static DescriptionPiece obtenirDescriptionDePiece(String trame, ref int nbreCases)
         {
             String path = "", nom = "";
@@ -241,6 +247,11 @@ namespace BattleShip_2014
             return new DescriptionPiece(new List<CaseDeJeux>(), path, nom);
         }
 
+        /// <summary>
+        /// Fonction qui receptionne une case de jeu, utile pour recevoir des positions etc.
+        /// </summary>
+        /// <param name="trame">la trame recue</param>
+        /// <returns>Ine case de jeu selon la trame</returns>
         public static CaseDeJeux obtenirCaseDeJeu(String trame)
         {
             int x = 0, y = 0;
@@ -381,17 +392,31 @@ namespace BattleShip_2014
             return rotation;
         }
 
-        
+        /// <summary>
+        /// Obtiens l'action dans le début de la trame recue, permet de faire la distinction entre le trames
+        /// </summary>
+        /// <param name="trame">La trame recues</param>
+        /// <returns>La valeur qui détermine l'action</returns>
         public static string obtenirAction(String trame)
         {
             return trame.Substring(trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1, (trame.IndexOf(Commun.DELEMITEUR_FIN_DONNEE) - trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) - 1));
         }
 
+        /// <summary>
+        /// Permet de prendre une trame sous le formate TYPEDATA:DATA et d'en sortir TYPEDATA
+        /// </summary>
+        /// <param name="partieDeTrame">la partie de trame a analyser</param>
+        /// <returns>le type de data dans la trame</returns>
         private static String getActionFromTrame(String partieDeTrame)
         {
             return partieDeTrame.Substring(0, partieDeTrame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA));
         }
 
+        /// <summary>
+        /// Permet de prendre une trame sous le formate TYPEDATA:DATA et d'en sortir DATA
+        /// </summary>
+        /// <param name="partieDeTrame">la partie de trame a analyser</param>
+        /// <returns>le data dans la trame</returns>
         private static String getDataFromTrame(String partieDeTrame)
         {
             return partieDeTrame.Substring(partieDeTrame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1);
