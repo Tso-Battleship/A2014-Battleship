@@ -19,8 +19,8 @@ namespace BattleShip_2014
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA + nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.PositionX + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + p.PositionY + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.PositionX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + p.PositionY + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_ROTATION + Commun.DELEMITEUR_DEBUT_DATA + p.RotationPiece + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
@@ -53,8 +53,8 @@ namespace BattleShip_2014
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_MODE_DE_JEU + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_MODE + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.NomModeDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.TailleX + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.TailleY + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.TailleX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.TailleY + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.Pieces.Count + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
@@ -67,7 +67,7 @@ namespace BattleShip_2014
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + p.PathVisuels + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
 
             
 
@@ -80,8 +80,8 @@ namespace BattleShip_2014
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_MISE_A_JOUR + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA +  nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_BATEAU_TOUCHE + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(touche) + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.ACTION_BATEAU_COULE + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(coule) + Commun.DELEMITEUR_FIN_DONNEE;
 
@@ -114,8 +114,8 @@ namespace BattleShip_2014
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_TIR + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.TRAME_JOUEUR + Commun.DELEMITEUR_DEBUT_DATA + nomJoueur + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(x) + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + Convert.ToString(y) + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
         }
@@ -169,17 +169,55 @@ namespace BattleShip_2014
             return path;
         }
 
-        public static String obtenirModeJeu(String trame)
+        /// <summary>
+        /// Fonction qui construis un objet de mode de jeu sans pieces 
+        /// </summary>
+        /// <param name="trame">La trame recue qui contient l'action mode de jeu</param>
+        /// <param name="nbreBateaux">Le nombre de pieces a recevoir pour completer l'objet</param>
+        /// <returns>Un mode de jeu sans descriptions de pieces</returns>
+        public static ModeDeJeu obtenirModeJeu(String trame, ref int nbreBateaux)
         {
-            String modeJeu = "";
+            String nomDuMode = "";
+            int tailleX = 0 , tailleY  = 0;
 
+            String[] split = trame.Split(Commun.DELEMITEUR_FIN_DONNEE);
+            foreach (String s in split)
+            {
+                if(s.Length > 0)
+                {
+                    String head = getActionFromTrame(s);
+                    //Console.WriteLine(head);
+                    
+                    switch(head)
+                    {
+                        case Commun.DATA_NOM_MODE:
+                            nomDuMode = getDataFromTrame(s);
+                            break;
+                        case Commun.DATA_POINT_X:
+                            tailleX = Convert.ToInt32(getDataFromTrame(s));
+                            break;
+                        case Commun.DATA_POINT_Y:
+                            tailleY = Convert.ToInt32(getDataFromTrame(s));
+                            break;
+                        case Commun.DATA_NBRE:
+                            nbreBateaux = Convert.ToInt32(getDataFromTrame(s));
+                            break;
+
+                    }
+                }
+                
+            }
+            return new ModeDeJeu(tailleX, tailleY, new List<DescriptionPiece>(), nomDuMode);
+            /*
+            String modeJeu = "";
+        
             string[] splitTrameAction;
             string[] splitModeJeu;
             splitTrameAction = trame.Split(';').ToArray();
             splitModeJeu = splitTrameAction[1].Split(':').ToArray();
             modeJeu = splitModeJeu[1];
 
-            return modeJeu;
+            return modeJeu;*/
         }
 
         public static int obtenirNbBateau(String trame)
@@ -304,6 +342,15 @@ namespace BattleShip_2014
             return trame.Substring(trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1, (trame.IndexOf(Commun.DELEMITEUR_FIN_DONNEE) - trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) - 1));
         }
 
+        private static String getActionFromTrame(String partieDeTrame)
+        {
+            return partieDeTrame.Substring(0, partieDeTrame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA));
+        }
+
+        private static String getDataFromTrame(String partieDeTrame)
+        {
+            return partieDeTrame.Substring(partieDeTrame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1);
+        }
 
     }
 }
