@@ -12,7 +12,7 @@ namespace BattleShip_2014
             MODEJE
             MAJ
             DESPiece*/
-        public static String formatterActionEnvoiPositionPiece(String nomJoueur, Piece p)
+        public static String genererActionEnvoiPositionPiece(String nomJoueur, Piece p)
         {
             String retour = "";
 
@@ -26,7 +26,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String formatterCommencerPlacement(String nomJoueur1, String nomJoueur2)
+        public static String genererCommencerPlacement(String nomJoueur1, String nomJoueur2)
         {
             String retour = "";
 
@@ -37,7 +37,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String formatterCommencerPartie(String nomJoueur)
+        public static String genererCommencerPartie(String nomJoueur)
         {
             String retour = "";
 
@@ -47,7 +47,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String formatterActionEnvoiModeDeJeu(string modeJeu, int x, int y, int nbBateau)
+        public static String genererActionEnvoiModeDeJeu(string modeJeu, int x, int y, int nbBateau)
         {
             String retour = "";
 
@@ -59,7 +59,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String formatterActionEnvoiPieces(DescriptionPiece p)
+        public static String genererActionEnvoiPieces(DescriptionPiece p)
         {
             String retour = "";
 
@@ -73,7 +73,7 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String retournerActionMiseAJour(String nomJoueur, int x, int y, bool touche, bool coule)
+        public static String genererActionMiseAJour(String nomJoueur, int x, int y, bool touche, bool coule)
         {
             String retour = "";
 
