@@ -104,6 +104,7 @@ namespace BattleShip_2014
         public const String ACTION_COMMENCER_PLACEMENT = "PLACEMENT";
         public const String ACTION_COMMENCER_PARTIE = "DEBUT";
         public const String ACTION_DESCRIPTION_PIECE = "DESCRIPTION";
+        public const String ACTION_CASE_DE_JEU = "CASEDEJEU";
         public const String ACTION_FIN_DE_PARTIE = "FIN";
 
         public const String DATA_POINT_X = "X";

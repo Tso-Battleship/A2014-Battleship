@@ -67,9 +67,19 @@ namespace BattleShip_2014
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_PLACER_PIECES + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + p.Nom + Commun.DELEMITEUR_FIN_DONNEE;
             retour += Commun.DATA_PATH + Commun.DELEMITEUR_DEBUT_DATA + p.PathVisuels + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + p.CasesDeJeu.Count + Commun.DELEMITEUR_FIN_DONNEE;           
 
-            
+            return retour;
+        }
+
+        public static String genererActionEnvoiCases(String nomPiece, CaseDeJeux caseDeJeu)
+        {
+            String retour = "";
+
+            retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_CASE_DE_JEU + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NOM_PIECE + Commun.DELEMITEUR_DEBUT_DATA + nomPiece + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + caseDeJeu.OffsetX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + caseDeJeu.OffsetY + Commun.DELEMITEUR_FIN_DONNEE;
 
             return retour;
         }
@@ -182,12 +192,9 @@ namespace BattleShip_2014
 
             String[] split = trame.Split(Commun.DELEMITEUR_FIN_DONNEE);
             foreach (String s in split)
-            {
                 if(s.Length > 0)
                 {
-                    String head = getActionFromTrame(s);
-                    //Console.WriteLine(head);
-                    
+                    String head = getActionFromTrame(s);                    
                     switch(head)
                     {
                         case Commun.DATA_NOM_MODE:
@@ -205,19 +212,56 @@ namespace BattleShip_2014
 
                     }
                 }
-                
-            }
             return new ModeDeJeu(tailleX, tailleY, new List<DescriptionPiece>(), nomDuMode);
-            /*
-            String modeJeu = "";
-        
-            string[] splitTrameAction;
-            string[] splitModeJeu;
-            splitTrameAction = trame.Split(';').ToArray();
-            splitModeJeu = splitTrameAction[1].Split(':').ToArray();
-            modeJeu = splitModeJeu[1];
+        }
 
-            return modeJeu;*/
+        public static DescriptionPiece obtenirDescriptionDePiece(String trame, ref int nbreCases)
+        {
+            String path = "", nom = "";
+            String[] split = trame.Split(Commun.DELEMITEUR_FIN_DONNEE);
+
+            foreach (String s in split)
+                if(s.Length > 0)
+                {
+                    String head = getActionFromTrame(s);                    
+                    switch(head)
+                    {
+                        case Commun.DATA_PATH:
+                            path = getDataFromTrame(s);
+                            break;
+                        case Commun.DATA_NOM_PIECE:
+                            nom = getDataFromTrame(s);
+                            break;
+                        case Commun.DATA_NBRE:
+                            nbreCases = Convert.ToInt32(getDataFromTrame(s));
+                            break;
+
+                    }
+                }
+            return new DescriptionPiece(new List<CaseDeJeux>(), path, nom);
+        }
+
+        public static CaseDeJeux obtenirCaseDeJeu(String trame)
+        {
+            int x = 0, y = 0;
+            String[] split = trame.Split(Commun.DELEMITEUR_FIN_DONNEE);
+
+            foreach (String s in split)
+                if (s.Length > 0)
+                {
+                    String head = getActionFromTrame(s);
+                    switch (head)
+                    {
+                        case Commun.DATA_POINT_X:
+                            x = Convert.ToInt32(getDataFromTrame(s));
+                            break;
+                        case Commun.DATA_POINT_Y:
+                            y = Convert.ToInt32(getDataFromTrame(s));
+                            break;
+
+                    }
+                }
+            return new CaseDeJeux(x, y);
         }
 
         public static int obtenirNbBateau(String trame)
@@ -337,6 +381,7 @@ namespace BattleShip_2014
             return rotation;
         }
 
+        
         public static string obtenirAction(String trame)
         {
             return trame.Substring(trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1, (trame.IndexOf(Commun.DELEMITEUR_FIN_DONNEE) - trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) - 1));
