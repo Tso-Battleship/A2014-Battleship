@@ -47,15 +47,16 @@ namespace BattleShip_2014
             return retour;
         }
 
-        public static String genererActionEnvoiModeDeJeu(string modeJeu, int x, int y, int nbBateau)
+        public static String genererActionEnvoiModeDeJeu(ModeDeJeu modeDeJeu)
         {
             String retour = "";
 
             retour += Commun.TRAME_ACTION + Commun.DELEMITEUR_DEBUT_DATA + Commun.ACTION_MODE_DE_JEU + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_NOM_MODE + Commun.DELEMITEUR_DEBUT_DATA + modeJeu + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + x + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + y + Commun.DELEMITEUR_FIN_DONNEE;
-            retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + nbBateau + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NOM_MODE + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.NomModeDeJeu + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_X + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.TailleX + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.ACTION_POINT_Y + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.TailleY + Commun.DELEMITEUR_FIN_DONNEE;
+            retour += Commun.DATA_NBRE + Commun.DELEMITEUR_DEBUT_DATA + modeDeJeu.Pieces.Count + Commun.DELEMITEUR_FIN_DONNEE;
+
             return retour;
         }
 
@@ -302,5 +303,7 @@ namespace BattleShip_2014
         {
             return trame.Substring(trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) + 1, (trame.IndexOf(Commun.DELEMITEUR_FIN_DONNEE) - trame.IndexOf(Commun.DELEMITEUR_DEBUT_DATA) - 1));
         }
+
+
     }
 }
