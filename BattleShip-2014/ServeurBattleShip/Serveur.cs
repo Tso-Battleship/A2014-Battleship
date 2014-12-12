@@ -20,7 +20,7 @@ namespace BattleShip_2014
         int tailleY;
         int nbPiece;
         string nomMode;
-
+        ModeDeJeu mode_;
 
         TableauAvecPiece joueur_un;
         TableauAvecPiece joueur_deux;
@@ -39,9 +39,7 @@ namespace BattleShip_2014
 
         public void lectureModeJeu()
         {
-<<<<<<< Updated upstream
             descriptionDuModeDeJeu = new List<DescriptionPiece>();
-=======
 
             mode_ = (new xml_crunch("battleship_xml.xml").getModeDeJeu());
 
@@ -51,6 +49,7 @@ namespace BattleShip_2014
             nbPiece = mode_.Pieces.Count;
 
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
+        
 
             /*foreach (Piece p in mode_.Pieces)
             {
@@ -58,7 +57,6 @@ namespace BattleShip_2014
             }
             */
             /*descriptionDuModeDeJeu = new List<DescriptionPiece>();
->>>>>>> Stashed changes
 
             List<CaseDeJeux> cases = new List<CaseDeJeux>();
 
@@ -97,7 +95,7 @@ namespace BattleShip_2014
                /* FormatteurActions.
                 description.*/
                   
-            }
+         //   }
 
             /*
             List<

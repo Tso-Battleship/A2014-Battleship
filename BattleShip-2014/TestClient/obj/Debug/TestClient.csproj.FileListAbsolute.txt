@@ -42,3 +42,14 @@ C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\TestClient\obj\De
 C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\BattleShip_2014.FormTestClient.resources
 C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.Properties.Resources.resources
 C:\Users\tge\Documents\GitHub\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.csproj.GenerateResource.Cache
+C:\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\TestClient.exe.config
+C:\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.exe
+C:\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.pdb
+C:\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\TestClient.exe
+C:\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\TestClient.pdb
+C:\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.dll
+C:\A2014-Battleship\BattleShip-2014\TestClient\bin\Debug\BattleShip-2014.pdb
+C:\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
+C:\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\BattleShip_2014.FormTestClient.resources
+C:\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.Properties.Resources.resources
+C:\A2014-Battleship\BattleShip-2014\TestClient\obj\Debug\TestClient.csproj.GenerateResource.Cache

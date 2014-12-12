@@ -201,17 +201,17 @@ namespace BattleShip_2014
         /// <param name="e"></param>
         private void connecterServeur_button_Click(object sender, EventArgs e)
         {
-            //TODO Rendre le connectPanel Invisible si la connection Réussis
-            connect_panel.Visible = false;
-            info_panel.Visible = true;
-
-            //tcpClient.connectionServeur(nomJoueur_TB.Text);
-
-            tcpClient.connectionServeur(adresseIP_TB.Text);
-            state = StateClient.stateOuverture;
-            receptionMessageStateMachine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
-
-            //label1.Text = TCPClient.retourneAdresseIpClient();
+            if(tcpClient.connectionServeur(adresseIP_TB.Text))
+            { 
+                state = StateClient.stateOuverture;
+                receptionMessageStateMachine(FormatteurActions.genererActionConnection(nomJoueur_TB.Text));
+                connect_panel.Visible = false;
+                info_panel.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Erreur de Connection");
+            }
         }
 
         /// <summary>

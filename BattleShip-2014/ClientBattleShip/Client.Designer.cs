@@ -267,7 +267,7 @@
             this.info_panel.Controls.Add(this.label1);
             this.info_panel.Controls.Add(this.label2);
             this.info_panel.Controls.Add(this.label3);
-            this.info_panel.Location = new System.Drawing.Point(482, 3);
+            this.info_panel.Location = new System.Drawing.Point(615, 3);
             this.info_panel.Name = "info_panel";
             this.info_panel.Size = new System.Drawing.Size(398, 215);
             this.info_panel.TabIndex = 6;
