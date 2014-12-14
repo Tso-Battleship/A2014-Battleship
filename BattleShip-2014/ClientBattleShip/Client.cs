@@ -1,4 +1,17 @@
-﻿using System;
+﻿/**
+ * @file   Client.cs
+ * @author Jean-Pascal McGee | Alexander Selivanov
+ * @date   14 décembre 2014
+ * @brief  Client du Battleship 2014
+ *
+ * Environnement:
+ * Développement: Visual Studio 2014
+ *
+ * Matériel:
+ *   Système de développement: PC avec Windows 7
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +39,6 @@ namespace BattleShip_2014
 
     public partial class Client : Form
     {
-
         enum enumImageCurseur {
             piece1 = 0,
             piece2,
@@ -45,7 +57,7 @@ namespace BattleShip_2014
         enumImageCurseur imageCurseur = enumImageCurseur.invalide;
         bool toggle = true; //Permet de changer l'orientation du curseur
        
-        //Variable global pour le reDraw
+        //Variable globale pour le reDraw
         bool redrawPlacement_ = false;
         bool redrawHitMiss_ = false;
         bool redrawEnnemi_ = false;
@@ -307,7 +319,7 @@ namespace BattleShip_2014
         }
 
         /// <summary>
-        /// Placer le Bateau sélectionné dans la case Sélectionné
+        /// Placer le Bateau sélectionné dans la case sélectionné
         /// </summary>
         /// <param name="image"></param>
         /// <param name="rotated"></param>
@@ -343,7 +355,7 @@ namespace BattleShip_2014
                     break;
             }
 
-            /// Vérifier qu"il n'y a pas une pieces sous la pieces que l'on tente de placer
+            /// Vérifier qu'il n'y a pas une pieces sous la pieces que l'on tente de placer
             if (imageCurseur != enumImageCurseur.invalide)
             {
                 if ( (rotation_ == Rotation.Droite && (x + nbPieces_) <= tableauJoueur.TailleX) || (rotation_ == Rotation.Haut && (y+nbPieces_ <= tableauJoueur.TailleY)) )
@@ -653,7 +665,7 @@ namespace BattleShip_2014
                     }
                     else if(action == Commun.ACTION_MODE_DE_JEU)
                     {
-                        FormatteurActions.obtenirModeJeu(trameRecue);
+                        //FormatteurActions.obtenirModeJeu(trameRecue);
                         //TODO populer le mode de jeu
                     }
                     else if(action == Commun.ACTION_DESCRIPTION_PIECE)
